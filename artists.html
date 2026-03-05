@@ -8,18 +8,23 @@
     <link rel="stylesheet" href="style.css">
     <style>
         .page-header {
-            padding: 16px 20px;
+            padding: 24px 20px 16px;
         }
 
         .search-bar {
             width: 100%;
-            padding: 12px 16px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.05);
-            color: white;
+            padding: 14px 20px;
+            border-radius: 30px;
+            border: 1px solid rgba(0, 123, 255, 0.2);
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--text-primary);
             font-size: 1rem;
             margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .search-bar::placeholder {
+            color: #999;
         }
 
         .artist-grid {
@@ -33,19 +38,24 @@
             position: relative;
             border-radius: var(--border-radius);
             overflow: hidden;
-            aspect-ratio: 3/4;
+            /* 指示通り、顔を中心に正方形でトリミング */
+            aspect-ratio: 1 / 1;
             display: block;
             text-decoration: none;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            border: 2px solid #fff;
         }
 
         .artist-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center 20%;
+            /* 顔が中心に来やすいよう少し上部を基準に */
             transition: transform 0.3s ease;
         }
 
-        .artist-card:hover .artist-img {
+        .artist-card:active .artist-img {
             transform: scale(1.05);
         }
 
@@ -55,25 +65,25 @@
             left: 0;
             width: 100%;
             padding: 30px 12px 12px;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
         }
 
         .artist-name {
             color: white;
-            font-weight: bold;
+            font-weight: 800;
             font-size: 1.1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
         }
     </style>
 </head>
 
 <body>
     <div class="app-container">
+        <!-- 共通ヘッダ -->
         <header>
-            <div class="logo-container">
-                <a href="index.html">
-                    <h1>Music Liver</h1>
-                </a>
-            </div>
+            <a href="index.html" class="logo-link">
+                <img src="images/logo_blue.png" alt="Music Liver" class="header-logo">
+            </a>
             <div class="menu-icon">☰</div>
         </header>
 
@@ -87,6 +97,7 @@
             </div>
         </main>
 
+        <!-- 共通フッタ -->
         <nav class="bottom-nav">
             <a href="index.html" class="nav-item">
                 <span class="nav-icon">🏠</span>
@@ -96,8 +107,12 @@
                 <span class="nav-icon">📍</span>
                 <span>MAP</span>
             </a>
-            <a href="artists.html" class="nav-item active">
+            <a href="schedule.html" class="nav-item">
                 <span class="nav-icon">🎸</span>
+                <span>LIVE</span>
+            </a>
+            <a href="artists.html" class="nav-item active">
+                <span class="nav-icon">👥</span>
                 <span>ARTIST</span>
             </a>
             <a href="admin_listener.html" class="nav-item">
@@ -108,23 +123,26 @@
     </div>
 
     <script>
-        // 仮データ（画像はUnsplash等で代用。本番は現サイトから取得）
+        // 本番データ：指示にある全アーティストの写真と氏名の組み合わせ
         const artists = [
-            { name: "小杉ゆん", img: "https://images.unsplash.com/photo-1516575334481-fec8bb85c986?w=400&h=533&fit=crop" },
-            { name: "海蔵亮太", img: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=400&h=533&fit=crop" },
-            { name: "古川愛理", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=533&fit=crop" },
-            { name: "OTOTAROCK", img: "https://images.unsplash.com/photo-1598387181032-a3103a2db5b3?w=400&h=533&fit=crop" },
-            { name: "一華ひかり", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=533&fit=crop" },
-            { name: "藤田悠也", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=533&fit=crop" }
+            { name: "小杉ゆん", img: "images/artist_kosugiyun.jpg", link: "artist_kosugiyun.html" },
+            { name: "村田和司", img: "images/artist_muratakazushi.jpg", link: "artist_muratakazushi.html" },
+            { name: "虎鷹", img: "images/artist_kotaka_01.jpg", link: "artist_kotaka.html" },
+            { name: "はせとも。", img: "images/artist_hasetomo_02.jpg", link: "artist_hasetomo.html" },
+            { name: "鳥居れな", img: "images/artist_toriirena.jpg", link: "artist_toriirena.html" },
+            { name: "はしもとねね", img: "images/artist_hashimotonene_02.jpg", link: "artist_hashimotonene.html" },
+            { name: "AiAi", img: "images/artist_aiai.jpg", link: "artist_aiai.html" },
+            { name: "冨十みと", img: "images/artist_tomitomito.jpg", link: "artist_tomitomito.html" },
+            { name: "柳光絵", img: "images/artist_yanagimitsue.jpg", link: "artist_yanagimitsue.html" },
+            { name: "OTOTAROCK", img: "images/artist_ototarock.jpg", link: "artist_ototarock.html" }
         ];
 
-        // 配列をシャッフル（要件: 下に行くほどPVが少ないのを防ぐためランダム表示）
+        // 配列をシャッフル（毎回の表示順をランダム化）
         const shuffled = artists.sort(() => 0.5 - Math.random());
 
         const grid = document.getElementById('artistGrid');
         shuffled.forEach(a => {
-            // 全員一旦詳細ページ遷移へのベースリンクにする
-            const card = `<a href="artist_detail.html" class="artist-card">
+            const card = `<a href="${a.link}" class="artist-card">
         <img src="${a.img}" class="artist-img" alt="${a.name}">
         <div class="artist-info">
           <div class="artist-name">${a.name}</div>
