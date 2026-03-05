@@ -362,6 +362,22 @@
       bgs[currentIndex].classList.add('active');
     }, 3000);
   </script>
+  <script>
+    /* 簡易パスワード保護 (Vercel無料プラン用) */
+    (function () {
+      const PASS = "music03"; // 必要に応じて変更してください
+      if (sessionStorage.getItem("site_access") !== "granted") {
+        let input = prompt("パスワードを入力してください:");
+        if (input === PASS) {
+          sessionStorage.setItem("site_access", "granted");
+        } else {
+          alert("パスワードが違います。");
+          document.body.innerHTML = "<div style='display:flex; justify-content:center; align-items:center; height:100vh; font-family:sans-serif;'><h1>Access Denied</h1></div>";
+          window.stop();
+        }
+      }
+    })();
+  </script>
 </body>
 
 </html>
