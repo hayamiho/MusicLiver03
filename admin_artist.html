@@ -80,12 +80,19 @@
 <body>
     <div class="app-container">
         <header>
-            <div class="logo-container">
-                <h1>Music Liver</h1>
-            </div>
-            <div><span style="font-size: 0.7rem; color:var(--accent-pink); border: 1px solid; padding: 2px 4px;">ARTIST
-                    MODE</span></div>
+            <a href="index.html" class="logo-link">
+                <img src="images/logo_blue.png" alt="Music Liver" class="header-logo">
+            </a>
+            <div class="menu-icon" onclick="toggleMenu()">≡</div>
         </header>
+
+        <div class="hamburger-menu-content" id="hamburgerMenu">
+            <a href="index.html">トップページ</a>
+            <a href="map.html">会場マップ</a>
+            <a href="schedule.html">ライブスケジュール</a>
+            <a href="artists.html">アーティスト一覧</a>
+            <a href="admin_listener.html">マイページ</a>
+        </div>
 
         <main>
             <div class="profile-header">
@@ -146,8 +153,39 @@
                         style="font-size:0.8rem; color: #666; text-decoration: underline;">[確認用デモ導線：リスナー管理画面へ戻る]</a>
                 </div>
             </div>
-        </main>
     </div>
+    </div>
+    </main>
+
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item">
+            <img src="images/icon_top.svg" alt="TOP" class="nav-icon">
+            <span>TOP</span>
+        </a>
+        <a href="map.html" class="nav-item">
+            <img src="images/icon_map.svg" alt="MAP" class="nav-icon">
+            <span>MAP</span>
+        </a>
+        <a href="schedule.html" class="nav-item">
+            <img src="images/icon_live.svg" alt="LIVE" class="nav-icon">
+            <span>LIVE</span>
+        </a>
+        <a href="artists.html" class="nav-item">
+            <img src="images/icon_artist.svg" alt="ARTIST" class="nav-icon">
+            <span>ARTIST</span>
+        </a>
+        <a href="admin_listener.html" class="nav-item">
+            <img src="images/icon_mypage.svg" alt="MY PAGE" class="nav-icon">
+            <span>MY PAGE</span>
+        </a>
+    </nav>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('hamburgerMenu').classList.toggle('open');
+        }
+    </script>
 </body>
 
 </html>

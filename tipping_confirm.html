@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,9 +43,17 @@
     }
 
     @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.1);
+      }
+
+      100% {
+        transform: scale(1);
+      }
     }
 
     .send-text {
@@ -52,18 +61,28 @@
     }
   </style>
 </head>
+
 <body>
   <div class="app-container">
     <header>
-      <div class="logo-container">
-        <h1>Music Liver</h1>
-      </div>
+      <a href="index.html" class="logo-link">
+        <img src="images/logo_blue.png" alt="Music Liver" class="header-logo">
+      </a>
+      <div class="menu-icon" onclick="toggleMenu()">≡</div>
     </header>
+
+    <div class="hamburger-menu-content" id="hamburgerMenu">
+      <a href="index.html">トップページ</a>
+      <a href="map.html">会場マップ</a>
+      <a href="schedule.html">ライブスケジュール</a>
+      <a href="artists.html">アーティスト一覧</a>
+      <a href="admin_listener.html">マイページ</a>
+    </div>
 
     <main>
       <div class="confirm-container">
         <div class="status-text">
-          現在 <span id="currentPt">1000</span> ポイント保持しています。
+          現在 <span id="currentPt">1000</span> ポイント保有しています。
         </div>
 
         <div class="confirm-box">
@@ -76,21 +95,50 @@
         <a href="tipping_complete.html" class="btn btn-primary mb-4" style="font-size:1.2rem; padding: 16px;">
           送る！
         </a>
-        
+
         <br><br>
-        <a href="artist_detail.html" style="color:var(--text-secondary); font-size: 0.9rem; text-decoration: underline; display: inline-block;">TOP(アーティスト詳細)に戻る</a>
+        <a href="artist_detail.html"
+          style="color:var(--text-secondary); font-size: 0.9rem; text-decoration: underline; display: inline-block;">TOP(アーティスト詳細)に戻る</a>
       </div>
     </main>
+
+    <nav class="bottom-nav">
+      <a href="index.html" class="nav-item">
+        <img src="images/icon_top.svg" alt="TOP" class="nav-icon">
+        <span>TOP</span>
+      </a>
+      <a href="map.html" class="nav-item">
+        <img src="images/icon_map.svg" alt="MAP" class="nav-icon">
+        <span>MAP</span>
+      </a>
+      <a href="schedule.html" class="nav-item">
+        <img src="images/icon_live.svg" alt="LIVE" class="nav-icon">
+        <span>LIVE</span>
+      </a>
+      <a href="artists.html" class="nav-item">
+        <img src="images/icon_artist.svg" alt="ARTIST" class="nav-icon">
+        <span>ARTIST</span>
+      </a>
+      <a href="admin_listener.html" class="nav-item">
+        <img src="images/icon_mypage.svg" alt="MY PAGE" class="nav-icon">
+        <span>MY PAGE</span>
+      </a>
+    </nav>
   </div>
 
   <script>
     // 仮データの表示制御（本来はlocalStorage等から引き継ぐ）
     const params = new URLSearchParams(window.location.search);
-    const item = params.get('item') || 'star'; 
+    const item = params.get('item') || 'star';
     // ※今回は画面遷移の都合上、パラメータがない場合はデフォで星とする
-    
+
     // アイテムに応じた表示制御処理は他ページと同様に実装可能ですが、
     // モックでは常に☆としておきます。
+
+    function toggleMenu() {
+      document.getElementById('hamburgerMenu').classList.toggle('open');
+    }
   </script>
 </body>
+
 </html>

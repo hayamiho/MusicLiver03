@@ -58,11 +58,14 @@ body {
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.05);
 }
 
-/* Header (Standard) */
+/* --- Header (Standard) --- */
 header {
-  position: sticky;
+  position: fixed;
+  /* stickyから変更して全体固定化 */
   top: 0;
   width: 100%;
+  max-width: 480px;
+  /* pcなどで見た場合にapp-containerに追随するよう */
   height: var(--header-height);
   z-index: 1000;
   background: rgba(255, 255, 255, 0.85);
@@ -76,8 +79,51 @@ header {
 
 header.top-header {
   display: none;
-  /* トップページのみ非表示 */
 }
+
+/* ヘッダの裏にコンテンツが隠れないよう、mainの上部にパディングを設定 */
+main {
+  flex: 1;
+  padding-top: var(--header-height);
+  padding-bottom: calc(var(--footer-height) + 20px);
+  /* フッタ被り防止 */
+}
+
+/* --- Hamburger Menu Content --- */
+.hamburger-menu-content {
+  display: none;
+  /* 初期非表示 */
+}
+
+.hamburger-menu-content.open {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: var(--header-height);
+  right: 0;
+  background: var(--bg-card);
+  backdrop-filter: blur(10px);
+  padding: 16px 20px;
+  border-bottom-left-radius: var(--border-radius);
+  box-shadow: -2px 5px 15px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.hamburger-menu-content a {
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--text-primary);
+  padding: 12px 0;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+}
+
+.hamburger-menu-content a:last-child {
+  border-bottom: none;
+}
+
+/* Typography */
 
 .logo-link {
   display: flex;
@@ -95,12 +141,6 @@ header.top-header {
   cursor: pointer;
 }
 
-/* Main Content Area */
-main {
-  flex: 1;
-}
-
-/* Typography */
 h2.section-title {
   font-size: 1.4rem;
   font-weight: 800;
@@ -189,7 +229,10 @@ h2.section-title {
 }
 
 .nav-icon {
-  font-size: 1.4rem;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  margin-bottom: 2px;
 }
 
 /* Helpers */

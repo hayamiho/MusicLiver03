@@ -21,7 +21,7 @@
             left: 40px;
             right: 40px;
             height: 2px;
-            background: rgba(255, 255, 255, 0.2);
+            background: #ccc;
             z-index: 0;
         }
 
@@ -30,7 +30,7 @@
             height: 24px;
             border-radius: 50%;
             background: var(--bg-card);
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            border: 2px solid #ccc;
             z-index: 1;
             display: flex;
             align-items: center;
@@ -76,9 +76,9 @@
 <body>
     <div class="app-container">
         <header>
-            <div class="logo-container">
-                <h1>Music Liver</h1>
-            </div>
+            <a href="index.html" class="logo-link" style="margin: 0 auto;">
+                <img src="images/logo_blue.png" alt="Music Liver" class="header-logo">
+            </a>
         </header>
 
         <main>
@@ -96,7 +96,7 @@
                     <p>MusicLiverにユーザー登録すると、<br>アーティストに<span id="itemName">☆</span>を送れます</p>
                 </div>
 
-                <a href="register_phone.html" class="btn btn-primary mb-4">ユーザー登録する <br><span
+                <a href="register_phone.html" class="btn btn-primary mb-4">ユーザー登録する&#32;<span
                         style="font-size: 0.8rem; font-weight: normal;">かんたん！3分で完了</span></a>
 
                 <a href="artist_detail.html" class="btn btn-secondary">戻る</a>

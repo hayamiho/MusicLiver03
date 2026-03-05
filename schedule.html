@@ -15,10 +15,17 @@
         .schedule-date {
             font-size: 1.3rem;
             font-weight: 900;
-            margin: 30px 20px 16px;
+            margin: 30px 20px 8px;
             color: var(--accent-blue);
             border-bottom: 2px solid rgba(0, 123, 255, 0.2);
             padding-bottom: 8px;
+        }
+
+        .schedule-subdate {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin: 0 20px 16px;
+            color: var(--text-secondary);
         }
 
         .schedule-list {
@@ -29,12 +36,12 @@
             display: flex;
             background: var(--bg-card);
             border-radius: var(--border-radius);
-            padding: 16px;
-            margin-bottom: 12px;
+            padding: 10px 0 10px 10px;
             border-left: 4px solid #ccc;
             text-decoration: none;
             color: inherit;
-            align-items: center;
+            align-items: stretch;
+            /* centerからstretchに変更し、高さを合わせる */
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
             transition: transform 0.2s;
         }
@@ -53,10 +60,14 @@
         }
 
         .time-col {
-            width: 65px;
+            width: 28%;
             font-weight: 900;
             color: var(--text-primary);
             font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
         }
 
         .info-col {
@@ -84,13 +95,18 @@
         }
 
         .thumb-col {
-            width: 60px;
-            height: 60px;
+            width: 28%;
+            aspect-ratio: 1;
+            /* 高さを揃えるため */
             flex-shrink: 0;
-            border-radius: 50%;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
             overflow: hidden;
-            border: 2px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: -2px 0 8px rgba(0, 0, 0, 0.05);
+            /* 親要素に対する余白を消すため、右側のpaddingをマイナス等で調整するか、親のpaddingを調整する */
+            margin-top: -10px;
+            margin-bottom: -10px;
+            margin-right: -1px;
+            /* 枠のボーダー分 */
         }
 
         .thumb-col img {
@@ -134,8 +150,16 @@
             <a href="index.html" class="logo-link">
                 <img src="images/logo_blue.png" alt="Music Liver" class="header-logo">
             </a>
-            <div class="menu-icon">☰</div>
+            <div class="menu-icon" onclick="toggleMenu()">≡</div>
         </header>
+
+        <div class="hamburger-menu-content" id="hamburgerMenu">
+            <a href="index.html">トップページ</a>
+            <a href="map.html">会場マップ</a>
+            <a href="schedule.html">ライブスケジュール</a>
+            <a href="artists.html">アーティスト一覧</a>
+            <a href="admin_listener.html">マイページ</a>
+        </div>
 
         <main>
             <div class="page-header">
@@ -147,7 +171,7 @@
             <div class="schedule-date">Today's Live</div>
             <div class="schedule-list">
                 <a href="live.html" class="schedule-item stage-silver now-playing">
-                    <div class="time-col">NOW<br>PLAYING!</div>
+                    <div class="time-col">LIVE<br>NOW!</div>
                     <div class="info-col">
                         <div class="artist-name">小杉ゆん</div>
                         <div class="location loc-silver">● SILVER STAGE</div>
@@ -170,7 +194,8 @@
             </div>
 
             <!-- Next Live (3/6) -->
-            <div class="schedule-date">Next Live / 2026.03.06 fri</div>
+            <div class="schedule-date">Next Live</div>
+            <div class="schedule-subdate">2026.03.06 fri</div>
             <div class="schedule-list">
                 <a href="artist_muratakazushi.html" class="schedule-item stage-silver">
                     <div class="time-col">17:30〜</div>
@@ -207,7 +232,7 @@
             </div>
 
             <!-- Next Week (3/13) -->
-            <div class="schedule-date">2026.03.13 fri</div>
+            <div class="schedule-subdate">2026.03.13 fri</div>
             <div class="schedule-list">
                 <a href="artist_toriirena.html" class="schedule-item stage-silver">
                     <div class="time-col">17:30〜</div>
@@ -269,27 +294,33 @@
         <!-- 共通フッタ -->
         <nav class="bottom-nav">
             <a href="index.html" class="nav-item">
-                <span class="nav-icon">🏠</span>
+                <img src="images/icon_top.svg" alt="TOP" class="nav-icon">
                 <span>TOP</span>
             </a>
             <a href="map.html" class="nav-item">
-                <span class="nav-icon">📍</span>
+                <img src="images/icon_map.svg" alt="MAP" class="nav-icon">
                 <span>MAP</span>
             </a>
             <a href="schedule.html" class="nav-item active">
-                <span class="nav-icon">🎸</span>
+                <img src="images/icon_live.svg" alt="LIVE" class="nav-icon">
                 <span>LIVE</span>
             </a>
             <a href="artists.html" class="nav-item">
-                <span class="nav-icon">👥</span>
+                <img src="images/icon_artist.svg" alt="ARTIST" class="nav-icon">
                 <span>ARTIST</span>
             </a>
             <a href="admin_listener.html" class="nav-item">
-                <span class="nav-icon">👤</span>
+                <img src="images/icon_mypage.svg" alt="MY PAGE" class="nav-icon">
                 <span>MY PAGE</span>
             </a>
         </nav>
     </div>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('hamburgerMenu').classList.toggle('open');
+        }
+    </script>
 </body>
 
 </html>

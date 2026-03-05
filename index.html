@@ -10,7 +10,7 @@
     /* トップページ専用スタイル */
     .hero-section {
       position: relative;
-      height: 75vh;
+      height: 55vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -61,7 +61,8 @@
       text-align: center;
       width: 100%;
       padding: 0 40px;
-      margin-top: -40px;
+      margin-top: 15px;
+      /* ロゴ高さを全体的に下げる */
     }
 
     .logo-main {
@@ -73,120 +74,154 @@
     .logo-tagline {
       font-size: 0.65rem;
       font-weight: 800;
-      color: var(--accent-blue);
+      color: #004fba;
       letter-spacing: 2px;
       text-transform: uppercase;
+      margin-bottom: 16px;
     }
 
-    .next-live-card {
-      position: relative;
-      z-index: 20;
-      margin: -50px 24px 40px;
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(10px);
-      border: 2.5px solid var(--accent-pink);
-      border-radius: 20px;
-      padding: 20px;
-      text-align: center;
-      display: block;
-      text-decoration: none;
-      color: inherit;
-      box-shadow: 0 15px 35px rgba(255, 102, 161, 0.15);
-      transition: transform 0.3s ease;
-    }
-
-    .next-live-card:active {
-      transform: scale(0.97);
-    }
-
-    .next-live-badge {
-      display: inline-block;
-      background: var(--accent-pink);
-      color: #fff;
-      font-size: 0.75rem;
-      font-weight: 900;
-      padding: 4px 16px;
-      border-radius: 20px;
-      margin-bottom: 8px;
-    }
-
-    .next-live-title {
-      font-size: 1.6rem;
-      font-weight: 900;
+    .next-live-inline {
+      display: inline-flex;
+      align-items: center;
+      background: var(--bg-card);
+      border: 2px solid var(--accent-pink);
       color: var(--text-primary);
+      padding: 6px 20px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 900;
+      text-decoration: none;
+      box-shadow: 0 8px 20px rgba(255, 102, 161, 0.2);
+    }
+
+    .next-live-inline span {
+      background: var(--accent-pink);
+      color: white;
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      margin-right: 12px;
     }
 
     .key-message {
-      padding: 0 40px 60px;
+      padding: 20px 30px 15px;
       text-align: center;
     }
 
     .key-message p {
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       font-weight: 800;
-      line-height: 1.8;
+      line-height: 1.6;
       color: var(--text-primary);
-      margin-bottom: 24px;
+      margin-bottom: 12px;
     }
 
     .key-message .sub-text {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: var(--text-secondary);
       font-weight: 500;
-      line-height: 1.6;
+      line-height: 1.5;
     }
 
     .action-section {
-      padding: 0 30px 40px;
+      padding: 0 30px 10px;
       display: flex;
       flex-direction: column;
-      gap: 15px;
     }
 
     .btn-contact {
-      font-size: 0.8rem;
-      padding: 10px 20px;
+      font-size: 0.75rem;
+      padding: 8px 16px;
       width: auto;
       align-self: center;
       opacity: 0.7;
     }
 
     .sponsors {
-      padding: 40px 20px;
+      padding: 5px 20px 20px;
       text-align: center;
       border-top: 1px solid rgba(0, 0, 0, 0.05);
     }
 
     .sponsors-text {
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       color: #999;
-      line-height: 1.6;
-      font-weight: 600;
+      line-height: 1.4;
+      font-weight: normal;
     }
 
     .sns-container {
       display: flex;
       justify-content: center;
-      gap: 24px;
-      padding: 30px 0 50px;
+      gap: 32px;
+      padding: 5px 0 20px;
     }
 
     .sns-icon {
-      width: 24px;
-      height: 24px;
-      opacity: 0.6;
-      transition: opacity 0.3s;
+      width: 54px;
+      /* 1.5倍 (36px * 1.5) */
+      height: 54px;
+      opacity: 1;
+      transition: transform 0.2s;
     }
 
-    .sns-icon:hover {
-      opacity: 1;
+    .sns-icon:active {
+      transform: scale(0.9);
+    }
+
+    .hamburger-menu-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 1.8rem;
+      z-index: 1001;
+      color: #004fba;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .hamburger-menu-content {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 250px;
+      height: 100vh;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      transition: right 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      padding: 70px 20px 20px;
+    }
+
+    .hamburger-menu-content.open {
+      right: 0;
+    }
+
+    .hamburger-menu-content a {
+      text-decoration: none;
+      color: var(--text-primary);
+      font-size: 1.05rem;
+      font-weight: bold;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     }
   </style>
 </head>
 
 <body>
   <div class="app-container">
-    <!-- トップページはヘッダ非表示 -->
+    <!-- ハンバーガーメニュー追加 -->
+    <div class="hamburger-menu-btn" onclick="toggleMenu()">≡</div>
+    <div class="hamburger-menu-content" id="hamburgerMenu">
+      <a href="index.html">トップページ</a>
+      <a href="map.html">会場マップ</a>
+      <a href="schedule.html">ライブスケジュール</a>
+      <a href="artists.html">アーティスト一覧</a>
+      <a href="admin_listener.html">マイページ</a>
+    </div>
 
     <main>
       <section class="hero-section">
@@ -197,22 +232,16 @@
         <div class="hero-content">
           <img src="images/logo_blue.png" alt="Music Liver" class="logo-main">
           <div class="logo-tagline">NEW NIGHT ENTERTAINMENT</div>
+          <a href="schedule.html" class="next-live-inline">
+            <span>NEXT LIVE</span>3/6 fri. 17:30～
+          </a>
         </div>
       </section>
-
-      <a href="schedule.html" class="next-live-card">
-        <div class="next-live-badge">NEXT LIVE</div>
-        <div class="next-live-title">3/6 fri. 17:30～</div>
-      </a>
 
       <section class="key-message">
         <p>あなたの応援を、<br>どこよりも大きくダイレクトに<br>アーティストへ届けます。</p>
         <div class="sub-text">MusicLiverは、若手アーティストとファンを直接つなぐ新しいプラットフォーム。毎週金曜、ストリートライブ開催中！</div>
       </section>
-
-      <div class="action-section">
-        <a href="#" class="btn btn-secondary btn-contact">CONTACT</a>
-      </div>
 
       <!-- SNS -->
       <div class="sns-container">
@@ -223,6 +252,12 @@
             alt="TikTok"></a>
       </div>
 
+      <div class="action-section">
+        <a href="contact.html" class="btn btn-secondary btn-contact">CONTACT</a>
+      </div>
+
+
+
       <section class="sponsors">
         <p class="sponsors-text">【特別協賛】三井不動産株式会社</p>
         <p class="sponsors-text">【協力】TOKYO STREET LIVE 4K　日本橋チャンネル</p>
@@ -231,29 +266,34 @@
 
     <nav class="bottom-nav">
       <a href="index.html" class="nav-item active">
-        <span class="nav-icon">🏠</span>
+        <img src="images/icon_top.svg" alt="TOP" class="nav-icon">
         <span>TOP</span>
       </a>
       <a href="map.html" class="nav-item">
-        <span class="nav-icon">📍</span>
+        <img src="images/icon_map.svg" alt="MAP" class="nav-icon">
         <span>MAP</span>
       </a>
       <a href="schedule.html" class="nav-item">
-        <span class="nav-icon">🎸</span>
+        <img src="images/icon_live.svg" alt="LIVE" class="nav-icon">
         <span>LIVE</span>
       </a>
       <a href="artists.html" class="nav-item">
-        <span class="nav-icon">👥</span>
+        <img src="images/icon_artist.svg" alt="ARTIST" class="nav-icon">
         <span>ARTIST</span>
       </a>
       <a href="admin_listener.html" class="nav-item">
-        <span class="nav-icon">👤</span>
+        <img src="images/icon_mypage.svg" alt="MY PAGE" class="nav-icon">
         <span>MY PAGE</span>
       </a>
     </nav>
   </div>
 
   <script>
+    // ハンバーガーメニューの開閉
+    function toggleMenu() {
+      document.getElementById('hamburgerMenu').classList.toggle('open');
+    }
+
     // ヒーロー画像のフェードアニメーション
     const images = [
       'images/artist_muratakazushi.jpg',

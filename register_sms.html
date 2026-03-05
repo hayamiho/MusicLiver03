@@ -21,7 +21,7 @@
             left: 40px;
             right: 40px;
             height: 2px;
-            background: rgba(255, 255, 255, 0.2);
+            background: #ccc;
             z-index: 0;
         }
 
@@ -30,7 +30,7 @@
             height: 24px;
             border-radius: 50%;
             background: var(--bg-card);
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            border: 2px solid #ccc;
             z-index: 1;
             display: flex;
             align-items: center;
@@ -45,9 +45,9 @@
         }
 
         .step.done {
-            background: rgba(255, 255, 255, 0.5);
-            border-color: rgba(255, 255, 255, 0.5);
-            color: #000;
+            background: rgba(0, 0, 0, 0.05);
+            border-color: #ccc;
+            color: #666;
         }
 
         .form-container {
@@ -60,10 +60,10 @@
             padding: 16px;
             font-size: 2rem;
             text-align: center;
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid var(--accent-cyan);
+            background: #fff;
+            border: 2px solid #ccc;
             border-radius: var(--border-radius);
-            color: white;
+            color: var(--text-primary);
             margin: 24px 0;
             letter-spacing: 8px;
         }
@@ -78,9 +78,9 @@
 <body>
     <div class="app-container">
         <header>
-            <div class="logo-container">
-                <h1>Music Liver</h1>
-            </div>
+            <a href="index.html" class="logo-link" style="margin: 0 auto;">
+                <img src="images/logo_blue.png" alt="Music Liver" class="header-logo">
+            </a>
         </header>
 
         <main>

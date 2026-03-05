@@ -61,13 +61,13 @@
             position: absolute;
             font-size: 2rem;
             pointer-events: none;
-            animation: floatUp 2s ease-out forwards;
+            animation: floatOut 1s ease-out forwards;
             z-index: 1;
         }
 
-        @keyframes floatUp {
+        @keyframes floatOut {
             0% {
-                transform: translate(0, 0) scale(0.5);
+                transform: translate(-50%, -50%) scale(0.5);
                 opacity: 0;
             }
 
@@ -76,7 +76,7 @@
             }
 
             100% {
-                transform: translate(var(--tx), var(--ty)) scale(1.5);
+                transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1.5);
                 opacity: 0;
             }
         }
@@ -86,10 +86,19 @@
 <body>
     <div class="app-container">
         <header>
-            <div class="logo-container">
-                <h1>Music Liver</h1>
-            </div>
+            <a href="index.html" class="logo-link">
+                <img src="images/logo_blue.png" alt="Music Liver" class="header-logo">
+            </a>
+            <div class="menu-icon" onclick="toggleMenu()">≡</div>
         </header>
+
+        <div class="hamburger-menu-content" id="hamburgerMenu">
+            <a href="index.html">トップページ</a>
+            <a href="map.html">会場マップ</a>
+            <a href="schedule.html">ライブスケジュール</a>
+            <a href="artists.html">アーティスト一覧</a>
+            <a href="admin_listener.html">マイページ</a>
+        </div>
 
         <main>
             <div class="success-container" id="successContainer">
@@ -109,16 +118,43 @@
                 </p>
 
                 <div class="point-remaining">
-                    残り 900pt
+                    利用可能ポイント 900pt
                 </div>
 
                 <a href="artist_kosugiyun.html" class="btn btn-secondary">アーティストTOPに戻る</a>
 
             </div>
         </main>
+
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <img src="images/icon_top.svg" alt="TOP" class="nav-icon">
+                <span>TOP</span>
+            </a>
+            <a href="map.html" class="nav-item">
+                <img src="images/icon_map.svg" alt="MAP" class="nav-icon">
+                <span>MAP</span>
+            </a>
+            <a href="schedule.html" class="nav-item">
+                <img src="images/icon_live.svg" alt="LIVE" class="nav-icon">
+                <span>LIVE</span>
+            </a>
+            <a href="artists.html" class="nav-item">
+                <img src="images/icon_artist.svg" alt="ARTIST" class="nav-icon">
+                <span>ARTIST</span>
+            </a>
+            <a href="admin_listener.html" class="nav-item">
+                <img src="images/icon_mypage.svg" alt="MY PAGE" class="nav-icon">
+                <span>MY PAGE</span>
+            </a>
+        </nav>
     </div>
 
     <script>
+        function toggleMenu() {
+            document.getElementById('hamburgerMenu').classList.toggle('open');
+        }
+
         // キラキラアニメーション生成
         const container = document.getElementById('successContainer');
         const wrapper = document.querySelector('.artist-img-wrapper');
@@ -130,18 +166,19 @@
                 p.className = 'particle';
                 p.innerText = icons[Math.floor(Math.random() * icons.length)];
 
-                // 開始位置を画像の中央付近に
                 p.style.left = '50%';
-                p.style.top = '150px';
+                p.style.top = '50%';
 
-                // 飛んでいく方向をランダムに
-                const tx = (Math.random() - 0.5) * 300 + 'px';
-                const ty = (Math.random() - 0.5) * 300 - 100 + 'px';
+                // 均等に散らばるように角度と距離を計算
+                const angle = (i / 20) * 2 * Math.PI;
+                const radius = 100 + Math.random() * 80;
+                const tx = Math.cos(angle) * radius + 'px';
+                const ty = Math.sin(angle) * radius + 'px';
                 p.style.setProperty('--tx', tx);
                 p.style.setProperty('--ty', ty);
 
-                container.appendChild(p);
-            }, i * 100);
+                wrapper.appendChild(p);
+            }, i * 50);
         }
     </script>
 </body>
