@@ -76,10 +76,19 @@
 <body>
     <div class="app-container">
         <header>
-            <a href="index.html" class="logo-link" style="margin: 0 auto;">
+            <a href="index.html" class="logo-link">
                 <img src="images/logo_blue.png" alt="Music Liver" class="header-logo">
             </a>
+            <div class="menu-icon" onclick="toggleMenu()">≡</div>
         </header>
+
+        <div class="hamburger-menu-content" id="hamburgerMenu">
+            <a href="index.html">トップページ</a>
+            <a href="map.html">会場マップ</a>
+            <a href="schedule.html">ライブスケジュール</a>
+            <a href="artists.html">アーティスト一覧</a>
+            <a href="admin_listener.html">マイページ</a>
+        </div>
 
         <main>
             <div class="step-indicator">
@@ -96,7 +105,7 @@
                     <p>MusicLiverにユーザー登録すると、<br>アーティストに<span id="itemName">☆</span>を送れます</p>
                 </div>
 
-                <a href="register_phone.html" class="btn btn-primary mb-4">ユーザー登録する&#32;<span
+                <a href="register_phone.html" class="btn btn-primary mb-4">ユーザー登録する　<span
                         style="font-size: 0.8rem; font-weight: normal;">かんたん！3分で完了</span></a>
 
                 <a href="artist_detail.html" class="btn btn-secondary">戻る</a>
@@ -116,6 +125,10 @@
         if (item === 'clap') { iconEl.innerText = '👏'; nameEl.innerText = '拍手'; }
         if (item === 'cheer') { iconEl.innerText = '🔥'; nameEl.innerText = '応援'; }
         if (item === 'message') { iconEl.innerText = '💬'; nameEl.innerText = 'メッセージ'; }
+
+        function toggleMenu() {
+            document.getElementById('hamburgerMenu').classList.toggle('open');
+        }
     </script>
 </body>
 
