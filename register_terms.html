@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>利用規約 | 日本橋 Music Liver</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 40px;
+            position: relative;
+        }
+
+        .step-indicator::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 40px;
+            right: 40px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.2);
+            z-index: 0;
+        }
+
+        .step {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+        }
+
+        .step.active {
+            background: var(--accent-pink);
+            border-color: var(--accent-pink);
+            box-shadow: 0 0 10px var(--accent-pink);
+        }
+
+        .step.done {
+            background: rgba(255, 255, 255, 0.5);
+            border-color: rgba(255, 255, 255, 0.5);
+            color: #000;
+        }
+
+        .terms-container {
+            padding: 20px;
+        }
+
+        .terms-box {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            padding: 16px;
+            height: 300px;
+            overflow-y: scroll;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .actions {
+            text-align: center;
+        }
+
+        .btn-link {
+            display: inline-block;
+            margin-top: 16px;
+            color: var(--text-secondary);
+            text-decoration: underline;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo-container">
+                <h1>Music Liver</h1>
+            </div>
+        </header>
+
+        <main>
+            <div class="step-indicator">
+                <div class="step done">✓</div>
+                <div class="step done">✓</div>
+                <div class="step done">✓</div>
+                <div class="step active">4</div>
+                <div class="step">5</div>
+            </div>
+
+            <div class="terms-container">
+                <h2 class="section-title text-center">利用規約</h2>
+
+                <div class="terms-box">
+                    <h3>第1条（適用）</h3>
+                    <p>本規約は、ユーザーと当社との間の本サービスの利用に関わる一切の関係に適用されるものとします。</p>
+                    <br>
+                    <h3>第2条（利用登録）</h3>
+                    <p>登録希望者が当社の定める方法によって利用登録を申請し、当社がこれを承認することによって、利用登録が完了するものとします。</p>
+                    <br>
+                    <h3>第3条（ポイントの購入）</h3>
+                    <p>ユーザーは、本サービス内でアーティストにアイテムを送るため、CheerPointを有償で購入することができます。購入したポイントの払い戻しは原則行えません。</p>
+                    <br>
+                    <p>（……中略……）</p>
+                    <br>
+                    <p>以上、同意の内容として規約の全文を確認してください。</p>
+                </div>
+
+                <div class="actions">
+                    <p class="mb-4">利用規約に同意してユーザー登録をしますか？</p>
+                    <a href="register_complete.html" class="btn btn-primary mb-4">ユーザー登録する</a>
+                    <a href="register_sms.html" class="btn btn-secondary mb-2">戻る</a>
+                    <br>
+                    <a href="artist_detail.html" class="btn-link">TOPに戻る</a>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

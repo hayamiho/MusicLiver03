@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>決済確認 | GMOペイメントゲートウェイ</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .gmo-container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: #fff;
+            min-height: 100vh;
+            border: 1px solid #ccc;
+        }
+
+        .gmo-header {
+            background: #0044cc;
+            color: white;
+            padding: 16px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .gmo-content {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .summary {
+            font-size: 1.2rem;
+            margin-bottom: 24px;
+            font-weight: bold;
+        }
+
+        .btn-submit {
+            background: #e60012;
+            color: white;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            width: 100%;
+            cursor: pointer;
+            margin-bottom: 16px;
+            text-decoration: none;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+
+        .btn-back {
+            background: #ccc;
+            color: #333;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            width: 100%;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="gmo-container">
+        <div class="gmo-header">
+            決済システム
+        </div>
+        <div class="gmo-content">
+            <div class="summary">
+                <span id="ptAmount">---</span> ポイントを購入します。<br><br>
+                よろしければ「決済を完了する」ボタンを押してください。
+            </div>
+
+            <a href="tipping_confirm.html" class="btn-submit">決済を完了する</a>
+            <a href="point_purchase.html" class="btn-back">戻る</a>
+        </div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const pt = params.get('pt') || '100';
+        document.getElementById('ptAmount').innerText = pt;
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ポイント購入 | 日本橋 Music Liver</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-container {
+            padding: 30px 20px;
+        }
+
+        .point-status {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .point-status h3 {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .point-amount {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--text-primary);
+        }
+
+        .plan-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .plan-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .plan-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .plan-pt {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--accent-cyan);
+        }
+
+        .plan-price {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .btn-buy {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--text-primary);
+            color: var(--text-primary);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-buy:active {
+            background: var(--text-primary);
+            color: var(--bg-color);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo-container">
+                <h1>Music Liver</h1>
+            </div>
+        </header>
+
+        <main>
+            <div class="page-container">
+                <h2 class="section-title text-center">ポイント購入</h2>
+
+                <div class="point-status">
+                    <h3>残り</h3>
+                    <div class="point-amount">0 <span style="font-size:1rem; font-weight:normal;">pt</span></div>
+                </div>
+
+                <div class="plan-list">
+                    <div class="plan-card">
+                        <div class="plan-info">
+                            <span class="plan-pt">100 pt</span>
+                            <span class="plan-price">税込 110円</span>
+                        </div>
+                        <a href="payment.html?pt=100" class="btn-buy">購入する</a>
+                    </div>
+
+                    <div class="plan-card">
+                        <div class="plan-info">
+                            <span class="plan-pt">200 pt</span>
+                            <span class="plan-price">税込 220円</span>
+                        </div>
+                        <a href="payment.html?pt=200" class="btn-buy">購入する</a>
+                    </div>
+
+                    <div class="plan-card">
+                        <div class="plan-info">
+                            <span class="plan-pt">300 pt</span>
+                            <span class="plan-price">税込 330円</span>
+                        </div>
+                        <a href="payment.html?pt=300" class="btn-buy">購入する</a>
+                    </div>
+
+                    <div class="plan-card">
+                        <div class="plan-info">
+                            <span class="plan-pt">500 pt</span>
+                            <span class="plan-price">税込 550円</span>
+                        </div>
+                        <a href="payment.html?pt=500" class="btn-buy">購入する</a>
+                    </div>
+
+                    <div class="plan-card" style="border-color: var(--accent-pink);">
+                        <div class="plan-info">
+                            <span class="plan-pt" style="color:var(--accent-pink);">1000 pt</span>
+                            <span class="plan-price">税込 1100円</span>
+                        </div>
+                        <a href="payment.html?pt=1000" class="btn-buy"
+                            style="border-color:var(--accent-pink); color:var(--accent-pink);">購入する</a>
+                    </div>
+
+                    <div class="plan-card">
+                        <div class="plan-info">
+                            <span class="plan-pt">2000 pt</span>
+                            <span class="plan-price">税込 2200円</span>
+                        </div>
+                        <a href="payment.html?pt=2000" class="btn-buy">購入する</a>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="credit_card_complete.html" class="btn btn-secondary mb-2">戻る</a>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

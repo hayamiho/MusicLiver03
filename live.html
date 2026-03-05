@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIVE STREAM | 日本橋 Music Liver</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .live-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background: #000;
+            position: relative;
+        }
+
+        .video-area {
+            position: relative;
+            width: 100%;
+            /* 16:9 aspect ratio placeholder */
+            aspect-ratio: 16/9;
+            background: #111;
+        }
+
+        .video-area img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .live-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #e60012;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 4px 8px;
+            border-radius: 4px;
+            z-index: 10;
+        }
+
+        .viewers {
+            position: absolute;
+            top: 12px;
+            left: 60px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            font-size: 0.7rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            z-index: 10;
+        }
+
+        .info-area {
+            padding: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stream-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .artist-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .artist-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .artist-name {
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        .chat-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: var(--bg-card);
+            overflow: hidden;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .chat-item {
+            display: flex;
+            gap: 8px;
+            font-size: 0.9rem;
+            align-items: flex-start;
+        }
+
+        .chat-author {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+
+        .chat-text {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 4px 10px;
+        }
+
+        /* Super Chat Style */
+        .super-chat {
+            background: linear-gradient(to right, rgba(255, 102, 161, 0.2), transparent);
+            border-left: 4px solid var(--accent-pink);
+            padding: 8px 12px;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .super-chat .chat-text {
+            background: transparent;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 0;
+            color: white;
+        }
+
+        .super-chat .chat-author {
+            color: var(--accent-pink);
+            font-weight: bold;
+        }
+
+        .chat-input-area {
+            padding: 12px;
+            background: var(--bg-color);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .chat-input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 20px;
+            padding: 10px 16px;
+            color: white;
+        }
+
+        .gift-btn {
+            background: var(--accent-pink);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            text-decoration: none;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            z-index: 10;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="live-container">
+
+        <div class="video-area">
+            <!-- ユーザー支給の参考ライブ映像サムネイルを仮枠として表示 -->
+            <img src="https://img.youtube.com/vi/ob9DzfadFS0/maxresdefault.jpg" alt="Live Stream">
+            <div class="live-badge">LIVE</div>
+            <div class="viewers">👁 124</div>
+            <a href="index.html" class="close-btn">×</a>
+        </div>
+
+        <div class="info-area">
+            <div class="stream-title">【路上ライブ】日本橋MusicLiver 小杉ゆん</div>
+            <div class="artist-info">
+                <img src="https://images.unsplash.com/photo-1516575334481-fec8bb85c986?w=100&h=100&fit=crop"
+                    class="artist-icon">
+                <span class="artist-name">小杉ゆん</span>
+            </div>
+        </div>
+
+        <div class="chat-area">
+            <div class="chat-messages" id="chatMessages">
+                <div class="chat-item">
+                    <span class="chat-author">UserA</span>
+                    <span class="chat-text">こんばんは！</span>
+                </div>
+                <div class="chat-item">
+                    <span class="chat-author">UserB</span>
+                    <span class="chat-text">今日のセトリ最高ですね</span>
+                </div>
+                <!-- Super Chat Demo -->
+                <div class="chat-item super-chat">
+                    <span class="chat-author">Taro Yamada<br><span
+                            style="font-size:0.7rem; color:var(--text-secondary);">1000pt</span></span>
+                    <span class="chat-text">🎇🎇🎇 頑張って！！</span>
+                </div>
+            </div>
+
+            <div class="chat-input-area">
+                <input type="text" class="chat-input" placeholder="チャットを入力...">
+                <button class="gift-btn" onclick="window.location.href='artist_detail.html'">🎁</button>
+                <!-- 仮の導線としてアイテム一覧（アーティスト詳細画面の下部）へ飛ぶ -->
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

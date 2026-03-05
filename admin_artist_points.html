@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pt交換 | 日本橋 Music Liver (Artist)</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .info-container {
+            padding: 30px 20px;
+        }
+
+        .info-box {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255, 102, 161, 0.2);
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-amount {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-primary);
+        }
+
+        .exchange-rules {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 20px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            font-size: 0.95rem;
+        }
+
+        .exchange-history {
+            margin-top: 40px;
+        }
+
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo-container">
+                <h1>Music Liver</h1>
+            </div>
+            <div><span style="font-size: 0.7rem; color:var(--accent-pink); border: 1px solid; padding: 2px 4px;">ARTIST
+                    MODE</span></div>
+        </header>
+
+        <main>
+            <div class="info-container">
+                <h2 class="section-title text-center mb-4">CheerPoint情報</h2>
+
+                <div class="info-box">
+                    <div class="info-row">
+                        <div>
+                            <strong>蓄積ポイント</strong>
+                        </div>
+                        <div class="info-amount">12000<span style="font-size:1rem; font-weight:normal;">pt</span></div>
+                    </div>
+                </div>
+
+                <div class="exchange-rules">
+                    ・交換比率： ◯％<br>
+                    ・月末締め翌月末支払い<br>
+                    ・10,000pt毎に清算可能
+                </div>
+
+                <label class="checkbox-container">
+                    <input type="checkbox" checked> 同意します
+                </label>
+
+                <a href="admin_artist_bank.html" class="btn btn-primary mb-4"
+                    style="text-align:center;">口座情報の設定・交換申請</a>
+
+                <div class="exchange-history">
+                    <h3 style="font-size: 1rem; color: var(--accent-cyan); margin-bottom: 16px;">ポイント交換履歴</h3>
+                    <div class="history-item">
+                        <span class="text-secondary">26/02/19</span>
+                        <span>10,000pt</span>
+                    </div>
+                    <div class="history-item">
+                        <span class="text-secondary">26/02/09</span>
+                        <span>10,000pt</span>
+                    </div>
+                    <div class="history-item">
+                        <span class="text-secondary">26/01/04</span>
+                        <span>10,000pt</span>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="admin_artist.html" class="btn btn-secondary">戻る</a>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

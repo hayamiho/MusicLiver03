@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map & Schedule | 日本橋 Music Liver</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-header {
+            padding: 24px 20px;
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(11, 12, 16, 0.9), transparent);
+        }
+
+        .map-container {
+            margin: 0 20px 24px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            height: 300px;
+            background: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .placeholder-map {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .schedule-list {
+            padding: 0 20px 40px;
+        }
+
+        .schedule-item {
+            display: flex;
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 16px;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--accent-cyan);
+        }
+
+        .time-col {
+            width: 60px;
+            font-weight: bold;
+            color: var(--accent-cyan);
+            font-size: 0.9rem;
+        }
+
+        .info-col {
+            flex: 1;
+        }
+
+        .artist-name {
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .location {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo-container">
+                <a href="index.html">
+                    <h1>Music Liver</h1>
+                </a>
+            </div>
+            <div class="menu-icon">☰</div>
+        </header>
+
+        <main>
+            <div class="page-header">
+                <h2 class="section-title">Map & Schedule</h2>
+                <p class="text-secondary">日本橋エリアのライブ会場と今日のスケジュール</p>
+            </div>
+
+            <div class="map-container">
+                <div class="placeholder-map">
+                    <!-- TODO: iframe等で実際のマップ埋め込み -->
+                    ライブ会場マップ (Google Maps等)
+                </div>
+            </div>
+
+            <div class="schedule-list">
+                <h3 class="mb-4">Today's Live</h3>
+
+                <div class="schedule-item">
+                    <div class="time-col">18:00</div>
+                    <div class="info-col">
+                        <div class="artist-name">小杉ゆん</div>
+                        <div class="location">📍 福徳の森 前</div>
+                    </div>
+                </div>
+
+                <div class="schedule-item" style="border-left-color: var(--accent-pink);">
+                    <div class="time-col">19:30</div>
+                    <div class="info-col">
+                        <div class="artist-name">OTOTAROCK</div>
+                        <div class="location">📍 コレド室町 テラス</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <span class="nav-icon">🏠</span>
+                <span>TOP</span>
+            </a>
+            <a href="map.html" class="nav-item active">
+                <span class="nav-icon">📍</span>
+                <span>MAP</span>
+            </a>
+            <a href="artists.html" class="nav-item">
+                <span class="nav-icon">🎸</span>
+                <span>ARTIST</span>
+            </a>
+            <a href="admin_listener.html" class="nav-item">
+                <span class="nav-icon">👤</span>
+                <span>MY PAGE</span>
+            </a>
+        </nav>
+    </div>
+</body>
+
+</html>

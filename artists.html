@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artists | 日本橋 Music Liver</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-header {
+            padding: 16px 20px;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .artist-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            padding: 0 20px 40px;
+        }
+
+        .artist-card {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            aspect-ratio: 3/4;
+            display: block;
+            text-decoration: none;
+        }
+
+        .artist-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .artist-card:hover .artist-img {
+            transform: scale(1.05);
+        }
+
+        .artist-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px 12px 12px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+        }
+
+        .artist-name {
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo-container">
+                <a href="index.html">
+                    <h1>Music Liver</h1>
+                </a>
+            </div>
+            <div class="menu-icon">☰</div>
+        </header>
+
+        <main>
+            <div class="page-header">
+                <input type="text" class="search-bar" placeholder="🔍 アーティストを検索">
+            </div>
+
+            <div class="artist-grid" id="artistGrid">
+                <!-- JSでランダム配置 -->
+            </div>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <span class="nav-icon">🏠</span>
+                <span>TOP</span>
+            </a>
+            <a href="map.html" class="nav-item">
+                <span class="nav-icon">📍</span>
+                <span>MAP</span>
+            </a>
+            <a href="artists.html" class="nav-item active">
+                <span class="nav-icon">🎸</span>
+                <span>ARTIST</span>
+            </a>
+            <a href="admin_listener.html" class="nav-item">
+                <span class="nav-icon">👤</span>
+                <span>MY PAGE</span>
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        // 仮データ（画像はUnsplash等で代用。本番は現サイトから取得）
+        const artists = [
+            { name: "小杉ゆん", img: "https://images.unsplash.com/photo-1516575334481-fec8bb85c986?w=400&h=533&fit=crop" },
+            { name: "海蔵亮太", img: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=400&h=533&fit=crop" },
+            { name: "古川愛理", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=533&fit=crop" },
+            { name: "OTOTAROCK", img: "https://images.unsplash.com/photo-1598387181032-a3103a2db5b3?w=400&h=533&fit=crop" },
+            { name: "一華ひかり", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=533&fit=crop" },
+            { name: "藤田悠也", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=533&fit=crop" }
+        ];
+
+        // 配列をシャッフル（要件: 下に行くほどPVが少ないのを防ぐためランダム表示）
+        const shuffled = artists.sort(() => 0.5 - Math.random());
+
+        const grid = document.getElementById('artistGrid');
+        shuffled.forEach(a => {
+            // 全員一旦詳細ページ遷移へのベースリンクにする
+            const card = `<a href="artist_detail.html" class="artist-card">
+        <img src="${a.img}" class="artist-img" alt="${a.name}">
+        <div class="artist-info">
+          <div class="artist-name">${a.name}</div>
+        </div>
+      </a>`;
+            grid.innerHTML += card;
+        });
+    </script>
+</body>
+
+</html>

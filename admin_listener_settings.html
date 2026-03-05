@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>各種設定 | 日本橋 Music Liver</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .settings-container {
+            padding: 30px 20px;
+        }
+
+        .settings-list {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .settings-item {
+            display: block;
+            padding: 20px;
+            color: var(--text-primary);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+
+        .settings-item:last-child {
+            border-bottom: none;
+        }
+
+        .settings-item::after {
+            content: '>';
+            position: absolute;
+            right: 20px;
+            color: var(--text-secondary);
+        }
+
+        .settings-item:active {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .external-link::after {
+            content: '↗';
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo-container">
+                <h1>Music Liver</h1>
+            </div>
+        </header>
+
+        <main>
+            <div class="settings-container">
+                <h2 class="section-title text-center mb-4">設定画面</h2>
+
+                <div class="settings-list">
+                    <a href="#" class="settings-item">登録情報</a>
+                    <a href="#" class="settings-item">口座情報</a>
+                    <a href="payment.html?pt=GMO_Ext" class="settings-item external-link">クレカ情報 (外部決済サービス設定)</a>
+                </div>
+
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="admin_listener.html" class="btn btn-secondary">戻る</a>
+                    <br><br>
+                    <a href="admin_artist.html"
+                        style="font-size:0.8rem; color: #666; text-decoration: underline;">[確認用デモ導線：アーティスト管理画面へ]</a>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

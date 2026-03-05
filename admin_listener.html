@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>マイページ(リスナー) | 日本橋 Music Liver</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .profile-header {
+            text-align: center;
+            padding: 40px 20px 20px;
+        }
+
+        .profile-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: #ccc;
+            margin: 0 auto 12px;
+            object-fit: cover;
+        }
+
+        .small-link {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-decoration: underline;
+        }
+
+        .point-box {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            margin: 0 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .fav-artists {
+            margin: 0 20px 30px;
+        }
+
+        .fav-icons {
+            display: flex;
+            gap: 16px;
+            margin-top: 12px;
+        }
+
+        .fav-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-pink);
+            object-fit: cover;
+        }
+
+        .history-log {
+            margin: 0 20px 30px;
+        }
+
+        .log-window {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            padding: 16px;
+            height: 250px;
+            overflow-y: scroll;
+        }
+
+        .log-item {
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .log-date {
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+
+        .log-content {
+            flex: 1;
+        }
+
+        .log-bubble {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 12px;
+            border-radius: 12px;
+            display: inline-block;
+            border: 1px solid rgba(255, 102, 161, 0.2);
+        }
+
+        .log-icon {
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo-container">
+                <h1>Music Liver</h1>
+            </div>
+        </header>
+
+        <main>
+            <div class="profile-header">
+                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200&h=200&fit=crop"
+                    class="profile-icon">
+                <h2>名無しリスナー</h2>
+                <a href="#" class="small-link">アイコン画像変更</a>
+            </div>
+
+            <div class="point-box">
+                <div>
+                    <div class="text-secondary" style="font-size: 0.9rem;">利用可能ポイント</div>
+                    <div style="font-size: 1.5rem; font-weight: bold; color: var(--accent-cyan);">1000 <span
+                            style="font-size:1rem; font-weight:normal;">pt</span></div>
+                </div>
+                <a href="admin_listener_points.html" class="btn btn-secondary"
+                    style="width:auto; padding: 8px 16px;">pt情報</a>
+            </div>
+
+            <div class="fav-artists">
+                <h3 class="section-title">お気に入りアーティスト</h3>
+                <div class="fav-icons">
+                    <a href="artist_detail.html"><img
+                            src="https://images.unsplash.com/photo-1516575334481-fec8bb85c986?w=200&h=200&fit=crop"
+                            class="fav-icon"></a>
+                    <a href="#"><img
+                            src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=200&h=200&fit=crop"
+                            class="fav-icon"></a>
+                </div>
+            </div>
+
+            <div class="history-log">
+                <h3 class="section-title">応援履歴</h3>
+                <div class="log-window">
+
+                    <div class="log-item">
+                        <span class="log-date">26/02/11 17:33</span>
+                        <span class="log-content"><span class="log-icon">😊</span> (小杉ゆん)</span>
+                    </div>
+
+                    <div class="log-item">
+                        <span class="log-date">26/02/10 17:35</span>
+                        <span class="log-content"><span class="log-icon">❤</span> (小杉ゆん)</span>
+                    </div>
+
+                    <div class="log-item">
+                        <span class="log-date">26/02/10 17:37</span>
+                        <span class="log-content"><span class="log-icon">⭐️</span> (海蔵亮太)</span>
+                    </div>
+
+                    <div class="log-item">
+                        <span class="log-date">26/02/08 17:40</span>
+                        <span class="log-content log-bubble">いつも応援しています！◯◯より (小杉ゆん)</span>
+                    </div>
+
+                    <div class="log-item" style="opacity: 0.5;">
+                        <span class="log-date">26/02/07 12:01</span>
+                        <span class="log-content"><span class="log-icon">⭐️</span> (小杉ゆん)</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div style="padding: 0 20px 40px;">
+                <a href="admin_listener_settings.html" class="btn btn-secondary mb-4">各種設定の変更</a>
+            </div>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <span class="nav-icon">🏠</span>
+                <span>TOP</span>
+            </a>
+            <a href="map.html" class="nav-item">
+                <span class="nav-icon">📍</span>
+                <span>MAP</span>
+            </a>
+            <a href="artists.html" class="nav-item">
+                <span class="nav-icon">🎸</span>
+                <span>ARTIST</span>
+            </a>
+            <a href="admin_listener.html" class="nav-item active">
+                <span class="nav-icon">👤</span>
+                <span>MY PAGE</span>
+            </a>
+        </nav>
+    </div>
+</body>
+
+</html>

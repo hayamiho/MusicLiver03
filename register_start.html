@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ユーザー登録 | 日本橋 Music Liver</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 40px;
+            position: relative;
+        }
+
+        .step-indicator::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 40px;
+            right: 40px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.2);
+            z-index: 0;
+        }
+
+        .step {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+        }
+
+        .step.active {
+            background: var(--accent-pink);
+            border-color: var(--accent-pink);
+            box-shadow: 0 0 10px var(--accent-pink);
+        }
+
+        .registration-content {
+            padding: 20px;
+            text-align: center;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .message-box {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            margin-bottom: 30px;
+        }
+
+        .item-icon {
+            font-size: 3rem;
+            margin-bottom: 12px;
+        }
+
+        .sub-notice {
+            font-size: 0.8rem;
+            color: var(--accent-cyan);
+            margin-top: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo-container">
+                <h1>Music Liver</h1>
+            </div>
+        </header>
+
+        <main>
+            <div class="step-indicator">
+                <div class="step active">1</div>
+                <div class="step">2</div>
+                <div class="step">3</div>
+                <div class="step">4</div>
+                <div class="step">5</div>
+            </div>
+
+            <div class="registration-content">
+                <div class="message-box">
+                    <div class="item-icon" id="itemIcon">⭐</div>
+                    <p>MusicLiverにユーザー登録すると、<br>アーティストに<span id="itemName">☆</span>を送れます</p>
+                </div>
+
+                <a href="register_phone.html" class="btn btn-primary mb-4">ユーザー登録する<br><span
+                        style="font-size: 0.8rem; font-weight: normal;">かんたん！3分で完了</span></a>
+
+                <a href="artist_detail.html" class="btn btn-secondary">戻る</a>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // URLから渡されたアイテム情報を取得して表示を切り替える（モック用）
+        const params = new URLSearchParams(window.location.search);
+        const item = params.get('item');
+        const iconEl = document.getElementById('itemIcon');
+        const nameEl = document.getElementById('itemName');
+
+        if (item === 'heart') { iconEl.innerText = '💖'; nameEl.innerText = '♡'; }
+        if (item === 'firework') { iconEl.innerText = '🎇'; nameEl.innerText = '花火'; }
+        if (item === 'clap') { iconEl.innerText = '👏'; nameEl.innerText = '拍手'; }
+        if (item === 'cheer') { iconEl.innerText = '🔥'; nameEl.innerText = '応援'; }
+        if (item === 'message') { iconEl.innerText = '💬'; nameEl.innerText = 'メッセージ'; }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>アイテム送信確認 | 日本橋 Music Liver</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .confirm-container {
+      padding: 40px 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .status-text {
+      color: var(--accent-cyan);
+      font-weight: bold;
+      margin-bottom: 24px;
+    }
+
+    .confirm-box {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 102, 161, 0.3);
+      border-radius: var(--border-radius);
+      padding: 24px;
+      width: 100%;
+      margin-bottom: 30px;
+    }
+
+    .artist-name {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin: 12px 0;
+    }
+
+    .item-preview {
+      font-size: 4rem;
+      margin: 16px 0;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    .send-text {
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <header>
+      <div class="logo-container">
+        <h1>Music Liver</h1>
+      </div>
+    </header>
+
+    <main>
+      <div class="confirm-container">
+        <div class="status-text">
+          現在 <span id="currentPt">1000</span> ポイント保持しています。
+        </div>
+
+        <div class="confirm-box">
+          <div class="artist-name">小杉ゆん</div>
+          <div>さんに</div>
+          <div class="item-preview" id="itemPreview">⭐</div>
+          <div class="send-text">を <strong style="color:var(--accent-pink);">100pt</strong> で送りますか？</div>
+        </div>
+
+        <a href="tipping_complete.html" class="btn btn-primary mb-4" style="font-size:1.2rem; padding: 16px;">
+          <span id="btnItemLabel">☆</span> を送る (100pt)
+        </a>
+        
+        <br><br>
+        <a href="artist_detail.html" style="color:var(--text-secondary); font-size: 0.9rem; text-decoration: underline; display: inline-block;">TOP(アーティスト詳細)に戻る</a>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // 仮データの表示制御（本来はlocalStorage等から引き継ぐ）
+    const params = new URLSearchParams(window.location.search);
+    const item = params.get('item') || 'star'; 
+    // ※今回は画面遷移の都合上、パラメータがない場合はデフォで星とする
+    
+    // アイテムに応じた表示制御処理は他ページと同様に実装可能ですが、
+    // モックでは常に☆としておきます。
+  </script>
+</body>
+</html>
