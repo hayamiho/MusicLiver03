@@ -1,21 +1,30 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>日本橋 Music Liver</title>
+  <title>Music Liver | NEW NIGHT ENTERTAINMENT</title>
   <link rel="stylesheet" href="style.css">
   <style>
     /* トップページ専用スタイル */
     .hero-section {
       position: relative;
-      height: 80vh;
+      height: 75vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       overflow: hidden;
-      background: #000;
+    }
+
+    .hero-bg-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
     }
 
     .hero-bg {
@@ -24,26 +33,25 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-image: url('https://images.unsplash.com/photo-1516280440502-c28b292e1eef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
       background-size: cover;
       background-position: center;
-      opacity: 0.5;
-      animation: zoom 10s infinite alternate linear;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
     }
 
-    @keyframes zoom {
-      from { transform: scale(1); }
-      to { transform: scale(1.1); }
+    .hero-bg.active {
+      opacity: 0.75;
     }
 
-    /* ざらっとした質感を重ねる */
+    /* 下からの白いグラデーション効果 */
     .hero-overlay {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(to bottom, rgba(11, 12, 16, 0.2), var(--bg-color));
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 95%);
+      z-index: 2;
       pointer-events: none;
     }
 
@@ -52,105 +60,173 @@
       z-index: 10;
       text-align: center;
       width: 100%;
-      padding: 0 20px;
+      padding: 0 40px;
+      margin-top: -40px;
     }
 
-    .main-logo {
-      font-size: 2.5rem;
-      font-weight: 900;
-      color: #fff;
+    .logo-main {
+      width: 280px;
+      filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.08));
+      margin-bottom: 5px;
+    }
+
+    .logo-tagline {
+      font-size: 0.65rem;
+      font-weight: 800;
+      color: var(--accent-blue);
       letter-spacing: 2px;
-      margin-bottom: 8px;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
-    }
-    .sub-logo {
-      font-size: 0.9rem;
-      color: var(--accent-cyan);
-      letter-spacing: 3px;
-      margin-bottom: 40px;
+      text-transform: uppercase;
     }
 
-    .live-announcement {
-      background: rgba(31, 40, 51, 0.8);
-      backdrop-filter: blur(5px);
-      border: 1px solid var(--accent-pink);
-      border-radius: var(--border-radius);
-      padding: 24px;
-      margin: 20px;
+    .next-live-card {
       position: relative;
-      z-index: 10;
-      text-align: center;
-    }
-
-    .live-announcement .badge {
-      display: inline-block;
-      background-color: var(--accent-pink);
-      color: #fff;
-      font-size: 0.8rem;
-      font-weight: bold;
-      padding: 4px 12px;
+      z-index: 20;
+      margin: -50px 24px 40px;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border: 2.5px solid var(--accent-pink);
       border-radius: 20px;
-      margin-bottom: 12px;
+      padding: 20px;
+      text-align: center;
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 15px 35px rgba(255, 102, 161, 0.15);
+      transition: transform 0.3s ease;
     }
 
-    .live-announcement h3 {
-      font-size: 1.2rem;
+    .next-live-card:active {
+      transform: scale(0.97);
+    }
+
+    .next-live-badge {
+      display: inline-block;
+      background: var(--accent-pink);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 900;
+      padding: 4px 16px;
+      border-radius: 20px;
       margin-bottom: 8px;
+    }
+
+    .next-live-title {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--text-primary);
     }
 
     .key-message {
-      padding: 40px 20px;
+      padding: 0 40px 60px;
       text-align: center;
-      background: linear-gradient(180deg, var(--bg-color) 0%, #11151c 100%);
     }
 
     .key-message p {
-      font-size: 1.1rem;
-      font-weight: bold;
+      font-size: 1.15rem;
+      font-weight: 800;
       line-height: 1.8;
-      background: -webkit-linear-gradient(45deg, var(--accent-cyan), var(--text-primary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: var(--text-primary);
+      margin-bottom: 24px;
     }
-    
+
     .key-message .sub-text {
       font-size: 0.9rem;
       color: var(--text-secondary);
-      margin-top: 16px;
-      -webkit-text-fill-color: var(--text-secondary);
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    .action-section {
+      padding: 0 30px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .btn-contact {
+      font-size: 0.8rem;
+      padding: 10px 20px;
+      width: auto;
+      align-self: center;
+      opacity: 0.7;
+    }
+
+    .sponsors {
+      padding: 40px 20px;
+      text-align: center;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .sponsors-text {
+      font-size: 0.7rem;
+      color: #999;
+      line-height: 1.6;
+      font-weight: 600;
+    }
+
+    .sns-container {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      padding: 30px 0 50px;
+    }
+
+    .sns-icon {
+      width: 24px;
+      height: 24px;
+      opacity: 0.6;
+      transition: opacity 0.3s;
+    }
+
+    .sns-icon:hover {
+      opacity: 1;
     }
   </style>
 </head>
+
 <body>
   <div class="app-container">
-    <header>
-      <div class="logo-container">
-        <a href="index.html"><h1>Music Liver</h1></a>
-      </div>
-      <div class="menu-icon">☰</div>
-    </header>
+    <!-- トップページはヘッダ非表示 -->
 
     <main>
       <section class="hero-section">
-        <div class="hero-bg" id="heroBg"></div>
+        <div class="hero-bg-container" id="hero-container">
+          <!-- JSで背景画像を生成 -->
+        </div>
         <div class="hero-overlay"></div>
-        
         <div class="hero-content">
-          <div class="main-logo">日本橋 Music Liver</div>
-          <div class="sub-logo">NIGHT ENTERTAINMENT</div>
+          <img src="images/logo_blue.png" alt="Music Liver" class="logo-main">
+          <div class="logo-tagline">NEW NIGHT ENTERTAINMENT</div>
         </div>
       </section>
 
-      <section class="live-announcement">
-        <div class="badge">NEXT LIVE</div>
-        <h3>3/4 wed. 18:00～</h3>
-        <p class="mb-4 text-secondary">日本橋ストリートにて開催予定</p>
-        <a href="map.html" class="btn btn-primary">スケジュールを見る</a>
-      </section>
+      <a href="schedule.html" class="next-live-card">
+        <div class="next-live-badge">NEXT LIVE</div>
+        <div class="next-live-title">3/6 fri. 17:30～</div>
+      </a>
 
       <section class="key-message">
-        <p>あなたの応援を、<br>どこよりも大きくダイレクトに<br>アーティストへ。</p>
-        <p class="sub-text mt-4">MusicLiverは、頑張る路上ライブアーティストとファンを直接繋ぐ新しいプラットフォームです。</p>
+        <p>あなたの応援を、<br>どこよりも大きくダイレクトに<br>アーティストへ届けます。</p>
+        <div class="sub-text">MusicLiverは、若手アーティストとファンを直接つなぐ新しいプラットフォーム。毎週金曜、ストリートライブ開催中！</div>
+      </section>
+
+      <div class="action-section">
+        <a href="register_start.html" class="btn btn-primary">今すぐ参加する</a>
+        <a href="#" class="btn btn-secondary btn-contact">CONTACT</a>
+      </div>
+
+      <!-- SNS -->
+      <div class="sns-container">
+        <a href="https://x.com/NML_info" target="_blank"><img src="images/icon_x.png" class="sns-icon" alt="X"></a>
+        <a href="https://www.instagram.com/nml___official/" target="_blank"><img src="images/icon_instagram.png"
+            class="sns-icon" alt="Instagram"></a>
+        <a href="https://www.tiktok.com/@info_nml" target="_blank"><img src="images/icon_tiktok.png" class="sns-icon"
+            alt="TikTok"></a>
+      </div>
+
+      <section class="sponsors">
+        <p class="sponsors-text">【特別協賛】三井不動産株式会社</p>
+        <p class="sponsors-text">【協力】TOKYO STREET LIVE 4K　日本橋チャンネル</p>
       </section>
     </main>
 
@@ -163,8 +239,12 @@
         <span class="nav-icon">📍</span>
         <span>MAP</span>
       </a>
-      <a href="artists.html" class="nav-item">
+      <a href="schedule.html" class="nav-item">
         <span class="nav-icon">🎸</span>
+        <span>LIVE</span>
+      </a>
+      <a href="artists.html" class="nav-item">
+        <span class="nav-icon">👥</span>
         <span>ARTIST</span>
       </a>
       <a href="admin_listener.html" class="nav-item">
@@ -175,26 +255,46 @@
   </div>
 
   <script>
-    // ヒーロー画像の切り替え処理（仮）
-    const heroBg = document.getElementById('heroBg');
+    // ヒーロー画像のフェードアニメーション
     const images = [
-      'https://images.unsplash.com/photo-1516280440502-c28b292e1eef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1525362081669-2b476bb628c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+      'images/artist_muratakazushi.jpg',
+      'images/artist_kotaka_01.jpg',
+      'images/artist_hasetomo_02.jpg',
+      'images/artist_kosugiyun.jpg',
+      'images/artist_ototarock.jpg',
+      'images/artist_toriirena.jpg',
+      'images/artist_aiai.jpg'
     ];
+
+    // シャッフル関数（男女・明暗の偏りを減らすため）
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[array.j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    const container = document.getElementById('hero-container');
     let currentIndex = 0;
 
+    // 画像要素の生成
+    images.forEach((src, idx) => {
+      const div = document.createElement('div');
+      div.className = 'hero-bg' + (idx === 0 ? ' active' : '');
+      div.style.backgroundImage = `url('${src}')`;
+      container.appendChild(div);
+    });
+
+    const bgs = document.querySelectorAll('.hero-bg');
+
+    // 3秒おきの切り替え
     setInterval(() => {
-      heroBg.style.opacity = 0;
-      setTimeout(() => {
-        currentIndex = (currentIndex + 1) % images.length;
-        heroBg.style.backgroundImage = `url('${images[currentIndex]}')`;
-        heroBg.style.opacity = 0.5;
-      }, 500); // フェードアウトの時間に合わせる
-    }, 5000); // 5秒ごとに切り替え
-    
-    // スムーズなトランジション設定
-    heroBg.style.transition = 'opacity 0.5s ease-in-out';
+      bgs[currentIndex].classList.remove('active');
+      currentIndex = (currentIndex + 1) % bgs.length;
+      bgs[currentIndex].classList.add('active');
+    }, 3000);
   </script>
 </body>
+
 </html>
