@@ -21,10 +21,33 @@
             object-fit: cover;
         }
 
-        .small-link {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            text-decoration: underline;
+        .icon-edit-wrapper {
+            position: relative;
+            display: inline-block;
+            margin: 0 auto 12px;
+        }
+
+        .camera-badge {
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
+            background: var(--accent-blue);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            cursor: pointer;
+            border: 2px solid var(--bg-color);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s;
+        }
+
+        .camera-badge:active {
+            transform: scale(0.9);
         }
 
         .point-box {
@@ -58,6 +81,30 @@
 
         .history-log {
             margin: 0 20px 30px;
+        }
+
+        .tab-container {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+        }
+
+        .tab {
+            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tab.active {
+            background: var(--accent-pink);
+            color: white;
+            font-weight: bold;
         }
 
         .log-window {
@@ -110,10 +157,12 @@
 
         <main>
             <div class="profile-header">
-                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200&h=200&fit=crop"
-                    class="profile-icon">
+                <div class="icon-edit-wrapper">
+                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200&h=200&fit=crop"
+                        class="profile-icon">
+                    <div class="camera-badge" onclick="alert('画像を選択します（デモ動作）')">📷</div>
+                </div>
                 <h2>名無しリスナー</h2>
-                <a href="#" class="small-link">アイコン画像変更</a>
             </div>
 
             <div class="point-box">
@@ -139,30 +188,37 @@
             </div>
 
             <div class="history-log">
-                <h3 class="section-title">応援履歴</h3>
+                <h3 class="section-title" style="margin-bottom: 8px;">応援履歴</h3>
+
+                <div class="tab-container">
+                    <div class="tab active" onclick="filterLogs('all', this)">すべて</div>
+                    <div class="tab" onclick="filterLogs('小杉ゆん', this)">小杉ゆん</div>
+                    <div class="tab" onclick="filterLogs('海蔵亮太', this)">海蔵亮太</div>
+                </div>
+
                 <div class="log-window">
 
-                    <div class="log-item">
+                    <div class="log-item" data-artist="小杉ゆん">
                         <span class="log-date">26/02/11 17:33</span>
                         <span class="log-content"><span class="log-icon">😊</span> (小杉ゆん)</span>
                     </div>
 
-                    <div class="log-item">
+                    <div class="log-item" data-artist="小杉ゆん">
                         <span class="log-date">26/02/10 17:35</span>
                         <span class="log-content"><span class="log-icon">❤</span> (小杉ゆん)</span>
                     </div>
 
-                    <div class="log-item">
+                    <div class="log-item" data-artist="海蔵亮太">
                         <span class="log-date">26/02/10 17:37</span>
                         <span class="log-content"><span class="log-icon">⭐️</span> (海蔵亮太)</span>
                     </div>
 
-                    <div class="log-item">
+                    <div class="log-item" data-artist="小杉ゆん">
                         <span class="log-date">26/02/08 17:40</span>
                         <span class="log-content log-bubble">いつも応援しています！◯◯より (小杉ゆん)</span>
                     </div>
 
-                    <div class="log-item" style="opacity: 0.5;">
+                    <div class="log-item" data-artist="小杉ゆん" style="opacity: 0.5;">
                         <span class="log-date">26/02/07 12:01</span>
                         <span class="log-content"><span class="log-icon">⭐️</span> (小杉ゆん)</span>
                     </div>
@@ -194,6 +250,25 @@
             </a>
         </nav>
     </div>
+
+    <script>
+        function filterLogs(artist, el) {
+            // タブのアクティブ状態を切り替え
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+
+            // ログの表示/非表示を切り替え
+            const items = document.querySelectorAll('.log-item');
+            items.forEach(item => {
+                const itemArtist = item.getAttribute('data-artist');
+                if (artist === 'all' || itemArtist === artist) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
