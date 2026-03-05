@@ -99,14 +99,40 @@
                 <input type="number" class="input-field" placeholder="1234" maxlength="4"
                     oninput="if(this.value.length > 4) this.value = this.value.slice(0, 4);">
 
-                <p class="mb-4 text-secondary" style="font-size:0.8rem;">※認証番号が届かない場合は<a href="#"
-                        style="color:var(--accent-cyan)">こちら</a></p>
+                <div id="resend-message"
+                    style="display: none; background: rgba(52, 199, 89, 0.1); color: #34c759; border: 1px solid #34c759; padding: 10px; border-radius: 8px; font-size: 0.8rem; margin-bottom: 15px; font-weight: bold;">
+                    新しい認証コードを送信しました。
+                </div>
+                <p class="mb-4 text-secondary" style="font-size:0.8rem;">※認証番号が届かない場合は：<a href="#" id="resend-btn"
+                        style="color:var(--accent-cyan); font-weight:bold;">番号を再送</a></p>
 
                 <a href="register_terms.html" class="btn btn-primary mb-4">送信</a>
                 <a href="register_phone.html" class="btn btn-secondary">戻る</a>
             </div>
         </main>
     </div>
+    <script>
+        document.getElementById('resend-btn').addEventListener('click', function (e) {
+            e.preventDefault();
+            const btn = this;
+            const msg = document.getElementById('resend-message');
+
+            btn.style.opacity = '0.5';
+            btn.style.pointerEvents = 'none';
+            btn.innerText = '送信中...';
+
+            setTimeout(() => {
+                msg.style.display = 'block';
+                btn.innerText = '番号を再送';
+                btn.style.opacity = '1';
+                btn.style.pointerEvents = 'auto';
+
+                setTimeout(() => {
+                    msg.style.display = 'none';
+                }, 3000);
+            }, 1000);
+        });
+    </script>
 </body>
 
 </html>
