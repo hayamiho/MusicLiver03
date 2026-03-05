@@ -98,6 +98,32 @@
             height: 100%;
             object-fit: cover;
         }
+
+        .now-playing {
+            background: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 100%);
+            border: 2px solid var(--accent-pink);
+            animation: pulse-border 2s infinite;
+        }
+
+        @keyframes pulse-border {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 102, 161, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(255, 102, 161, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 102, 161, 0);
+            }
+        }
+
+        .now-playing .time-col {
+            color: var(--accent-pink);
+            font-size: 0.8rem;
+            line-height: 1.2;
+        }
     </style>
 </head>
 
@@ -117,7 +143,33 @@
                 <p class="text-secondary" style="font-size: 0.9rem; font-weight: 500;">日本橋ストリートライブ出演情報</p>
             </div>
 
-            <!-- Today's Live (3/6) -->
+            <!-- Today's Live -->
+            <div class="schedule-date">Today's Live</div>
+            <div class="schedule-list">
+                <a href="live.html" class="schedule-item stage-silver now-playing">
+                    <div class="time-col">NOW<br>PLAYING!</div>
+                    <div class="info-col">
+                        <div class="artist-name">小杉ゆん</div>
+                        <div class="location loc-silver">● SILVER STAGE</div>
+                    </div>
+                    <div class="thumb-col">
+                        <img src="images/artist_kosugiyun.jpg" alt="小杉ゆん">
+                    </div>
+                </a>
+
+                <a href="artist_ototarock.html" class="schedule-item stage-bronze">
+                    <div class="time-col">18:30〜</div>
+                    <div class="info-col">
+                        <div class="artist-name">OTOTAROCK</div>
+                        <div class="location loc-bronze">● BRONZE STAGE</div>
+                    </div>
+                    <div class="thumb-col">
+                        <img src="images/artist_ototarock.jpg" alt="OTOTAROCK">
+                    </div>
+                </a>
+            </div>
+
+            <!-- Next Live (3/6) -->
             <div class="schedule-date">Next Live / 2026.03.06 fri</div>
             <div class="schedule-list">
                 <a href="artist_muratakazushi.html" class="schedule-item stage-silver">
