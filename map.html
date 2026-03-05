@@ -4,113 +4,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Map & Schedule | 日本橋 Music Liver</title>
+    <title>会場マップ | 日本橋 Music Liver</title>
     <link rel="stylesheet" href="style.css">
     <style>
         .page-header {
-            padding: 24px 20px;
+            padding: 40px 20px 24px;
             text-align: center;
-            background: linear-gradient(to bottom, rgba(11, 12, 16, 0.9), transparent);
         }
 
-        .map-container {
-            margin: 0 20px 24px;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            height: 300px;
-            background: #111;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .placeholder-map {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .schedule-list {
+        .map-section {
             padding: 0 20px 40px;
         }
 
-        .schedule-item {
-            display: flex;
+        .main-map {
+            width: 100%;
+            border-radius: var(--border-radius);
+            margin-bottom: 24px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .stage-card {
             background: var(--bg-card);
             border-radius: var(--border-radius);
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .stage-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .stage-info {
             padding: 16px;
-            margin-bottom: 12px;
-            border-left: 4px solid var(--accent-cyan);
         }
 
-        .time-col {
-            width: 60px;
-            font-weight: bold;
-            color: var(--accent-cyan);
-            font-size: 0.9rem;
-        }
-
-        .info-col {
-            flex: 1;
-        }
-
-        .artist-name {
-            font-weight: bold;
+        .stage-title {
+            font-size: 1.1rem;
+            font-weight: 800;
             margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .location {
-            font-size: 0.8rem;
+        .stage-desc {
+            font-size: 0.85rem;
             color: var(--text-secondary);
+        }
+
+        .dot-silver {
+            color: #c0c0c0;
+        }
+
+        .dot-bronze {
+            color: #cd7f32;
         }
     </style>
 </head>
 
 <body>
     <div class="app-container">
+        <!-- 共通ヘッダ -->
         <header>
-            <div class="logo-container">
-                <a href="index.html">
-                    <h1>Music Liver</h1>
-                </a>
-            </div>
+            <a href="index.html" class="logo-link">
+                <img src="images/logo_blue.png" alt="Music Liver" class="header-logo">
+            </a>
             <div class="menu-icon">☰</div>
         </header>
 
         <main>
             <div class="page-header">
-                <h2 class="section-title">Map & Schedule</h2>
-                <p class="text-secondary">日本橋エリアのライブ会場と今日のスケジュール</p>
+                <h2 class="section-title" style="margin-bottom: 8px;">会場マップ</h2>
+                <p class="text-secondary" style="font-size: 0.9rem; font-weight: 500;">日本橋エリアのライブステージ</p>
             </div>
 
-            <div class="map-container">
-                <div class="placeholder-map">
-                    <!-- TODO: iframe等で実際のマップ埋め込み -->
-                    ライブ会場マップ (Google Maps等)
-                </div>
-            </div>
+            <div class="map-section">
+                <!-- 全体マップ -->
+                <img src="images/map.jpg" alt="全体マップ" class="main-map">
 
-            <div class="schedule-list">
-                <h3 class="mb-4">Today's Live</h3>
-
-                <div class="schedule-item">
-                    <div class="time-col">18:00</div>
-                    <div class="info-col">
-                        <div class="artist-name">小杉ゆん</div>
-                        <div class="location">📍 福徳の森 前</div>
+                <!-- SILVER STAGE -->
+                <div class="stage-card">
+                    <img src="images/map01SILVERSTAGE.jpg" alt="SILVER STAGE" class="stage-image">
+                    <div class="stage-info">
+                        <div class="stage-title"><span class="dot-silver">●</span>SILVER STAGE</div>
+                        <div class="stage-desc">日本橋室町三丁目地下歩道</div>
                     </div>
                 </div>
 
-                <div class="schedule-item" style="border-left-color: var(--accent-pink);">
-                    <div class="time-col">19:30</div>
-                    <div class="info-col">
-                        <div class="artist-name">OTOTAROCK</div>
-                        <div class="location">📍 コレド室町 テラス</div>
+                <!-- BRONZE STAGE -->
+                <div class="stage-card">
+                    <img src="images/map02BRONZESTAGE.jpg" alt="BRONZE STAGE" class="stage-image">
+                    <div class="stage-info">
+                        <div class="stage-title"><span class="dot-bronze">●</span>BRONZE STAGE</div>
+                        <div class="stage-desc">福徳の森 前</div>
                     </div>
                 </div>
             </div>
         </main>
 
+        <!-- 共通フッタ -->
         <nav class="bottom-nav">
             <a href="index.html" class="nav-item">
                 <span class="nav-icon">🏠</span>
@@ -120,8 +117,12 @@
                 <span class="nav-icon">📍</span>
                 <span>MAP</span>
             </a>
-            <a href="artists.html" class="nav-item">
+            <a href="schedule.html" class="nav-item">
                 <span class="nav-icon">🎸</span>
+                <span>LIVE</span>
+            </a>
+            <a href="artists.html" class="nav-item">
+                <span class="nav-icon">👥</span>
                 <span>ARTIST</span>
             </a>
             <a href="admin_listener.html" class="nav-item">
