@@ -11,8 +11,11 @@
             display: flex;
             flex-direction: column;
             height: 100vh;
-            background: #000;
+            background: #fff;
+            /* 背景を白に修正（User指摘） */
             position: relative;
+            padding-bottom: var(--footer-height);
+            /* フッターに隠れないように余白を追加 */
         }
 
         .video-area {
@@ -142,8 +145,9 @@
 
         .chat-input-area {
             padding: 12px;
-            background: var(--bg-color);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: #fff;
+            /* 白に変更 */
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
             display: flex;
             gap: 8px;
             align-items: center;
@@ -151,11 +155,12 @@
 
         .chat-input {
             flex: 1;
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
+            background: #f5f5f5;
+            /* 薄いグレーに */
+            border: 1px solid #ddd;
             border-radius: 20px;
             padding: 10px 16px;
-            color: white;
+            color: var(--text-primary);
         }
 
         .send-btn-chat {
@@ -275,7 +280,9 @@
                     <button class="send-btn-chat">送信</button>
                 </div>
 
-                <div class="item-row">
+                <!-- ギフトアイテム一覧の復元 -->
+                <div class="item-row"
+                    style="background: #fff; border-top: 1px solid rgba(0,0,0,0.05); padding: 12px 16px;">
                     <a href="tipping_confirm.html?artist=kosugiyun&item=star" class="item-btn">⭐</a>
                     <a href="tipping_confirm.html?artist=kosugiyun&item=heart" class="item-btn">💖</a>
                     <a href="tipping_confirm.html?artist=kosugiyun&item=firework" class="item-btn">🎇</a>
@@ -283,6 +290,7 @@
                     <a href="tipping_confirm.html?artist=kosugiyun&item=cheer" class="item-btn">🔥</a>
                     <a href="tipping_confirm.html?artist=kosugiyun&item=message" class="item-btn">💬</a>
                 </div>
+            </div>
         </main>
 
         <nav class="bottom-nav">

@@ -13,9 +13,12 @@
       height: 65vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-end;
+      /* コンテンツを下端に揃え、上の写真を広くする */
       align-items: center;
       overflow: hidden;
+      padding-bottom: 24px;
+      /* NEXT LIVEと下のコンテンツとの隙間 */
     }
 
     .hero-bg-container {
@@ -34,7 +37,8 @@
       width: 100%;
       height: 100%;
       background-size: cover;
-      background-position: center;
+      background-position: center top;
+      /* 写真の顔が切れないように */
       opacity: 0;
       transition: opacity 1.5s ease-in-out;
     }
@@ -43,14 +47,13 @@
       opacity: 0.75;
     }
 
-    /* 下からの白いグラデーション効果 */
     .hero-overlay {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 95%);
+      background: linear-gradient(to bottom, transparent 40%, rgba(255, 255, 255, 0.9) 90%, #ffffff 100%);
       z-index: 2;
       pointer-events: none;
     }
@@ -60,9 +63,7 @@
       z-index: 10;
       text-align: center;
       width: 100%;
-      padding: 0 40px;
-      margin-top: 15px;
-      /* ロゴ高さを全体的に下げる */
+      padding: 0 20px;
     }
 
     .logo-main {
@@ -101,6 +102,16 @@
       border-radius: 12px;
       font-size: 0.7rem;
       margin-right: 12px;
+      position: relative;
+      z-index: 15;
+    }
+
+    .content-wrapper {
+      background-color: #ffffff;
+      /* 背景を白に固定 */
+      padding-top: 10px;
+      position: relative;
+      z-index: 15;
     }
 
     .key-message {
@@ -158,15 +169,27 @@
     }
 
     .sns-icon {
-      width: 54px;
-      /* 1.5倍 (36px * 1.5) */
-      height: 54px;
+      width: 36px;
+      height: 36px;
       opacity: 1;
       transition: transform 0.2s;
     }
 
     .sns-icon:active {
       transform: scale(0.9);
+    }
+
+    .top-header-transparent {
+      background: transparent !important;
+      backdrop-filter: none !important;
+      border-bottom: none !important;
+      pointer-events: none;
+      /* 下の要素がタップできるように */
+    }
+
+    .top-header-transparent .logo-link {
+      display: none;
+      /* 左上のロゴはいらない */
     }
 
     .hamburger-menu-btn {
@@ -178,6 +201,8 @@
       color: #004fba;
       cursor: pointer;
       font-weight: bold;
+      pointer-events: auto;
+      /* ボタン部分はタップ可能に */
     }
 
     .hamburger-menu-content {
@@ -213,8 +238,11 @@
 
 <body>
   <div class="app-container">
-    <!-- ハンバーガーメニュー追加 -->
-    <div class="hamburger-menu-btn" onclick="toggleMenu()">≡</div>
+    <!-- topページ用にカスタマイズした透明ヘッダ -->
+    <header class="top-header-transparent">
+      <div class="hamburger-menu-btn" onclick="toggleMenu()">≡</div>
+    </header>
+
     <div class="hamburger-menu-content" id="hamburgerMenu">
       <a href="index.html">トップページ</a>
       <a href="map.html">会場マップ</a>
@@ -223,7 +251,7 @@
       <a href="admin_listener.html">マイページ</a>
     </div>
 
-    <main>
+    <main style="padding-top: 0;">
       <section class="hero-section">
         <div class="hero-bg-container" id="hero-container">
           <!-- JSで背景画像を生成 -->
@@ -238,30 +266,30 @@
         </div>
       </section>
 
-      <section class="key-message">
-        <p>あなたの応援を、<br>どこよりも大きくダイレクトに<br>アーティストへ届けます。</p>
-        <div class="sub-text">MusicLiverは、若手アーティストとファンを直接つなぐ新しいプラットフォーム。毎週金曜、ストリートライブ開催中！</div>
-      </section>
+      <div class="content-wrapper">
+        <section class="key-message">
+          <p>あなたの応援を、<br>どこよりも大きくダイレクトに<br>アーティストへ届けます。</p>
+          <div class="sub-text">MusicLiverは、若手アーティストとファンを直接つなぐ新しいプラットフォーム。毎週金曜、ストリートライブ開催中！</div>
+        </section>
 
-      <!-- SNS -->
-      <div class="sns-container">
-        <a href="https://x.com/NML_info" target="_blank"><img src="images/icon_x.png" class="sns-icon" alt="X"></a>
-        <a href="https://www.instagram.com/nml___official/" target="_blank"><img src="images/icon_instagram.png"
-            class="sns-icon" alt="Instagram"></a>
-        <a href="https://www.tiktok.com/@info_nml" target="_blank"><img src="images/icon_tiktok.png" class="sns-icon"
-            alt="TikTok"></a>
+        <!-- SNS -->
+        <div class="sns-container">
+          <a href="https://x.com/NML_info" target="_blank"><img src="images/icon_x.png" class="sns-icon" alt="X"></a>
+          <a href="https://www.instagram.com/nml___official/" target="_blank"><img src="images/icon_instagram.png"
+              class="sns-icon" alt="Instagram"></a>
+          <a href="https://www.tiktok.com/@info_nml" target="_blank"><img src="images/icon_tiktok.png" class="sns-icon"
+              alt="TikTok"></a>
+        </div>
+
+        <div class="action-section">
+          <a href="contact.html" class="btn btn-secondary btn-contact">CONTACT</a>
+        </div>
+
+        <section class="sponsors">
+          <p class="sponsors-text">【特別協賛】三井不動産株式会社</p>
+          <p class="sponsors-text">【協力】TOKYO STREET LIVE 4K　日本橋チャンネル</p>
+        </section>
       </div>
-
-      <div class="action-section">
-        <a href="contact.html" class="btn btn-secondary btn-contact">CONTACT</a>
-      </div>
-
-
-
-      <section class="sponsors">
-        <p class="sponsors-text">【特別協賛】三井不動産株式会社</p>
-        <p class="sponsors-text">【協力】TOKYO STREET LIVE 4K　日本橋チャンネル</p>
-      </section>
     </main>
 
     <nav class="bottom-nav">

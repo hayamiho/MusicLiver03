@@ -56,23 +56,48 @@
 
                 <div class="law-section">
                     <p style="text-align: center; color: var(--text-secondary); margin-bottom: 24px;">
-                        MusicLiverに関するお問い合わせは、<br>以下の窓口よりお願いいたします。
+                        出演者情報・出演希望に関するご質問など、お気軽にお問い合わせください。
                     </p>
 
-                    <div class="law-item">
-                        <h3>運営事務局</h3>
-                        <p>株式会社スパート<br>
-                            〒103-0022 東京都中央区日本橋室町4丁目3-5 室四ビル2階<br>
-                            TEL: 03-6271-8947<br>
-                            （平日 10:00〜18:00）</p>
-                    </div>
+                    <form action="#" method="POST" class="contact-form">
+                        <div class="form-group mb-4">
+                            <label style="display:block; margin-bottom: 8px; font-weight: bold;">お名前（ハンドルネーム可） <span
+                                    style="color: var(--accent-pink);">*</span></label>
+                            <input type="text" class="form-control" placeholder="例）日本橋 太郎" required
+                                style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ccc;">
+                        </div>
 
-                    <div class="law-item">
-                        <h3>メールでのお問い合わせ</h3>
-                        <p><a href="mailto:info@nmusicliver.jp"
-                                style="color: var(--accent-blue); font-weight: bold; text-decoration: underline;">info@nmusicliver.jp</a>
-                        </p>
-                    </div>
+                        <div class="form-group mb-4">
+                            <label style="display:block; margin-bottom: 8px; font-weight: bold;">電話番号（任意）</label>
+                            <input type="tel" class="form-control" placeholder="例）03-1234-5678"
+                                style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ccc;">
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label style="display:block; margin-bottom: 8px; font-weight: bold;">メールアドレス <span
+                                    style="color: var(--accent-pink);">*</span></label>
+                            <input type="email" class="form-control" placeholder="例）info@example.com" required
+                                style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ccc;">
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label style="display:block; margin-bottom: 8px; font-weight: bold;">お問い合わせ内容 <span
+                                    style="color: var(--accent-pink);">*</span></label>
+                            <textarea class="form-control" rows="5" placeholder="お問い合わせ内容をご記入ください" required
+                                style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ccc;"></textarea>
+                        </div>
+
+                        <div class="form-group mb-4" style="text-align: center;">
+                            <label style="display: inline-flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" required style="margin-right: 8px; transform: scale(1.2);">
+                                <span><a href="https://www.spart.co.jp/privacy.html" target="_blank"
+                                        style="color: var(--accent-blue); text-decoration: underline;">プライバシーポリシー</a>に同意する</span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-bottom: 20px;"
+                            onclick="alert('送信しました。（デモ）'); return false;">送信する</button>
+                    </form>
                 </div>
 
                 <div style="text-align: center;">
