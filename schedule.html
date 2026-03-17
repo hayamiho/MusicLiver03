@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ライブスケジュール | 日本橋 Music Liver</title>
+    <title>SCHEDULE | 日本橋 Music Liver</title>
     <link rel="stylesheet" href="style.css">
     <style>
         .page-header {
@@ -41,7 +41,6 @@
             text-decoration: none;
             color: inherit;
             align-items: stretch;
-            /* centerからstretchに変更し、高さを合わせる */
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
             transition: transform 0.2s;
         }
@@ -50,7 +49,6 @@
             transform: scale(0.98);
         }
 
-        /* ステージごとのカラー指定 */
         .stage-silver {
             border-left-color: #c0c0c0;
         }
@@ -97,16 +95,13 @@
         .thumb-col {
             width: 28%;
             aspect-ratio: 1;
-            /* 高さを揃えるため */
             flex-shrink: 0;
             border-radius: 0 var(--border-radius) var(--border-radius) 0;
             overflow: hidden;
             box-shadow: -2px 0 8px rgba(0, 0, 0, 0.05);
-            /* 親要素に対する余白を消すため、右側のpaddingをマイナス等で調整するか、親のpaddingを調整する */
             margin-top: -10px;
             margin-bottom: -10px;
             margin-right: -1px;
-            /* 枠のボーダー分 */
         }
 
         .thumb-col img {
@@ -117,7 +112,6 @@
 
         .now-playing {
             background: rgba(255, 102, 161, 0.05);
-            /* うっすらとしたピンク色に戻す */
         }
 
         .now-playing .time-col {
@@ -130,171 +124,110 @@
 
 <body>
     <div class="app-container">
-        <!-- 共通ヘッダ -->
         <header>
             <a href="index.html" class="logo-link">
-                <img src="images/logo_blue.png" alt="Music Liver" class="header-logo">
+                <img src="images/logo-mlss.png" alt="Music Liver" class="header-logo">
             </a>
             <div class="menu-icon" onclick="toggleMenu()">≡</div>
         </header>
 
-        <div class="hamburger-menu-content" id="hamburgerMenu">
-            <a href="index.html">トップページ</a>
-            <a href="map.html">会場マップ</a>
-            <a href="schedule.html">ライブスケジュール</a>
-            <a href="artists.html">アーティスト一覧</a>
-            <a href="admin_listener.html">マイページ</a>
-        </div>
+            <div class="hamburger-menu-content" id="hamburgerMenu">
+      <a href="index.html">トップページ</a>
+      <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-40)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" style="color: #999;">全国のライブスケジュール一覧</a>
+      <a href="live.html">現在演奏中のミュージシャン</a>
+      <a href="artists.html">アーティスト一覧</a>
+      <a href="mypage.html">マイページ</a>
+    </div>
 
         <main>
             <div class="page-header">
-                <h2 class="section-title" style="margin-bottom: 8px;">ライブスケジュール</h2>
-                <p class="text-secondary" style="font-size: 0.9rem; font-weight: 500;">日本橋ストリートライブ出演情報</p>
+                <h1 class="page-title">SCHEDULE</h1>
+                <p class="page-subtitle">全国のライブスケジュール一覧</p>
             </div>
 
-            <!-- Today's Live -->
-            <div class="schedule-date">Today's Live</div>
-            <div class="schedule-list">
-                <a href="live.html" class="schedule-item stage-silver now-playing">
-                    <div class="time-col">LIVE<br>NOW!</div>
-                    <div class="info-col">
-                        <div class="artist-name">小杉ゆん</div>
-                        <div class="location loc-silver">● SILVER STAGE</div>
-                    </div>
-                    <div class="thumb-col">
-                        <img src="images/artist_kosugiyun.jpg" alt="小杉ゆん">
-                    </div>
-                </a>
-
-                <a href="artist_ototarock.html" class="schedule-item stage-bronze">
-                    <div class="time-col">18:30〜</div>
-                    <div class="info-col">
-                        <div class="artist-name">OTOTAROCK</div>
-                        <div class="location loc-bronze">● BRONZE STAGE</div>
-                    </div>
-                    <div class="thumb-col">
-                        <img src="images/artist_ototarock.jpg" alt="OTOTAROCK">
-                    </div>
-                </a>
-            </div>
-
-            <!-- Next Live (3/6) -->
             <div class="schedule-date">Next Live</div>
             <div class="schedule-subdate">2026.03.06 fri</div>
             <div class="schedule-list">
-                <a href="artist_muratakazushi.html" class="schedule-item stage-silver">
+                <a href="artist_fujitayuya.html" class="schedule-item stage-silver">
                     <div class="time-col">17:30〜</div>
                     <div class="info-col">
-                        <div class="artist-name">村田和司</div>
-                        <div class="location loc-silver">● SILVER STAGE</div>
+                        <div class="artist-name">藤田悠也</div>
+                        <div class="location loc-silver"><span style="color: #000080; font-weight: bold; margin-right: 4px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#000080" xmlns="http://www.w3.org/2000/svg" style="vertical-align: text-top;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>MLSS<svg width="12" height="12" viewBox="0 0 24 24" fill="#000080" xmlns="http://www.w3.org/2000/svg" style="vertical-align: text-top;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>SILVER STAGE</div>
                     </div>
                     <div class="thumb-col">
-                        <img src="images/artist_muratakazushi.jpg" alt="村田和司">
+                        <img src="images/artist_fujitayuya.jpg" alt="藤田悠也">
                     </div>
                 </a>
 
-                <a href="artist_kotaka_01.html" class="schedule-item stage-silver">
+                <a href="artist_yumeno.html" class="schedule-item stage-silver">
                     <div class="time-col">18:20〜</div>
                     <div class="info-col">
-                        <div class="artist-name">虎鷹</div>
-                        <div class="location loc-silver">● SILVER STAGE</div>
+                        <div class="artist-name">結芽乃</div>
+                        <div class="location loc-silver">リバーサイドステージ</div>
                     </div>
                     <div class="thumb-col">
-                        <img src="images/artist_kotaka_01.jpg" alt="虎鷹">
+                        <img src="images/artist_yumeno.jpg" alt="結芽乃">
                     </div>
                 </a>
 
-                <a href="artist_hasetomo_02.html" class="schedule-item stage-silver">
+                <a href="artist_synphony.html" class="schedule-item stage-silver">
                     <div class="time-col">19:10〜</div>
                     <div class="info-col">
-                        <div class="artist-name">はせとも。</div>
-                        <div class="location loc-silver">● SILVER STAGE</div>
+                        <div class="artist-name">Synphony</div>
+                        <div class="location loc-silver">ライブハウス N-Sonic</div>
                     </div>
                     <div class="thumb-col">
-                        <img src="images/artist_hasetomo_02.jpg" alt="はせとも。">
+                        <img src="images/artist_synphony.jpg" alt="Synphony">
                     </div>
                 </a>
             </div>
 
-            <!-- Next Week (3/13) -->
             <div class="schedule-subdate">2026.03.13 fri</div>
             <div class="schedule-list">
-                <a href="artist_toriirena.html" class="schedule-item stage-silver">
+                <a href="artist_kuboharuki.html" class="schedule-item stage-silver">
                     <div class="time-col">17:30〜</div>
                     <div class="info-col">
-                        <div class="artist-name">鳥居れな</div>
-                        <div class="location loc-silver">● SILVER STAGE</div>
+                        <div class="artist-name">久保陽貴</div>
+                        <div class="location loc-silver">Music Park B1</div>
                     </div>
                     <div class="thumb-col">
-                        <img src="images/artist_toriirena.jpg" alt="鳥居れな">
+                        <img src="images/artist_kuboharuki.jpg" alt="久保陽貴">
                     </div>
                 </a>
 
-                <a href="artist_hashimotonene_02.html" class="schedule-item stage-bronze">
+                <a href="artist_hinomasora.html" class="schedule-item stage-bronze">
                     <div class="time-col">17:30〜</div>
                     <div class="info-col">
-                        <div class="artist-name">はしもとねね</div>
-                        <div class="location loc-bronze">● BRONZE STAGE</div>
+                        <div class="artist-name">日乃まそら</div>
+                        <div class="location loc-bronze"><span style="color: #000080; font-weight: bold; margin-right: 4px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#000080" xmlns="http://www.w3.org/2000/svg" style="vertical-align: text-top;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>MLSS<svg width="12" height="12" viewBox="0 0 24 24" fill="#000080" xmlns="http://www.w3.org/2000/svg" style="vertical-align: text-top;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>BRONZE STAGE</div>
                     </div>
                     <div class="thumb-col">
-                        <img src="images/artist_hashimotonene_02.jpg" alt="はしもとねね">
-                    </div>
-                </a>
-
-                <a href="artist_aiai.html" class="schedule-item stage-silver">
-                    <div class="time-col">18:50〜</div>
-                    <div class="info-col">
-                        <div class="artist-name">AiAi</div>
-                        <div class="location loc-silver">● SILVER STAGE</div>
-                    </div>
-                    <div class="thumb-col">
-                        <img src="images/artist_aiai.jpg" alt="AiAi">
-                    </div>
-                </a>
-
-                <a href="artist_tomitomito.html" class="schedule-item stage-bronze">
-                    <div class="time-col">18:20〜</div>
-                    <div class="info-col">
-                        <div class="artist-name">冨十みと</div>
-                        <div class="location loc-bronze">● BRONZE STAGE</div>
-                    </div>
-                    <div class="thumb-col">
-                        <img src="images/artist_tomitomito.jpg" alt="冨十みと">
-                    </div>
-                </a>
-
-                <a href="artist_yanagimitsue.html" class="schedule-item stage-bronze">
-                    <div class="time-col">19:10〜</div>
-                    <div class="info-col">
-                        <div class="artist-name">柳光絵</div>
-                        <div class="location loc-bronze">● BRONZE STAGE</div>
-                    </div>
-                    <div class="thumb-col">
-                        <img src="images/artist_yanagimitsue.jpg" alt="柳光絵">
+                        <img src="images/artist_hinomasora.jpg" alt="日乃まそら">
                     </div>
                 </a>
             </div>
         </main>
 
-        <!-- 共通フッタ -->
         <nav class="bottom-nav">
             <a href="index.html" class="nav-item">
                 <img src="images/icon_top.svg" alt="TOP" class="nav-icon">
                 <span>TOP</span>
             </a>
-            <a href="map.html" class="nav-item">
-                <img src="images/icon_map.svg" alt="MAP" class="nav-icon">
-                <span>MAP</span>
+            <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-30)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" class="nav-item" style="filter: grayscale(100%); opacity: 0.5;">
+                <img src="images/icon_schedule.svg" alt="SCHEDULE" class="nav-icon">
+                <span>SCHEDULE</span>
             </a>
-            <a href="schedule.html" class="nav-item active">
-                <img src="images/icon_live.svg" alt="LIVE" class="nav-icon">
-                <span>LIVE</span>
+            <a href="live.html" class="nav-item nav-live-highlight">
+                <div class="nav-icon-wrapper">
+                    <img src="images/icon_live.svg" alt="LIVE" class="nav-icon">
+                    <span>LIVE</span>
+                </div>
             </a>
             <a href="artists.html" class="nav-item">
                 <img src="images/icon_artist.svg" alt="ARTIST" class="nav-icon">
                 <span>ARTIST</span>
             </a>
-            <a href="admin_listener.html" class="nav-item">
+            <a href="mypage.html" class="nav-item">
                 <img src="images/icon_mypage.svg" alt="MY PAGE" class="nav-icon">
                 <span>MY PAGE</span>
             </a>

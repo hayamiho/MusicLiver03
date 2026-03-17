@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>小杉ゆん | 日本橋 Music Liver</title>
+    <title>藤田悠也 | 日本橋 Music Liver</title>
     <link rel="stylesheet" href="style.css">
     <style>
         .artist-hero {
@@ -129,23 +129,21 @@
 <body>
     <div class="app-container">
         <header>
-            <div class="logo-container">
-                <a href="index.html">
-                    <h1>Music Liver</h1>
-                </a>
-            </div>
-            <div class="menu-icon">☰</div>
+            <a href="index.html" class="logo-link">
+                <img src="images/logo-mlss.png" alt="Music Liver" class="header-logo">
+            </a>
+            <div class="menu-icon" onclick="toggleMenu()">≡</div>
         </header>
 
         <main>
             <div class="artist-hero">
-                <img src="https://images.unsplash.com/photo-1516575334481-fec8bb85c986?w=600&h=800&fit=crop" alt="小杉ゆん">
+                <img src="images/artist_fujitayuya.jpg" alt="藤田悠也">
                 <div class="artist-hero-overlay">
                     <div class="artist-sns">
                         <span class="sns-icon"></span>
                         <span class="sns-icon"></span>
                     </div>
-                    <h2 class="artist-hero-name">小杉ゆん</h2>
+                    <h2 class="artist-hero-name">藤田悠也</h2>
                 </div>
             </div>
 
@@ -190,6 +188,22 @@
                 <a href="law.html" class="small-link">特定商取引法に基づく表記</a>
             </div>
         </main>
+
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item"><img src="images/icon_top.svg" alt="TOP" class="nav-icon"><span>TOP</span></a>
+            <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-30)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" class="nav-item" style="filter: grayscale(100%); opacity: 0.5;">
+                <img src="images/icon_schedule.svg" alt="SCHEDULE" class="nav-icon">
+                <span>SCHEDULE</span>
+            </a>
+            <a href="live.html" class="nav-item nav-live-highlight">
+                <div class="nav-icon-wrapper">
+                    <img src="images/icon_live.svg" alt="LIVE" class="nav-icon">
+                    <span>LIVE</span>
+                </div>
+            </a>
+            <a href="artists.html" class="nav-item active"><img src="images/icon_artist.svg" alt="ARTIST" class="nav-icon"><span>ARTIST</span></a>
+            <a href="mypage.html" class="nav-item"><img src="images/icon_mypage.svg" alt="MY PAGE" class="nav-icon"><span>MY PAGE</span></a>
+        </nav>
 
         <script>
             function handleTip(itemType) {

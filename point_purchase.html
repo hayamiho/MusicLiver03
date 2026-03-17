@@ -81,18 +81,18 @@
     <div class="app-container">
         <header>
             <a href="index.html" class="logo-link">
-                <img src="images/logo_blue.png" alt="Music Liver" class="header-logo">
+                <img src="images/logo-mlss.png" alt="Music Liver" class="header-logo">
             </a>
             <div class="menu-icon" onclick="toggleMenu()">≡</div>
         </header>
 
-        <div class="hamburger-menu-content" id="hamburgerMenu">
-            <a href="index.html">トップページ</a>
-            <a href="map.html">会場マップ</a>
-            <a href="schedule.html">ライブスケジュール</a>
-            <a href="artists.html">アーティスト一覧</a>
-            <a href="admin_listener.html">マイページ</a>
-        </div>
+            <div class="hamburger-menu-content" id="hamburgerMenu">
+      <a href="index.html">トップページ</a>
+      <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-40)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" style="color: #999;">全国のライブスケジュール一覧</a>
+      <a href="live.html">現在演奏中のミュージシャン</a>
+      <a href="artists.html">アーティスト一覧</a>
+      <a href="mypage.html">マイページ</a>
+    </div>
 
         <main>
             <div class="page-container">
@@ -106,7 +106,7 @@
                 <div class="plan-list">
                     <div class="plan-card">
                         <div class="plan-info">
-                            <span class="plan-pt">100 pt</span>
+                            <span class="plan-pt">100cp</span>
                             <span class="plan-price">税込 110円</span>
                         </div>
                         <a href="payment.html?pt=100" class="btn-buy">購入する</a>
@@ -114,7 +114,7 @@
 
                     <div class="plan-card">
                         <div class="plan-info">
-                            <span class="plan-pt">200 pt</span>
+                            <span class="plan-pt">200cp</span>
                             <span class="plan-price">税込 220円</span>
                         </div>
                         <a href="payment.html?pt=200" class="btn-buy">購入する</a>
@@ -122,7 +122,7 @@
 
                     <div class="plan-card">
                         <div class="plan-info">
-                            <span class="plan-pt">300 pt</span>
+                            <span class="plan-pt">300cp</span>
                             <span class="plan-price">税込 330円</span>
                         </div>
                         <a href="payment.html?pt=300" class="btn-buy">購入する</a>
@@ -130,7 +130,7 @@
 
                     <div class="plan-card">
                         <div class="plan-info">
-                            <span class="plan-pt">500 pt</span>
+                            <span class="plan-pt">500cp</span>
                             <span class="plan-price">税込 550円</span>
                         </div>
                         <a href="payment.html?pt=500" class="btn-buy">購入する</a>
@@ -138,7 +138,7 @@
 
                     <div class="plan-card" style="border-color: var(--accent-pink);">
                         <div class="plan-info">
-                            <span class="plan-pt" style="color:var(--accent-pink);">1000 pt</span>
+                            <span class="plan-pt" style="color:var(--accent-pink);">1000cp</span>
                             <span class="plan-price">税込 1100円</span>
                         </div>
                         <a href="payment.html?pt=1000" class="btn-buy"
@@ -147,7 +147,7 @@
 
                     <div class="plan-card">
                         <div class="plan-info">
-                            <span class="plan-pt">2000 pt</span>
+                            <span class="plan-pt">2000cp</span>
                             <span class="plan-price">税込 2200円</span>
                         </div>
                         <a href="payment.html?pt=2000" class="btn-buy">購入する</a>
@@ -177,7 +177,7 @@
                 <img src="images/icon_artist.svg" alt="ARTIST" class="nav-icon">
                 <span>ARTIST</span>
             </a>
-            <a href="admin_listener.html" class="nav-item">
+            <a href="mypage.html" class="nav-item">
                 <img src="images/icon_mypage.svg" alt="MY PAGE" class="nav-icon">
                 <span>MY PAGE</span>
             </a>

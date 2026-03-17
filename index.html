@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Music Liver | NEW NIGHT ENTERTAINMENT</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="dist/output.css">
   <style>
     /* トップページ専用スタイル */
     .hero-section {
@@ -19,6 +20,37 @@
       overflow: hidden;
       padding-bottom: 24px;
       /* NEXT LIVEと下のコンテンツとの隙間 */
+    }
+
+    /* LIVEボタン試作：画像1の完全再現（枠線・影なし、大きくはみ出す） */
+    .nav-item.nav-live-highlight .nav-icon-wrapper {
+      width: 84px !important;
+      height: 84px !important;
+      background: #01255a !important;
+      border: none !important;
+      box-shadow: none !important;
+      top: -8px !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding-bottom: 6px !important; /* 中身をさらに3px下げて、中心から3px上の位置に調整 */
+    }
+
+    .nav-item.nav-live-highlight .nav-icon {
+      width: 32px !important;
+      height: 32px !important;
+      margin-bottom: 2px !important;
+      filter: brightness(0) invert(1) !important;
+    }
+
+    .nav-item.nav-live-highlight span {
+      color: #ffffff !important;
+      font-size: 0.75rem !important;
+      font-weight: bold !important;
+      margin-top: 0 !important;
     }
 
     .hero-bg-container {
@@ -69,7 +101,8 @@
     .logo-main {
       width: 280px;
       filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.08));
-      margin-bottom: 5px;
+      margin: 0 auto 5px;
+      display: block;
     }
 
     .logo-tagline {
@@ -79,6 +112,7 @@
       letter-spacing: 2px;
       text-transform: uppercase;
       margin-bottom: 16px;
+      display: none; /* User要望でタグライン非表示 */
     }
 
     .next-live-inline {
@@ -162,10 +196,7 @@
     }
 
     .sns-container {
-      display: flex;
-      justify-content: center;
-      gap: 32px;
-      padding: 5px 0 20px;
+      display: none; /* User要望でSNS削除 */
     }
 
     .sns-icon {
@@ -202,36 +233,6 @@
       cursor: pointer;
       font-weight: bold;
       pointer-events: auto;
-      /* ボタン部分はタップ可能に */
-    }
-
-    .hamburger-menu-content {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: 250px;
-      height: 100vh;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-      z-index: 1000;
-      transition: right 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      padding: 70px 20px 20px;
-    }
-
-    .hamburger-menu-content.open {
-      right: 0;
-    }
-
-    .hamburger-menu-content a {
-      text-decoration: none;
-      color: var(--text-primary);
-      font-size: 1.05rem;
-      font-weight: bold;
-      padding: 14px 0;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     }
   </style>
 </head>
@@ -243,12 +244,12 @@
       <div class="hamburger-menu-btn" onclick="toggleMenu()">≡</div>
     </header>
 
-    <div class="hamburger-menu-content" id="hamburgerMenu">
+        <div class="hamburger-menu-content" id="hamburgerMenu">
       <a href="index.html">トップページ</a>
-      <a href="map.html">会場マップ</a>
-      <a href="schedule.html">ライブスケジュール</a>
+      <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-40)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" style="color: #999;">全国のライブスケジュール一覧</a>
+      <a href="live.html">現在演奏中のミュージシャン</a>
       <a href="artists.html">アーティスト一覧</a>
-      <a href="admin_listener.html">マイページ</a>
+      <a href="mypage.html">マイページ</a>
     </div>
 
     <main style="padding-top: 0;">
@@ -258,30 +259,26 @@
         </div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-          <img src="images/logo_blue.png" alt="Music Liver" class="logo-main">
+          <img src="images/logo-mlss.png" alt="Music Liver" class="logo-main">
           <div class="logo-tagline">NEW NIGHT ENTERTAINMENT</div>
-          <a href="schedule.html" class="next-live-inline">
-            <span>NEXT LIVE</span>3/6 fri. 17:30～
-          </a>
+          
         </div>
       </section>
 
       <div class="content-wrapper">
         <section class="key-message">
-          <p>あなたの応援を、<br>どこよりも大きくダイレクトに<br>アーティストへ届けます。</p>
-          <div class="sub-text">MusicLiverは、若手アーティストとファンを直接つなぐ新しいプラットフォーム。毎週金曜、ストリートライブ開催中！</div>
+          <div class="sub-text">Music Liver Support Systemは、未来ある新世代ミュージシャンによるストリートライブイベント「日本橋 Music
+            Liver」に出演するアーティストの活動支援を目的としたサポートシステムです。<br>ライブ中･配信中･またイベント後でも、お気に入りのアーティストを応援したいタイミングで、お気持ちの支援をお願いいたします。
+          </div>
         </section>
 
-        <!-- SNS -->
-        <div class="sns-container">
-          <a href="https://x.com/NML_info" target="_blank"><img src="images/icon_x.png" class="sns-icon" alt="X"></a>
-          <a href="https://www.instagram.com/nml___official/" target="_blank"><img src="images/icon_instagram.png"
-              class="sns-icon" alt="Instagram"></a>
-          <a href="https://www.tiktok.com/@info_nml" target="_blank"><img src="images/icon_tiktok.png" class="sns-icon"
-              alt="TikTok"></a>
-        </div>
-
         <div class="action-section">
+          <!-- アーティストを支援する！ボタン -->
+          <a href="register_start.html" class="btn btn-support">
+            アーティストを支援する！
+            <span class="sub-label">（会員登録をはじめる）</span>
+          </a>
+
           <a href="contact.html" class="btn btn-secondary btn-contact">CONTACT</a>
         </div>
 
@@ -297,19 +294,21 @@
         <img src="images/icon_top.svg" alt="TOP" class="nav-icon">
         <span>TOP</span>
       </a>
-      <a href="map.html" class="nav-item">
-        <img src="images/icon_map.svg" alt="MAP" class="nav-icon">
-        <span>MAP</span>
-      </a>
-      <a href="schedule.html" class="nav-item">
-        <img src="images/icon_live.svg" alt="LIVE" class="nav-icon">
-        <span>LIVE</span>
+      <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-30)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" class="nav-item" style="filter: grayscale(100%); opacity: 0.5;">
+                <img src="images/icon_schedule.svg" alt="SCHEDULE" class="nav-icon">
+                <span>SCHEDULE</span>
+            </a>
+      <a href="live.html" class="nav-item nav-live-highlight">
+        <div class="nav-icon-wrapper">
+          <img src="images/icon_live.svg" alt="LIVE" class="nav-icon">
+          <span>LIVE</span>
+        </div>
       </a>
       <a href="artists.html" class="nav-item">
         <img src="images/icon_artist.svg" alt="ARTIST" class="nav-icon">
         <span>ARTIST</span>
       </a>
-      <a href="admin_listener.html" class="nav-item">
+      <a href="mypage.html" class="nav-item">
         <img src="images/icon_mypage.svg" alt="MY PAGE" class="nav-icon">
         <span>MY PAGE</span>
       </a>
@@ -324,16 +323,20 @@
 
     // ヒーロー画像のフェードアニメーション
     const images = [
-      'images/artist_muratakazushi.jpg',
-      'images/artist_kotaka_01.jpg',
-      'images/artist_hasetomo_02.jpg',
-      'images/artist_kosugiyun.jpg',
-      'images/artist_ototarock.jpg',
-      'images/artist_toriirena.jpg',
-      'images/artist_aiai.jpg'
+      'images/artist_fujitayuya.jpg',
+      'images/artist_yumeno.jpg',
+      'images/artist_synphony.jpg',
+      'images/artist_kuboharuki.jpg',
+      'images/artist_hinomasora.jpg',
+      'images/artist_amanonatsu.jpg',
+      'images/artist_robotatama.jpg',
+      'images/artist_fukushimaseika.jpg',
+      'images/artist_taon.jpg',
+      'images/artist_iyodaayane.jpg',
+      'images/artist_yusei.jpg'
     ];
 
-    // シャッフル関数（男女・明暗の偏りを減らすため）
+    // シャッフル関数
     function shuffle(array) {
       for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -357,6 +360,7 @@
 
     // 3秒おきの切り替え
     setInterval(() => {
+      if (bgs.length === 0) return;
       bgs[currentIndex].classList.remove('active');
       currentIndex = (currentIndex + 1) % bgs.length;
       bgs[currentIndex].classList.add('active');
@@ -365,7 +369,7 @@
   <script>
     /* 簡易パスワード保護 (Vercel無料プラン用) */
     (function () {
-      const PASS = "music03"; // 必要に応じて変更してください
+      const PASS = "music03";
       if (sessionStorage.getItem("site_access") !== "granted") {
         let input = prompt("パスワードを入力してください:");
         if (input === PASS) {

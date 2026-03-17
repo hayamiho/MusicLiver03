@@ -87,29 +87,29 @@
     <div class="app-container">
         <header>
             <a href="index.html" class="logo-link">
-                <img src="images/logo_blue.png" alt="Music Liver" class="header-logo">
+                <img src="images/logo-mlss.png" alt="Music Liver" class="header-logo">
             </a>
             <div class="menu-icon" onclick="toggleMenu()">≡</div>
         </header>
 
-        <div class="hamburger-menu-content" id="hamburgerMenu">
-            <a href="index.html">トップページ</a>
-            <a href="map.html">会場マップ</a>
-            <a href="schedule.html">ライブスケジュール</a>
-            <a href="artists.html">アーティスト一覧</a>
-            <a href="admin_listener.html">マイページ</a>
-        </div>
+            <div class="hamburger-menu-content" id="hamburgerMenu">
+      <a href="index.html">トップページ</a>
+      <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-40)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" style="color: #999;">全国のライブスケジュール一覧</a>
+      <a href="live.html">現在演奏中のミュージシャン</a>
+      <a href="artists.html">アーティスト一覧</a>
+      <a href="mypage.html">マイページ</a>
+    </div>
 
         <main>
             <div class="success-container" id="successContainer">
 
                 <div class="artist-img-wrapper">
-                    <img src="images/artist_kosugiyun.jpg" class="artist-img" alt="小杉ゆん">
+                    <img src="images/artist_fujitayuya.jpg" class="artist-img" alt="藤田悠也">
                 </div>
 
                 <div class="success-message">
                     <span style="color:var(--accent-pink); font-size:1.5rem;">100ポイント</span> で<br>
-                    小杉ゆん さんに<span style="color: gold; text-shadow: 0 0 5px gold;">⭐</span>を送りました！
+                    藤田悠也 さんに<span style="color: gold; text-shadow: 0 0 5px gold;">⭐</span>を送りました！
                 </div>
 
                 <p class="thanks-message">
@@ -118,10 +118,10 @@
                 </p>
 
                 <div class="point-remaining">
-                    利用可能ポイント 900pt
+                    利用可能ポイント 900cp
                 </div>
 
-                <a href="artist_kosugiyun.html" class="btn btn-secondary">アーティストTOPに戻る</a>
+                <a href="artist_fujitayuya.html" class="btn btn-secondary">アーティストTOPに戻る</a>
 
             </div>
         </main>
@@ -143,7 +143,7 @@
                 <img src="images/icon_artist.svg" alt="ARTIST" class="nav-icon">
                 <span>ARTIST</span>
             </a>
-            <a href="admin_listener.html" class="nav-item">
+            <a href="mypage.html" class="nav-item">
                 <img src="images/icon_mypage.svg" alt="MY PAGE" class="nav-icon">
                 <span>MY PAGE</span>
             </a>

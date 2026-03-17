@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CheerPoint情報 | 日本橋 Music Liver</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .point-header-title {
+            text-align: center;
+            padding: 24px 20px 0;
+            font-size: 1.4rem;
+        }
+
+        .cp-detail-box {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 24px 20px;
+            margin: 16px 20px;
+            border: 3px solid var(--accent-pink);
+            box-shadow: 0 4px 15px rgba(255,102,161,0.1);
+        }
+
+        .cp-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        .cp-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .cp-label {
+            font-weight: bold;
+            color: var(--text-primary);
+        }
+
+        .cp-value {
+            font-size: 1.6rem;
+            font-weight: bold;
+        }
+        .cp-value span {
+            font-size: 1rem;
+            font-weight: normal;
+            margin-left: 2px;
+        }
+
+        .cp-sub {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .cp-sub-pink {
+            color: var(--accent-pink);
+            font-size: 0.8rem;
+            margin-top: 4px;
+        }
+
+        .fav-artists {
+            margin: 0 20px 24px;
+            padding: 16px 0;
+        }
+
+        .fav-icons {
+            display: flex;
+            gap: 16px;
+            margin-top: 12px;
+        }
+
+        .fav-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-pink);
+            object-fit: cover;
+        }
+
+        .history-section {
+            margin: 0 20px 24px;
+            padding: 16px 0;
+            border-radius: 8px;
+        }
+
+        .history-title {
+            font-weight: bold;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+
+        .custom-select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            background: white;
+            font-size: 1rem;
+            margin-bottom: 16px;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 16px;
+        }
+
+        .history-list {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .history-item {
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        .history-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .history-meta {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            margin-bottom: 4px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .history-artist {
+            color: var(--accent-blue);
+            font-weight: bold;
+        }
+
+        .history-action {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin-top: 4px;
+        }
+
+        .message-bubble {
+            background: #fffafa;
+            border: 1px solid #ffebf0;
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            margin-top: 8px;
+            position: relative;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <a href="index.html" class="logo-link">
+                <img src="images/logo-mlss.png" alt="Music Liver" class="header-logo">
+            </a>
+            <div class="menu-icon" onclick="toggleMenu()">≡</div>
+        </header>
+
+        <div class="hamburger-menu-content" id="hamburgerMenu">
+            <a href="index.html">トップページ</a>
+            <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-40)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" style="color: #999;">全国のライブスケジュール一覧</a>
+            <a href="live.html">現在演奏中のミュージシャン</a>
+            <a href="artists.html">アーティスト一覧</a>
+            <a href="mypage.html">マイページ</a>
+        </div>
+
+        <main>
+            <div class="point-header-title">CheerPoint 情報</div>
+
+            <div class="cp-detail-box">
+                <div class="cp-row">
+                    <div class="cp-label">利用可能ポイント</div>
+                    <div class="cp-value">1000<span>cp</span></div>
+                </div>
+                <div class="cp-row" style="margin-top: 24px;">
+                    <div>
+                        <div class="cp-label">期間限定ポイント</div>
+                        <div class="cp-sub-pink">※ 10日以内に消滅します</div>
+                    </div>
+                    <div style="text-align: right;">
+                        <div class="cp-sub">2026/10/10 消滅</div>
+                        <div class="cp-value" style="color: var(--accent-pink);">100<span>cp</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fav-artists">
+                <div style="font-size: 0.95rem; color: var(--text-primary);">お気に入りアーティスト</div>
+                <div class="fav-icons">
+                    <a href="artist_fujitayuya.html"><img src="images/artist_fujitayuya.jpg" class="fav-icon" alt="藤田悠也"></a>
+                    <a href="artist_hinomasora.html"><img src="images/artist_hinomasora.jpg" class="fav-icon" alt="日乃まそら"></a>
+                </div>
+            </div>
+
+            <div class="history-section">
+                <div class="history-title">応援履歴</div>
+                
+                <select class="custom-select">
+                    <option value="all">すべてのアーティスト</option>
+                    <option value="fujita">藤田悠也</option>
+                    <option value="hino">日乃まそら</option>
+                </select>
+
+                <div class="history-list">
+                    <div class="history-item">
+                        <div class="history-meta">
+                            <span>26/02/11 17:33</span>
+                        </div>
+                        <div class="history-artist">藤田悠也</div>
+                        <div class="history-action">
+                            <span style="font-size: 1.2rem;">😊</span> (100cp)
+                        </div>
+                    </div>
+
+                    <div class="history-item">
+                        <div class="history-meta">
+                            <span>26/02/10 17:35</span>
+                        </div>
+                        <div class="history-artist">藤田悠也</div>
+                        <div class="history-action">
+                            <span style="font-size: 1.2rem;">❤</span> (10cp)
+                        </div>
+                    </div>
+
+                    <div class="history-item">
+                        <div class="history-meta">
+                            <span>26/02/10 17:37</span>
+                        </div>
+                        <div class="history-artist">日乃まそら</div>
+                        <div class="history-action">
+                            <span style="font-size: 1.2rem;">⭐</span> (100cp)
+                        </div>
+                    </div>
+
+                    <div class="history-item">
+                        <div class="history-meta">
+                            <span>26/02/08 17:40</span>
+                            <span style="color: #333;">メッセージ送信 (1000cp)</span>
+                        </div>
+                        <div class="history-artist">藤田悠也</div>
+                        <div class="message-bubble">
+                            いつも応援しています！〇〇より
+                        </div>
+                    </div>
+
+                    <div class="history-item">
+                        <div class="history-meta">
+                            <span>26/02/07 12:01</span>
+                        </div>
+                        <div class="history-artist">日乃まそら</div>
+                        <div class="history-action">
+                            <span style="font-size: 1.2rem;">⭐</span> (100cp)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <img src="images/icon_top.svg" alt="TOP" class="nav-icon">
+                <span>TOP</span>
+            </a>
+            <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-30)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" class="nav-item" style="filter: grayscale(100%); opacity: 0.5;">
+                <img src="images/icon_schedule.svg" alt="SCHEDULE" class="nav-icon">
+                <span>SCHEDULE</span>
+            </a>
+            <a href="live.html" class="nav-item nav-live-highlight">
+                <div class="nav-icon-wrapper">
+                    <img src="images/icon_live.svg" alt="LIVE" class="nav-icon">
+                    <span>LIVE</span>
+                </div>
+            </a>
+            <a href="artists.html" class="nav-item">
+                <img src="images/icon_artist.svg" alt="ARTIST" class="nav-icon">
+                <span>ARTIST</span>
+            </a>
+            <a href="mypage.html" class="nav-item active">
+                <img src="images/icon_mypage.svg" alt="MY PAGE" class="nav-icon">
+                <span>MY PAGE</span>
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('hamburgerMenu').classList.toggle('open');
+        }
+    </script>
+</body>
+</html>

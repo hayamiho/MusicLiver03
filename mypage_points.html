@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ポイント情報 | 日本橋 Music Liver</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .info-container { padding: 30px 20px; }
+        .info-box { background: var(--bg-card); border-radius: var(--border-radius); padding: 24px; margin-bottom: 24px; border: 1px solid rgba(255, 255, 255, 0.05); }
+        .info-row { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .info-row:last-child { border-bottom: none; }
+        .info-amount { font-size: 1.5rem; font-weight: bold; color: var(--text-primary); }
+        .date-text { font-size: 0.8rem; color: var(--text-secondary); display: block; margin-top: 4px; }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <a href="index.html" class="logo-link"><img src="images/logo-mlss.png" alt="Music Liver" class="header-logo"></a>
+            <div class="menu-icon" onclick="toggleMenu()">≡</div>
+        </header>
+
+        <div class="hamburger-menu-content" id="hamburgerMenu">
+            <a href="index.html">トップページ</a>
+            <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-40)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" style="color: #999;">全国のライブスケジュール一覧</a>
+            <a href="live.html">現在演奏中のミュージシャン</a>
+            <a href="artists.html">アーティスト一覧</a>
+            <a href="mypage.html">マイページ</a>
+        </div>
+
+        <main>
+            <div class="info-container">
+                <h2 class="section-title text-center mb-4" style="line-height:1.4;">CheerPoint情報<br><span style="font-size: 0.9rem; font-weight: normal; color: #999;">（StarPoint情報）</span></h2>
+
+                <div style="font-size: 0.85rem; margin-bottom: 8px; color: var(--text-secondary);">【リスナー画面イメージ】</div>
+                <div class="info-box" style="margin-bottom: 32px;">
+                    <div class="info-row">
+                        <div>
+                            <strong>利用可能ポイント</strong>
+                        </div>
+                        <div class="info-amount" style="color: var(--accent-cyan);">1000<span style="font-size:1rem; font-weight:normal;">cp</span></div>
+                    </div>
+                    <div class="info-row">
+                        <div>
+                            <strong>期間限定ポイント</strong>
+                            <span class="date-text" style="color:var(--accent-pink);">※ 10日以内に消滅します</span>
+                        </div>
+                        <div style="text-align: right;">
+                            <span class="date-text" style="margin-top:0; margin-bottom:4px;">2026/10/10 消滅</span>
+                            <div class="info-amount" style="color: var(--accent-pink);">100<span style="font-size:1rem; font-weight:normal;">cp</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="font-size: 0.85rem; margin-bottom: 8px; color: var(--text-secondary);">【アーティスト画面イメージ】</div>
+                <div class="info-box" style="border: 3px solid #ffd700; background: white;">
+                    <div class="info-row" style="border: none; padding-bottom: 0;">
+                        <div>
+                            <strong style="color: var(--text-primary);">贈られたスターポイント</strong>
+                        </div>
+                        <div class="info-amount" style="color: var(--text-primary);">10,000<span style="font-size:1rem; font-weight:normal;">sp</span></div>
+                    </div>
+                    <div style="margin-top: 16px; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.1);">
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px;">
+                            <input type="checkbox" id="agreeTerms" style="width: 18px; height: 18px;">
+                            <label for="agreeTerms" style="font-size: 0.85rem;">ポイント交換について<a href="terms.html" style="color: var(--accent-blue); text-decoration: underline;">利用規約</a>に同意します</label>
+                        </div>
+                        <button class="btn btn-primary" onclick="alert('交換申請を行いました（デモ）');">ポイント交換を申し込む</button>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="mypage.html" class="btn btn-secondary">戻る</a>
+                </div>
+            </div>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <img src="images/icon_top.svg" alt="TOP" class="nav-icon">
+                <span>TOP</span>
+            </a>
+            <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-30)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" class="nav-item" style="filter: grayscale(100%); opacity: 0.5;">
+                <img src="images/icon_schedule.svg" alt="SCHEDULE" class="nav-icon">
+                <span>SCHEDULE</span>
+            </a>
+            <a href="live.html" class="nav-item nav-live-highlight">
+                <div class="nav-icon-wrapper">
+                    <img src="images/icon_live.svg" alt="LIVE" class="nav-icon">
+                    <span>LIVE</span>
+                </div>
+            </a>
+            <a href="artists.html" class="nav-item">
+                <img src="images/icon_artist.svg" alt="ARTIST" class="nav-icon">
+                <span>ARTIST</span>
+            </a>
+            <a href="mypage.html" class="nav-item active">
+                <img src="images/icon_mypage.svg" alt="MY PAGE" class="nav-icon">
+                <span>MY PAGE</span>
+            </a>
+        </nav>
+    </div>
+    <script>
+        function toggleMenu() { document.getElementById('hamburgerMenu').classList.toggle('open'); }
+    </script>
+</body>
+</html>

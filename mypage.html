@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>マイページ | 日本橋 Music Liver</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .profile-header {
+            text-align: center;
+            padding: 40px 20px 20px;
+        }
+
+        /* Full Screen Modal */
+        .full-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 3000;
+            display: none;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .full-modal.active {
+            display: flex;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(10px);
+            z-index: 10;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .modal-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .modal-save {
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .modal-body {
+            padding: 0 0 40px 0;
+        }
+
+        /* Banner & Icon in Modal */
+        .edit-img-banner {
+            height: 120px;
+            background: #b4aa9e; /* Mockup banner color avg */
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .edit-camera-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .edit-camera-btn img {
+            width: 24px;
+            height: 24px;
+            filter: brightness(0) invert(1);
+        }
+
+        .edit-camera-btn.small {
+            width: 36px;
+            height: 36px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .edit-icon-wrapper {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 4px solid white;
+            margin-top: -45px;
+            margin-left: 20px;
+            background: #ccc;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .edit-profile-icon {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* Form groups matching X style */
+        .edit-form-group {
+            position: relative;
+            margin: 0 20px 16px 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 8px 12px;
+            background: white;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .edit-form-group label {
+            font-size: 0.7rem;
+            color: #666;
+            margin-bottom: 2px;
+        }
+
+        .edit-form-group input,
+        .edit-form-group textarea {
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            font-family: inherit;
+            color: #333;
+            width: 100%;
+            background: transparent;
+            resize: none;
+        }
+        
+        .edit-form-group input::placeholder,
+        .edit-form-group textarea::placeholder {
+            color: #ccc;
+        }
+
+        .profile-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: #ccc;
+            margin: 0 auto 12px;
+            object-fit: cover;
+        }
+
+        .icon-edit-wrapper {
+            position: relative;
+            display: inline-block;
+            margin: 0 auto 12px;
+        }
+
+        .camera-badge {
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
+            background: var(--accent-blue);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            box-shadow: none;
+            transition: transform 0.2s;
+        }
+
+        .camera-badge:active {
+            transform: scale(0.9);
+        }
+
+        .point-box {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            margin: 0 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .fav-artists {
+            margin: 0 20px 30px;
+        }
+
+        .fav-icons {
+            display: flex;
+            gap: 16px;
+            margin-top: 12px;
+        }
+
+        .fav-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-pink);
+            object-fit: cover;
+        }
+
+        .edit-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .edit-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            flex: 1;
+        }
+
+        .edit-value {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            flex: 2;
+            text-align: left;
+            padding: 0 12px;
+            word-break: break-all;
+        }
+
+        .edit-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+
+        .edit-btn:active {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <a href="index.html" class="logo-link">
+                <img src="images/logo-mlss.png" alt="Music Liver" class="header-logo">
+            </a>
+            <div class="menu-icon" onclick="toggleMenu()">≡</div>
+        </header>
+
+        <div class="hamburger-menu-content" id="hamburgerMenu">
+            <a href="index.html">トップページ</a>
+            <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-40)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" style="color: #999;">全国のライブスケジュール一覧</a>
+            <a href="live.html">現在演奏中のミュージシャン</a>
+            <a href="artists.html">アーティスト一覧</a>
+            <a href="mypage.html">マイページ</a>
+        </div>
+
+        <main>
+            <div class="profile-header">
+                <div class="icon-edit-wrapper">
+                    <img src="images/artist_fujitayuya.jpg" class="profile-icon" alt="藤田悠也" style="margin: 0;">
+                </div>
+                <h2 style="margin-top: 16px; margin-bottom: 4px;">藤田悠也</h2>
+            </div>
+
+            <!-- アーティスト用のポイント表示 (2カラム) -->
+            <div style="padding: 0 20px 24px; display: flex; gap: 12px;">
+                <a href="mypage_cp.html" style="text-decoration: none; flex: 1; background: var(--bg-card); border-radius: var(--border-radius); padding: 16px 12px; border: 3px solid var(--accent-pink); display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 10px rgba(255,102,161,0.1);">
+                    <div>
+                        <div style="font-size: 0.8rem; color: var(--text-primary); font-weight: bold; margin-bottom: 4px;">Cheer Point</div>
+                        <div style="font-size: 1.4rem; font-weight: bold; color: var(--text-primary);">10000<span style="font-size:0.9rem; font-weight:normal;">cp</span></div>
+                    </div>
+                    <img src="images/icon_arrow.svg" alt="→" style="width: 24px; height: 24px;">
+                </a>
+                <a href="mypage_sp.html" style="text-decoration: none; flex: 1; background: var(--bg-card); border-radius: var(--border-radius); padding: 16px 12px; border: 3px solid #ffd700; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 10px rgba(255,215,0,0.1);">
+                    <div>
+                        <div style="font-size: 0.8rem; color: var(--text-primary); font-weight: bold; margin-bottom: 4px;">Star Point</div>
+                        <div style="font-size: 1.4rem; font-weight: bold; color: var(--text-primary);">15000<span style="font-size:0.9rem; font-weight:normal;">sp</span></div>
+                    </div>
+                    <img src="images/icon_arrow.svg" alt="→" style="width: 24px; height: 24px;">
+                </a>
+            </div>
+
+            <div style="padding: 0 20px 24px;">
+                <a href="#" onclick="event.preventDefault();" class="btn btn-support" style="margin-bottom: 0; display: flex; flex-direction: row; gap: 8px;">
+                    <img src="images/icon_live.svg" style="width:18px; height:18px; filter: brightness(0) invert(1);"> ライブをはじめる
+                </a>
+            </div>
+
+            <!-- プロフィールテキストとアイコン -->
+            <div style="padding: 0 20px 24px;">
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 16px;">
+                    作詞、作曲、編曲、演奏、ミックス、マスタリングを自ら手がけるシンガーソングライター。オーガニックでアナログなサウンドを好み、心の痒い所に手が届くリアルで血の通った歌詞、マイク無しでも余裕の声量が特徴。
+                </p>
+                <div style="display: flex; gap: 16px; margin-bottom: 24px; align-items: center; justify-content: center;">
+                    <a href="#" target="_blank"><img src="images/icon_x.png" style="width: 32px; height: 32px;"></a>
+                    <a href="#" target="_blank"><img src="images/icon_instagram.png" style="width: 32px; height: 32px;"></a>
+                    <a href="#" target="_blank"><img src="images/icon_tiktok.png" style="width: 32px; height: 32px;"></a>
+                    <a href="#" target="_blank"><img src="images/icon_youtube.png" style="width: 32px; height: 32px;"></a>
+                </div>
+
+                <button onclick="document.getElementById('profileEditModal').classList.add('active')" class="btn btn-secondary" style="border-radius: 40px; color: var(--text-primary); border: 1px solid #ccc; font-weight: normal;">プロフィールを編集</button>
+            </div>
+
+            <!-- Profile Edit Modal -->
+            <div id="profileEditModal" class="full-modal">
+                <div class="modal-header">
+                    <button class="modal-close" onclick="document.getElementById('profileEditModal').classList.remove('active')">✕</button>
+                    <div class="modal-title">プロフィールを編集</div>
+                    <button class="modal-save" onclick="document.getElementById('profileEditModal').classList.remove('active')">更新</button>
+                </div>
+                <div class="modal-body">
+                    <div class="edit-img-banner">
+                        <div class="edit-camera-btn"><img src="images/icon_camera.svg" alt="camera"></div>
+                    </div>
+                    <div class="edit-icon-wrapper">
+                        <img src="images/artist_fujitayuya.jpg" class="edit-profile-icon" alt="icon">
+                        <div class="edit-camera-btn small"><img src="images/icon_camera.svg" alt="camera"></div>
+                    </div>
+
+                    <div class="edit-form-group">
+                        <label>名前</label>
+                        <input type="text" value="藤田悠也" placeholder="名前を入力">
+                    </div>
+                    
+                    <div class="edit-form-group">
+                        <label>自己紹介</label>
+                        <textarea rows="4" placeholder="自己紹介を入力">作詞、作曲、編曲、演奏、ミックス、マスタリングを自ら手がけるシンガーソングライター。
+オーガニックでアナログなサウンドを好み、心の痒い所に手が届くリアルで血の通った歌詞、マイク無しでも余裕の声量が特徴。</textarea>
+                    </div>
+
+                    <div class="edit-form-group">
+                        <label>𝕏</label>
+                        <input type="text" value="" placeholder="@username">
+                    </div>
+
+                    <div class="edit-form-group">
+                        <label>Instagram</label>
+                        <input type="text" value="" placeholder="@username">
+                    </div>
+
+                    <div class="edit-form-group">
+                        <label>TikTok</label>
+                        <input type="text" value="" placeholder="@username">
+                    </div>
+
+                    <div class="edit-form-group">
+                        <label>Youtube</label>
+                        <input type="text" value="" placeholder="@username">
+                    </div>
+
+                    <div class="edit-form-group">
+                        <label>名前ふりがな</label>
+                        <input type="text" value="ふじた ゆうや" placeholder="ふりがなを入力">
+                    </div>
+
+                    <div class="edit-form-group">
+                        <label>表示名(英字)</label>
+                        <input type="text" value="Fujita Yuya" placeholder="英字名を入力">
+                    </div>
+                    
+                </div>
+            </div>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <img src="images/icon_top.svg" alt="TOP" class="nav-icon">
+                <span>TOP</span>
+            </a>
+            <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-30)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" class="nav-item" style="filter: grayscale(100%); opacity: 0.5;">
+                <img src="images/icon_schedule.svg" alt="SCHEDULE" class="nav-icon">
+                <span>SCHEDULE</span>
+            </a>
+            <a href="live.html" class="nav-item nav-live-highlight">
+                <div class="nav-icon-wrapper">
+                    <img src="images/icon_live.svg" alt="LIVE" class="nav-icon">
+                    <span>LIVE</span>
+                </div>
+            </a>
+            <a href="artists.html" class="nav-item">
+                <img src="images/icon_artist.svg" alt="ARTIST" class="nav-icon">
+                <span>ARTIST</span>
+            </a>
+            <a href="mypage.html" class="nav-item active">
+                <img src="images/icon_mypage.svg" alt="MY PAGE" class="nav-icon">
+                <span>MY PAGE</span>
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('hamburgerMenu').classList.toggle('open');
+        }
+    </script>
+</body>
+
+</html>

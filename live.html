@@ -4,292 +4,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LIVE STREAM | 日本橋 Music Liver</title>
+    <title>LIVE | 日本橋 Music Liver</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .live-container {
+        .page-header {
+            padding: 40px 20px 24px;
+            text-align: center;
+        }
+
+        .schedule-date {
+            font-size: 1.3rem;
+            font-weight: 900;
+            margin: 30px 20px 8px;
+            color: var(--accent-blue);
+            border-bottom: 2px solid rgba(0, 123, 255, 0.2);
+            padding-bottom: 8px;
+        }
+
+        .schedule-list {
+            padding: 0 20px 40px;
+        }
+
+        .schedule-item {
             display: flex;
-            flex-direction: column;
-            height: 100vh;
-            background: #fff;
-            /* 背景を白に修正（User指摘） */
-            position: relative;
-            padding-bottom: var(--footer-height);
-            /* フッターに隠れないように余白を追加 */
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 10px 0 10px 10px;
+            border-left: 4px solid #ccc;
+            text-decoration: none;
+            color: inherit;
+            align-items: stretch;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            transition: transform 0.2s;
         }
 
-        .video-area {
-            position: relative;
-            width: 100%;
-            /* 16:9 aspect ratio placeholder */
-            aspect-ratio: 16/9;
-            background: #111;
+        .schedule-item:active {
+            transform: scale(0.98);
         }
 
-        .video-area img {
+        .stage-silver {
+            border-left-color: #c0c0c0;
+        }
+
+        .time-col {
+            width: 28%;
+            font-weight: 900;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .info-col {
+            flex: 1;
+            padding-right: 10px;
+        }
+
+        .artist-name {
+            font-weight: 800;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .location {
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .loc-silver {
+            color: #888888;
+        }
+
+        .thumb-col {
+            width: 28%;
+            aspect-ratio: 1;
+            flex-shrink: 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            overflow: hidden;
+            box-shadow: -2px 0 8px rgba(0, 0, 0, 0.05);
+            margin-top: -10px;
+            margin-bottom: -10px;
+            margin-right: -1px;
+        }
+
+        .thumb-col img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .live-badge {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            background: #e60012;
-            color: white;
-            font-size: 0.7rem;
-            font-weight: bold;
-            padding: 4px 8px;
-            border-radius: 4px;
-            z-index: 10;
+        .now-playing {
+            background: rgba(255, 102, 161, 0.05);
         }
 
-        .viewers {
-            position: absolute;
-            top: 12px;
-            left: 60px;
-            background: rgba(0, 0, 0, 0.6);
-            color: white;
-            font-size: 0.7rem;
-            padding: 4px 8px;
-            border-radius: 4px;
-            z-index: 10;
-        }
-
-        .info-area {
-            padding: 16px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .stream-title {
-            font-size: 1.1rem;
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
-
-        .artist-info {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .artist-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .artist-name {
-            font-weight: bold;
-            font-size: 0.95rem;
-        }
-
-        .chat-area {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            background: var(--bg-card);
-            overflow: hidden;
-        }
-
-        .chat-messages {
-            flex: 1;
-            padding: 16px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .chat-item {
-            display: flex;
-            gap: 8px;
-            font-size: 0.9rem;
-            align-items: flex-start;
-        }
-
-        .chat-author {
-            color: var(--text-secondary);
-            font-size: 0.8rem;
-            white-space: nowrap;
-        }
-
-        .chat-text {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            padding: 4px 10px;
-        }
-
-        /* Super Chat Style */
-        .super-chat {
-            background: linear-gradient(to right, rgba(255, 102, 161, 0.2), transparent);
-            border-left: 4px solid var(--accent-pink);
-            padding: 8px 12px;
-            border-radius: 0 12px 12px 0;
-        }
-
-        .super-chat .chat-text {
-            background: transparent;
-            font-weight: bold;
-            font-size: 1.1rem;
-            padding: 0;
-            color: white;
-        }
-
-        .super-chat .chat-author {
+        .now-playing .time-col {
             color: var(--accent-pink);
-            font-weight: bold;
-        }
-
-        .chat-input-area {
-            padding: 12px;
-            background: #fff;
-            /* 白に変更 */
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
-
-        .chat-input {
-            flex: 1;
-            background: #f5f5f5;
-            /* 薄いグレーに */
-            border: 1px solid #ddd;
-            border-radius: 20px;
-            padding: 10px 16px;
-            color: var(--text-primary);
-        }
-
-        .send-btn-chat {
-            background: var(--accent-blue);
-            color: white;
-            border: none;
-            border-radius: 20px;
-            padding: 8px 16px;
-            font-weight: bold;
-            font-size: 0.85rem;
-            cursor: pointer;
-            white-space: nowrap;
-        }
-
-        .item-row {
-            display: flex;
-            justify-content: space-between;
-            background: var(--bg-card);
-            padding: 8px 12px 12px;
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .item-btn {
-            background: #fff;
-            border: 1px solid rgba(255, 102, 161, 0.2);
-            border-radius: 50%;
-            width: 44px;
-            height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .item-btn:active {
-            transform: scale(0.9);
-            background: rgba(255, 102, 161, 0.1);
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            text-decoration: none;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            z-index: 10;
-            font-weight: bold;
+            font-size: 0.8rem;
+            line-height: 1.2;
         }
     </style>
 </head>
 
 <body>
-    <div class="live-container app-container">
+    <div class="app-container">
         <header>
             <a href="index.html" class="logo-link">
-                <img src="images/logo_blue.png" alt="Music Liver" class="header-logo">
+                <img src="images/logo-mlss.png" alt="Music Liver" class="header-logo">
             </a>
             <div class="menu-icon" onclick="toggleMenu()">≡</div>
         </header>
 
-        <div class="hamburger-menu-content" id="hamburgerMenu">
-            <a href="index.html">トップページ</a>
-            <a href="map.html">会場マップ</a>
-            <a href="schedule.html">ライブスケジュール</a>
-            <a href="artists.html">アーティスト一覧</a>
-            <a href="admin_listener.html">マイページ</a>
-        </div>
+            <div class="hamburger-menu-content" id="hamburgerMenu">
+      <a href="index.html">トップページ</a>
+      <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-40)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" style="color: #999;">全国のライブスケジュール一覧</a>
+      <a href="live.html">現在演奏中のミュージシャン</a>
+      <a href="artists.html">アーティスト一覧</a>
+      <a href="mypage.html">マイページ</a>
+    </div>
 
-        <main style="display: flex; flex-direction: column; flex: 1; padding: 0;">
-            <div class="video-area">
-                <!-- ユーザー支給の参考ライブ映像サムネイルを仮枠として表示 -->
-                <img src="https://img.youtube.com/vi/ob9DzfadFS0/maxresdefault.jpg" alt="Live Stream">
-                <div class="live-badge">LIVE</div>
-                <div class="viewers">👁 124</div>
-                <a href="schedule.html" class="close-btn">×</a>
+        <main>
+            <div class="page-header">
+                <h1 class="page-title">LIVE</h1>
+                <p class="page-subtitle">現在演奏中のミュージシャン</p>
             </div>
 
-            <div class="info-area">
-                <div class="stream-title">【路上ライブ】日本橋MusicLiver 小杉ゆん</div>
-                <div class="artist-info">
-                    <img src="images/artist_kosugiyun.jpg" class="artist-icon">
-                    <span class="artist-name">小杉ゆん</span>
-                </div>
-            </div>
-
-            <div class="chat-area">
-                <div class="chat-messages" id="chatMessages">
-                    <div class="chat-item">
-                        <span class="chat-author">UserA</span>
-                        <span class="chat-text">こんばんは！</span>
+            <div class="schedule-date">Live Now</div>
+            <div class="schedule-list">
+                <a href="stream.html" class="schedule-item stage-silver now-playing">
+                    <div class="time-col">LIVE<br>NOW!</div>
+                    <div class="info-col">
+                        <div class="artist-name">藤田悠也</div>
+                        <div class="location loc-silver">● SILVER STAGE</div>
                     </div>
-                    <div class="chat-item">
-                        <span class="chat-author">UserB</span>
-                        <span class="chat-text">今日のセトリ最高ですね</span>
+                    <div class="thumb-col">
+                        <img src="images/artist_fujitayuya.jpg" alt="藤田悠也">
                     </div>
-                    <!-- Super Chat Demo -->
-                    <div class="chat-item super-chat">
-                        <span class="chat-author">Taro Yamada<br><span
-                                style="font-size:0.7rem; color:var(--text-secondary);">1000pt</span></span>
-                        <span class="chat-text">🎇🎇🎇 頑張って！！</span>
-                    </div>
-                </div>
-
-                <div class="chat-input-area">
-                    <input type="text" class="chat-input" placeholder="メッセージを入力...">
-                    <button class="send-btn-chat">送信</button>
-                </div>
-
-                <!-- ギフトアイテム一覧の復元 -->
-                <div class="item-row"
-                    style="background: #fff; border-top: 1px solid rgba(0,0,0,0.05); padding: 12px 16px;">
-                    <a href="tipping_confirm.html?artist=kosugiyun&item=star" class="item-btn">⭐</a>
-                    <a href="tipping_confirm.html?artist=kosugiyun&item=heart" class="item-btn">💖</a>
-                    <a href="tipping_confirm.html?artist=kosugiyun&item=firework" class="item-btn">🎇</a>
-                    <a href="tipping_confirm.html?artist=kosugiyun&item=clap" class="item-btn">👏</a>
-                    <a href="tipping_confirm.html?artist=kosugiyun&item=cheer" class="item-btn">🔥</a>
-                    <a href="tipping_confirm.html?artist=kosugiyun&item=message" class="item-btn">💬</a>
-                </div>
+                </a>
             </div>
         </main>
 
@@ -298,19 +150,21 @@
                 <img src="images/icon_top.svg" alt="TOP" class="nav-icon">
                 <span>TOP</span>
             </a>
-            <a href="map.html" class="nav-item">
-                <img src="images/icon_map.svg" alt="MAP" class="nav-icon">
-                <span>MAP</span>
+            <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-30)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" class="nav-item" style="filter: grayscale(100%); opacity: 0.5;">
+                <img src="images/icon_schedule.svg" alt="SCHEDULE" class="nav-icon">
+                <span>SCHEDULE</span>
             </a>
-            <a href="schedule.html" class="nav-item active">
-                <img src="images/icon_live.svg" alt="LIVE" class="nav-icon">
-                <span>LIVE</span>
+            <a href="live.html" class="nav-item active nav-live-highlight">
+                <div class="nav-icon-wrapper">
+                    <img src="images/icon_live.svg" alt="LIVE" class="nav-icon">
+                    <span>LIVE</span>
+                </div>
             </a>
             <a href="artists.html" class="nav-item">
                 <img src="images/icon_artist.svg" alt="ARTIST" class="nav-icon">
                 <span>ARTIST</span>
             </a>
-            <a href="admin_listener.html" class="nav-item">
+            <a href="mypage.html" class="nav-item">
                 <img src="images/icon_mypage.svg" alt="MY PAGE" class="nav-icon">
                 <span>MY PAGE</span>
             </a>

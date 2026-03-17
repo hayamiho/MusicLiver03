@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>応援履歴 | 日本橋 Music Liver</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .history-log { margin: 40px 20px 30px; }
+        .log-window { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: var(--border-radius); padding: 16px; height: 60vh; overflow-y: scroll; }
+        .log-item { font-size: 0.9rem; margin-bottom: 20px; display: flex; align-items: flex-start; gap: 12px; border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 12px; }
+        .log-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .log-date { color: var(--text-secondary); white-space: nowrap; font-size: 0.8rem; }
+        .log-content { flex: 1; display: flex; flex-direction: column; }
+        .log-bubble { background: rgba(255, 255, 255, 0.05); padding: 8px 12px; border-radius: 12px; display: inline-block; border: 1px solid rgba(255, 102, 161, 0.2); margin-top: 8px; font-size: 0.85rem; }
+        .log-icon { font-size: 1.2rem; }
+        .artist-select { width: 100%; padding: 12px; margin-bottom: 20px; background: rgba(255,255,255,0.1); color: #000; border: 1px solid #999; border-radius: var(--border-radius); font-size: 1rem; outline: none; }
+        .artist-select option { color: black; background: white; }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <a href="index.html" class="logo-link"><img src="images/logo-mlss.png" alt="Music Liver" class="header-logo"></a>
+            <div class="menu-icon" onclick="toggleMenu()">≡</div>
+        </header>
+
+        <div class="hamburger-menu-content" id="hamburgerMenu">
+            <a href="index.html">トップページ</a>
+            <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-40)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" style="color: #999;">全国のライブスケジュール一覧</a>
+            <a href="live.html">現在演奏中のミュージシャン</a>
+            <a href="artists.html">アーティスト一覧</a>
+            <a href="mypage.html">マイページ</a>
+        </div>
+
+        <main>
+            <div class="history-log">
+                <h2 class="section-title text-center mb-4">応援履歴</h2>
+                
+                <select class="artist-select" id="artistSelect" onchange="filterLogs(this.value)">
+                    <option value="all">すべてのアーティスト</option>
+                    <option value="久保陽貴">久保陽貴</option>
+                    <option value="Synphony">Synphony</option>
+                    <option value="日乃まそら">日乃まそら</option>
+                    <option value="藤田悠也">藤田悠也</option>
+                    <option value="結芽乃">結芽乃</option>
+                </select>
+
+                <div class="log-window" id="logWindow">
+                    <div class="log-item" data-artist="藤田悠也">
+                        <div style="min-width: 80px;">
+                            <span class="log-date">26/02/11 17:33</span><br>
+                            <span style="font-size: 0.8rem; color: var(--accent-blue); font-weight: bold;">藤田悠也</span>
+                        </div>
+                        <span class="log-content">
+                            <span><span class="log-icon">😊</span> (100cp)</span>
+                        </span>
+                    </div>
+
+                    <div class="log-item" data-artist="藤田悠也">
+                        <div style="min-width: 80px;">
+                            <span class="log-date">26/02/10 17:35</span><br>
+                            <span style="font-size: 0.8rem; color: var(--accent-blue); font-weight: bold;">藤田悠也</span>
+                        </div>
+                        <span class="log-content">
+                            <span><span class="log-icon">❤</span> (10cp)</span>
+                        </span>
+                    </div>
+
+                    <div class="log-item" data-artist="日乃まそら">
+                        <div style="min-width: 80px;">
+                            <span class="log-date">26/02/10 17:37</span><br>
+                            <span style="font-size: 0.8rem; color: var(--accent-blue); font-weight: bold;">日乃まそら</span>
+                        </div>
+                        <span class="log-content">
+                            <span><span class="log-icon">⭐️</span> (100cp)</span>
+                        </span>
+                    </div>
+
+                    <div class="log-item" data-artist="藤田悠也">
+                        <div style="min-width: 80px;">
+                            <span class="log-date">26/02/08 17:40</span><br>
+                            <span style="font-size: 0.8rem; color: var(--accent-blue); font-weight: bold;">藤田悠也</span>
+                        </div>
+                        <span class="log-content">
+                            <span>メッセージ送信 (1000cp)</span>
+                            <span class="log-bubble">いつも応援しています！◯◯より</span>
+                        </span>
+                    </div>
+
+                    <div class="log-item" data-artist="結芽乃">
+                        <div style="min-width: 80px;">
+                            <span class="log-date">26/02/07 12:01</span><br>
+                            <span style="font-size: 0.8rem; color: var(--accent-blue); font-weight: bold;">結芽乃</span>
+                        </div>
+                        <span class="log-content">
+                            <span><span class="log-icon">⭐️</span> (100cp)</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 32px;">
+                    <a href="mypage.html" class="btn btn-secondary" style="width: auto; padding: 12px 40px;">マイページへ戻る</a>
+                </div>
+            </div>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <img src="images/icon_top.svg" alt="TOP" class="nav-icon">
+                <span>TOP</span>
+            </a>
+            <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-30)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" class="nav-item" style="filter: grayscale(100%); opacity: 0.5;">
+                <img src="images/icon_schedule.svg" alt="SCHEDULE" class="nav-icon">
+                <span>SCHEDULE</span>
+            </a>
+            <a href="live.html" class="nav-item nav-live-highlight">
+                <div class="nav-icon-wrapper">
+                    <img src="images/icon_live.svg" alt="LIVE" class="nav-icon">
+                    <span>LIVE</span>
+                </div>
+            </a>
+            <a href="artists.html" class="nav-item">
+                <img src="images/icon_artist.svg" alt="ARTIST" class="nav-icon">
+                <span>ARTIST</span>
+            </a>
+            <a href="mypage.html" class="nav-item active">
+                <img src="images/icon_mypage.svg" alt="MY PAGE" class="nav-icon">
+                <span>MY PAGE</span>
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        function toggleMenu() { document.getElementById('hamburgerMenu').classList.toggle('open'); }
+        
+        function filterLogs(artistName) {
+            const items = document.querySelectorAll('.log-item');
+            items.forEach(item => {
+                const itemArtist = item.getAttribute('data-artist');
+                if (artistName === 'all' || itemArtist === artistName) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

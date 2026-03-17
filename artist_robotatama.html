@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ロボット頭 | 日本橋 Music Liver</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .artist-hero { position: relative; width: 100%; height: 60vh; }
+        .artist-hero img { width: 100%; height: 100%; object-fit: cover; }
+        .artist-hero-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 60px 20px 20px; background: linear-gradient(to top, rgba(11, 12, 16, 1) 10%, transparent); }
+        .artist-hero-name { font-size: 2.2rem; font-weight: 900; margin-bottom: 4px; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8); color: #fff; }
+        .biography-section { padding: 0 20px 20px; color: var(--text-secondary); font-size: 0.95rem; }
+        .tipping-section { background: var(--bg-card); margin: 20px 20px 100px; padding: 24px; border-radius: var(--border-radius); box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 102, 161, 0.2); }
+        .tipping-title { font-size: 1.1rem; font-weight: bold; margin-bottom: 16px; text-align: center; color: var(--accent-pink); }
+        .tip-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+        .tip-btn { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 16px 8px; display: flex; flex-direction: column; align-items: center; cursor: pointer; transition: all 0.2s; }
+        .tip-btn:active { background: rgba(255, 102, 161, 0.1); border-color: var(--accent-pink); transform: translateY(-2px); }
+        .tip-icon { font-size: 2rem; margin-bottom: 8px; }
+        .tip-label { font-size: 0.8rem; color: var(--text-primary); }
+        .point-info { text-align: center; font-size: 0.9rem; margin-bottom: 12px; color: var(--accent-cyan); }
+        .small-link { display: block; text-align: center; font-size: 0.7rem; color: var(--text-secondary); text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <a href="index.html" class="logo-link"><img src="images/logo-mlss.png" alt="Music Liver" class="header-logo"></a>
+            <div class="menu-icon" onclick="toggleMenu()">≡</div>
+        </header>
+            <div class="hamburger-menu-content" id="hamburgerMenu">
+      <a href="index.html">トップページ</a>
+      <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-40)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" style="color: #999;">全国のライブスケジュール一覧</a>
+      <a href="live.html">現在演奏中のミュージシャン</a>
+      <a href="artists.html">アーティスト一覧</a>
+      <a href="mypage.html">マイページ</a>
+    </div>
+        <main>
+            <div class="artist-hero">
+                <img src="images/artist_robotatama.jpg" alt="ロボット頭">
+                <div class="artist-hero-overlay">
+                    <div class="artist-header-flex">
+                        <div class="artist-name-group">
+                            <h2 class="artist-hero-name">ロボット頭</h2>
+                            <div style="font-size: 0.8rem; color: rgba(255,255,255,0.8); margin-bottom: 6px;">ロボットあたま</div>
+                        </div>
+                        <button class="fav-btn" onclick="toggleFavorite(this)">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="biography-section">
+                <br>
+                ロボットの被り物をしている被り物系ミュージシャン。<br>
+                2024年04月にアコーディオンとギターのライブアレンジバージョンのCDをリリース。現在はX、YOUTUBEなどオンラインでの活動の他、個展や主催のアートイベントを開催。またライブを公園や路上など日常空間で行い、現実と空想が混ざったような不思議で独特な世界観を表現したライブパフォーマンスをしている。
+                <div style="display: flex; justify-content: center; gap: 20px; margin: 20px 0;">
+                    <a href="https://x.com/robotatama" target="_blank"><img src="images/icon_x.png" style="width: 32px; height: 32px;"></a>
+                    <a href="https://www.instagram.com/iaitokyojapan/" target="_blank"><img src="images/icon_instagram.png" style="width: 32px; height: 32px;"></a>
+                    <a href="https://www.youtube.com/@iaitokyo" target="_blank"><img src="images/icon_youtube.png" style="width: 32px; height: 32px;"></a>
+                </div>
+            </div>
+            <div class="tipping-section">
+                <div class="tipping-title">CheerPointでアイテムを送ろう！</div>
+                <div class="tip-grid">
+                    <div class="tip-btn" onclick="handleTip('star')"><div class="tip-icon">⭐</div><div class="tip-label">スター</div><div style="font-size: 0.7rem; color: var(--accent-pink); margin-top: 4px; font-weight: bold;">100cp</div></div>
+                    <div class="tip-btn" onclick="handleTip('heart')"><div class="tip-icon">💖</div><div class="tip-label">ハート</div><div style="font-size: 0.7rem; color: var(--accent-pink); margin-top: 4px; font-weight: bold;">100cp</div></div>
+                    <div class="tip-btn" onclick="handleTip('firework')"><div class="tip-icon">🎇</div><div class="tip-label">花火</div><div style="font-size: 0.7rem; color: var(--accent-pink); margin-top: 4px; font-weight: bold;">400cp</div></div>
+                    <div class="tip-btn" onclick="handleTip('clap')"><div class="tip-icon">👏</div><div class="tip-label">拍手</div><div style="font-size: 0.7rem; color: var(--accent-pink); margin-top: 4px; font-weight: bold;">10cp</div></div>
+                    <div class="tip-btn" onclick="handleTip('cheer')"><div class="tip-icon">🔥</div><div class="tip-label">応援</div><div style="font-size: 0.7rem; color: var(--accent-pink); margin-top: 4px; font-weight: bold;">300cp</div></div>
+                    <div class="tip-btn" onclick="handleTip('message')"><div class="tip-icon">💬</div><div class="tip-label">メッセージ</div><div style="font-size: 0.7rem; color: var(--accent-pink); margin-top: 4px; font-weight: bold;">1000cp</div></div>
+                </div>
+                <div class="point-info">0 ポイント保有</div>
+                <a href="law.html" class="small-link">特定商取引法に基づく表記</a>
+            </div>
+        </main>
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item"><img src="images/icon_top.svg" alt="TOP" class="nav-icon"><span>TOP</span></a>
+            <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-30)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" class="nav-item" style="filter: grayscale(100%); opacity: 0.5;">
+                <img src="images/icon_schedule.svg" alt="SCHEDULE" class="nav-icon">
+                <span>SCHEDULE</span>
+            </a>
+            <a href="live.html" class="nav-item nav-live-highlight">
+                <div class="nav-icon-wrapper">
+                    <img src="images/icon_live.svg" alt="LIVE" class="nav-icon">
+                    <span>LIVE</span>
+                </div>
+            </a>
+            <a href="artists.html" class="nav-item active"><img src="images/icon_artist.svg" alt="ARTIST" class="nav-icon"><span>ARTIST</span></a>
+            <a href="mypage.html" class="nav-item"><img src="images/icon_mypage.svg" alt="MY PAGE" class="nav-icon"><span>MY PAGE</span></a>
+        </nav>
+    </div>
+    <script>
+        function toggleMenu() { document.getElementById('hamburgerMenu').classList.toggle('open'); }
+        function handleTip(itemType) { window.location.href = 'tipping_confirm.html?artist=robotatama&item=' + itemType; }
+        function toggleFavorite(btn) { btn.classList.toggle('active'); }
+    </script>
+</body>
+</html>

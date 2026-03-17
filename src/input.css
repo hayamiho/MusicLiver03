@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@theme {
+  /* プロジェクト専用カラーの定義 */
+  --color-ml-pink: #FF66A1;
+  --color-ml-blue: #007BFF;
+  --color-ml-dark-blue: #01255a;
+  
+  /* 角丸の定義 */
+  --radius-ml: 16px;
+}
+
+@layer base {
+  :root {
+    --bg-gradient: linear-gradient(45deg, #fffafa, #f0f7ff, #fff0f5, #f5f5ff);
+  }
+  
+  body {
+    @apply font-sans antialiased text-[#333333];
+    background: var(--bg-gradient);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+  }
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}

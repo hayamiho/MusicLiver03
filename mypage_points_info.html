@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ポイント振込情報の変更 | 日本橋 Music Liver</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <a href="index.html" class="logo-link"><img src="images/logo-mlss.png" alt="Music Liver" class="header-logo"></a>
+            <div class="menu-icon" onclick="toggleMenu()">≡</div>
+        </header>
+
+        <div class="hamburger-menu-content" id="hamburgerMenu">
+            <a href="index.html">トップページ</a>
+            <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-40)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" style="color: #999;">全国のライブスケジュール一覧</a>
+            <a href="live.html">現在演奏中のミュージシャン</a>
+            <a href="artists.html">アーティスト一覧</a>
+            <a href="mypage.html">マイページ</a>
+        </div>
+
+        <main>
+            <div style="padding: 20px;">
+                <h2 class="section-title text-center mb-4">ポイント振込情報の変更</h2>
+
+                <table style="width: 100%; border-collapse: collapse; border: 1px solid #ccc; font-size: 0.9rem;">
+                    <tr>
+                        <th style="padding: 12px; border: 1px solid #ccc; font-weight: normal; text-align: left; width: 30%;">本名</th>
+                        <td style="padding: 12px; border: 1px solid #ccc;">山田 太郎</td>
+                        <td style="padding: 12px; border: 1px solid #ccc; text-align: center; width: 50px; white-space: nowrap;">
+                            <a href="#" style="display: inline-block; vertical-align: middle;"><img src="images/icon_edit.svg" alt="編集" style="width: 20px; height: 20px; filter: brightness(0) invert(0.6);"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="padding: 12px; border: 1px solid #ccc; font-weight: normal; text-align: left;">銀行口座</th>
+                        <td style="padding: 12px; border: 1px solid #ccc; font-size: 0.85rem; line-height: 1.5;">三井住友銀行<br>〇〇支店 (123)<br>普通 1234567<br>ヤマダタロウ</td>
+                        <td style="padding: 12px; border: 1px solid #ccc; text-align: center; white-space: nowrap;">
+                            <a href="#" style="display: inline-block; vertical-align: middle;"><img src="images/icon_edit.svg" alt="編集" style="width: 20px; height: 20px; filter: brightness(0) invert(0.6);"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="padding: 12px; border: 1px solid #ccc; font-weight: normal; text-align: left;">郵便番号</th>
+                        <td style="padding: 12px; border: 1px solid #ccc;">123-4567</td>
+                        <td style="padding: 12px; border: 1px solid #ccc; text-align: center; white-space: nowrap;">
+                            <a href="#" style="display: inline-block; vertical-align: middle;"><img src="images/icon_edit.svg" alt="編集" style="width: 20px; height: 20px; filter: brightness(0) invert(0.6);"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="padding: 12px; border: 1px solid #ccc; font-weight: normal; text-align: left;">住所</th>
+                        <td style="padding: 12px; border: 1px solid #ccc; word-break: break-all;">東京都中央区日本橋〇-〇-〇</td>
+                        <td style="padding: 12px; border: 1px solid #ccc; text-align: center; white-space: nowrap;">
+                            <a href="#" style="display: inline-block; vertical-align: middle;"><img src="images/icon_edit.svg" alt="編集" style="width: 20px; height: 20px; filter: brightness(0) invert(0.6);"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="padding: 12px; border: 1px solid #ccc; font-weight: normal; text-align: left;">電話番号</th>
+                        <td style="padding: 12px; border: 1px solid #ccc;">090-1234-5678</td>
+                        <td style="padding: 12px; border: 1px solid #ccc; text-align: center; white-space: nowrap;">
+                            <a href="#" style="display: inline-block; vertical-align: middle;"><img src="images/icon_edit.svg" alt="編集" style="width: 20px; height: 20px; filter: brightness(0) invert(0.6);"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="padding: 12px; border: 1px solid #ccc; font-weight: normal; text-align: left;">メールアドレス</th>
+                        <td style="padding: 12px; border: 1px solid #ccc; word-break: break-all;">taro.yamada@example.com</td>
+                        <td style="padding: 12px; border: 1px solid #ccc; text-align: center; white-space: nowrap;">
+                            <a href="#" style="display: inline-block; vertical-align: middle;"><img src="images/icon_edit.svg" alt="編集" style="width: 20px; height: 20px; filter: brightness(0) invert(0.6);"></a>
+                        </td>
+                    </tr>
+                </table>
+
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="mypage.html" class="btn btn-secondary">マイページへ戻る</a>
+                </div>
+            </div>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <img src="images/icon_top.svg" alt="TOP" class="nav-icon">
+                <span>TOP</span>
+            </a>
+            <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-30)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" class="nav-item" style="filter: grayscale(100%); opacity: 0.5;">
+                <img src="images/icon_schedule.svg" alt="SCHEDULE" class="nav-icon">
+                <span>SCHEDULE</span>
+            </a>
+            <a href="live.html" class="nav-item nav-live-highlight">
+                <div class="nav-icon-wrapper">
+                    <img src="images/icon_live.svg" alt="LIVE" class="nav-icon">
+                    <span>LIVE</span>
+                </div>
+            </a>
+            <a href="artists.html" class="nav-item">
+                <img src="images/icon_artist.svg" alt="ARTIST" class="nav-icon">
+                <span>ARTIST</span>
+            </a>
+            <a href="mypage.html" class="nav-item">
+                <img src="images/icon_mypage.svg" alt="MY PAGE" class="nav-icon">
+                <span>MY PAGE</span>
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        function toggleMenu() { document.getElementById('hamburgerMenu').classList.toggle('open'); }
+    </script>
+</body>
+</html>

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Liver | NEW NIGHT ENTERTAINMENT</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* トップページ専用スタイル */
+    .hero-section {
+      position: relative;
+      height: 65vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      /* コンテンツを下端に揃え、上の写真を広くする */
+      align-items: center;
+      overflow: hidden;
+      padding-bottom: 24px;
+      /* NEXT LIVEと下のコンテンツとの隙間 */
+    }
+
+    .hero-bg-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center top;
+      /* 写真の顔が切れないように */
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+    }
+
+    .hero-bg.active {
+      opacity: 0.75;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent 40%, rgba(255, 255, 255, 0.9) 90%, #ffffff 100%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      width: 100%;
+      padding: 0 20px;
+    }
+
+    .logo-main {
+      width: 280px;
+      filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.08));
+      margin-bottom: 5px;
+    }
+
+    .logo-tagline {
+      font-size: 0.65rem;
+      font-weight: 800;
+      color: #004fba;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .next-live-inline {
+      display: inline-flex;
+      align-items: center;
+      background: var(--bg-card);
+      border: 2px solid var(--accent-pink);
+      color: var(--text-primary);
+      padding: 6px 20px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 900;
+      text-decoration: none;
+      box-shadow: 0 8px 20px rgba(255, 102, 161, 0.2);
+    }
+
+    .next-live-inline span {
+      background: var(--accent-pink);
+      color: white;
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      margin-right: 12px;
+      position: relative;
+      z-index: 15;
+    }
+
+    .content-wrapper {
+      background-color: #ffffff;
+      /* 背景を白に固定 */
+      padding-top: 10px;
+      position: relative;
+      z-index: 15;
+    }
+
+    .key-message {
+      padding: 0px 30px 10px;
+      text-align: center;
+    }
+
+    .key-message p {
+      font-size: 1.05rem;
+      font-weight: 800;
+      line-height: 1.6;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+
+    .key-message .sub-text {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    .action-section {
+      padding: 0 30px 10px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .btn-contact {
+      font-size: 0.75rem;
+      padding: 8px 16px;
+      width: auto;
+      align-self: center;
+      opacity: 0.7;
+    }
+
+    .sponsors {
+      padding: 5px 20px 20px;
+      text-align: center;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .sponsors-text {
+      font-size: 0.65rem;
+      color: #999;
+      line-height: 1.4;
+      font-weight: normal;
+    }
+
+    .sns-container {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      padding: 5px 0 20px;
+    }
+
+    .sns-icon {
+      width: 36px;
+      height: 36px;
+      opacity: 1;
+      transition: transform 0.2s;
+    }
+
+    .sns-icon:active {
+      transform: scale(0.9);
+    }
+
+    .top-header-transparent {
+      background: transparent !important;
+      backdrop-filter: none !important;
+      border-bottom: none !important;
+      pointer-events: none;
+      /* 下の要素がタップできるように */
+    }
+
+    .top-header-transparent .logo-link {
+      display: none;
+      /* 左上のロゴはいらない */
+    }
+
+    .hamburger-menu-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 1.8rem;
+      z-index: 1001;
+      color: #004fba;
+      cursor: pointer;
+      font-weight: bold;
+      pointer-events: auto;
+      /* ボタン部分はタップ可能に */
+    }
+
+    .hamburger-menu-content {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 250px;
+      height: 100vh;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      transition: right 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      padding: 70px 20px 20px;
+    }
+
+    .hamburger-menu-content.open {
+      right: 0;
+    }
+
+    .hamburger-menu-content a {
+      text-decoration: none;
+      color: var(--text-primary);
+      font-size: 1.05rem;
+      font-weight: bold;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app-container">
+    <!-- topページ用にカスタマイズした透明ヘッダ -->
+    <header class="top-header-transparent">
+      <div class="hamburger-menu-btn" onclick="toggleMenu()">≡</div>
+    </header>
+
+        <div class="hamburger-menu-content" id="hamburgerMenu">
+      <a href="index.html">トップページ</a>
+      <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-40)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" style="color: #999;">全国のライブスケジュール一覧</a>
+      <a href="live.html">現在演奏中のミュージシャン</a>
+      <a href="artists.html">アーティスト一覧</a>
+      <a href="mypage.html">マイページ</a>
+    </div>
+
+    <main style="padding-top: 0;">
+      <section class="hero-section">
+        <div class="hero-bg-container" id="hero-container">
+          <!-- JSで背景画像を生成 -->
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <img src="images/logo-mlss.png" alt="Music Liver" class="logo-main">
+          <!--div class="logo-tagline">NEW NIGHT ENTERTAINMENT</div-->
+          <a href="schedule.html" class="next-live-inline">
+            <span>NEXT LIVE</span>3/6 fri. 17:30～
+          </a>
+        </div>
+      </section>
+
+      <div class="content-wrapper">
+        <section class="key-message">
+          <!--p>あなたの応援を、<br>どこよりも大きくダイレクトに<br>アーティストへ届けます。</p-->
+          <div class="sub-text">Music Liver Support Systemは、未来ある新世代ミュージシャンによるストリートライブイベント「日本橋 Music Liver」に出演するアーティストの活動支援を目的としたサポートシステムです。<br>ライブ中･配信中･またイベント後でも、お気に入りのアーティストを応援したいタイミングで、お気持ちの支援をお願いいたします。<br></div>
+        </section>
+
+        <!-- SNS -->
+        <div class="sns-container">
+          <a href="https://x.com/NML_info" target="_blank"><img src="images/icon_x.png" class="sns-icon" alt="X"></a>
+          <a href="https://www.instagram.com/nml___official/" target="_blank"><img src="images/icon_instagram.png"
+              class="sns-icon" alt="Instagram"></a>
+          <a href="https://www.tiktok.com/@info_nml" target="_blank"><img src="images/icon_tiktok.png" class="sns-icon"
+              alt="TikTok"></a>
+        </div>
+
+        <div class="action-section">
+          <a href="contact.html" class="btn btn-secondary btn-contact">CONTACT</a>
+        </div>
+
+        <section class="sponsors">
+          <p class="sponsors-text">【特別協賛】三井不動産株式会社</p>
+          <p class="sponsors-text">【協力】TOKYO STREET LIVE 4K　日本橋チャンネル</p>
+        </section>
+      </div>
+    </main>
+
+    <nav class="bottom-nav">
+      <a href="index.html" class="nav-item active">
+        <img src="images/icon_top.svg" alt="TOP" class="nav-icon">
+        <span>TOP</span>
+      </a>
+      <a href="map.html" class="nav-item">
+        <img src="images/icon_map.svg" alt="MAP" class="nav-icon">
+        <span>MAP</span>
+      </a>
+      <a href="schedule.html" class="nav-item">
+        <img src="images/icon_live.svg" alt="LIVE" class="nav-icon">
+        <span>LIVE</span>
+      </a>
+      <a href="artists.html" class="nav-item">
+        <img src="images/icon_artist.svg" alt="ARTIST" class="nav-icon">
+        <span>ARTIST</span>
+      </a>
+      <a href="mypage.html" class="nav-item">
+        <img src="images/icon_mypage.svg" alt="MY PAGE" class="nav-icon">
+        <span>MY PAGE</span>
+      </a>
+    </nav>
+  </div>
+
+  <script>
+    // ハンバーガーメニューの開閉
+    function toggleMenu() {
+      document.getElementById('hamburgerMenu').classList.toggle('open');
+    }
+
+    // ヒーロー画像のフェードアニメーション
+    const images = [
+      'images/artist_muratakazushi.jpg',
+      'images/artist_kotaka_01.jpg',
+      'images/artist_hasetomo_02.jpg',
+      'images/artist_kosugiyun.jpg',
+      'images/artist_ototarock.jpg',
+      'images/artist_toriirena.jpg',
+      'images/artist_aiai.jpg'
+    ];
+
+    // シャッフル関数（男女・明暗の偏りを減らすため）
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[array.j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    const container = document.getElementById('hero-container');
+    let currentIndex = 0;
+
+    // 画像要素の生成
+    images.forEach((src, idx) => {
+      const div = document.createElement('div');
+      div.className = 'hero-bg' + (idx === 0 ? ' active' : '');
+      div.style.backgroundImage = `url('${src}')`;
+      container.appendChild(div);
+    });
+
+    const bgs = document.querySelectorAll('.hero-bg');
+
+    // 3秒おきの切り替え
+    setInterval(() => {
+      bgs[currentIndex].classList.remove('active');
+      currentIndex = (currentIndex + 1) % bgs.length;
+      bgs[currentIndex].classList.add('active');
+    }, 3000);
+  </script>
+  <script>
+    /* 簡易パスワード保護 (Vercel無料プラン用) */
+    (function () {
+      const PASS = "music03"; // 必要に応じて変更してください
+      if (sessionStorage.getItem("site_access") !== "granted") {
+        let input = prompt("パスワードを入力してください:");
+        if (input === PASS) {
+          sessionStorage.setItem("site_access", "granted");
+        } else {
+          alert("パスワードが違います。");
+          document.body.innerHTML = "<div style='display:flex; justify-content:center; align-items:center; height:100vh; font-family:sans-serif;'><h1>Access Denied</h1></div>";
+          window.stop();
+        }
+      }
+    })();
+  </script>
+</body>
+
+</html>

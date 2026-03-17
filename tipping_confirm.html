@@ -66,17 +66,17 @@
   <div class="app-container">
     <header>
       <a href="index.html" class="logo-link">
-        <img src="images/logo_blue.png" alt="Music Liver" class="header-logo">
+        <img src="images/logo-mlss.png" alt="Music Liver" class="header-logo">
       </a>
       <div class="menu-icon" onclick="toggleMenu()">≡</div>
     </header>
 
-    <div class="hamburger-menu-content" id="hamburgerMenu">
+        <div class="hamburger-menu-content" id="hamburgerMenu">
       <a href="index.html">トップページ</a>
-      <a href="map.html">会場マップ</a>
-      <a href="schedule.html">ライブスケジュール</a>
+      <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-40)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" style="color: #999;">全国のライブスケジュール一覧</a>
+      <a href="live.html">現在演奏中のミュージシャン</a>
       <a href="artists.html">アーティスト一覧</a>
-      <a href="admin_listener.html">マイページ</a>
+      <a href="mypage.html">マイページ</a>
     </div>
 
     <main>
@@ -86,10 +86,10 @@
         </div>
 
         <div class="confirm-box">
-          <div class="artist-name">小杉ゆん</div>
+          <div class="artist-name">藤田悠也</div>
           <div>さんに</div>
           <div class="item-preview" id="itemPreview">⭐</div>
-          <div class="send-text">を <strong style="color:var(--accent-pink);">100pt</strong> で送りますか？</div>
+          <div class="send-text">を <strong style="color:var(--accent-pink);">100cp</strong> で送りますか？</div>
         </div>
 
         <a href="tipping_complete.html" class="btn btn-primary mb-4" style="font-size:1.2rem; padding: 16px;">
@@ -119,7 +119,7 @@
         <img src="images/icon_artist.svg" alt="ARTIST" class="nav-icon">
         <span>ARTIST</span>
       </a>
-      <a href="admin_listener.html" class="nav-item">
+      <a href="mypage.html" class="nav-item">
         <img src="images/icon_mypage.svg" alt="MY PAGE" class="nav-icon">
         <span>MY PAGE</span>
       </a>
