@@ -6,69 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>マイページ | 日本橋 Music Liver</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dist/output.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
+
         .profile-header {
             text-align: center;
             padding: 40px 20px 20px;
         }
 
-        /* Full Screen Modal */
-        .full-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: white;
-            z-index: 3000;
-            display: none;
-            flex-direction: column;
-            overflow-y: auto;
-        }
+        
+        
 
-        .full-modal.active {
-            display: flex;
-        }
+        
 
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 16px 20px;
-            border-bottom: 1px solid #eee;
-            position: sticky;
-            top: 0;
-            background: rgba(255,255,255,0.9);
-            backdrop-filter: blur(10px);
-            z-index: 10;
-        }
+        
 
-        .modal-close {
-            background: none;
-            border: none;
-            font-size: 1.4rem;
-            color: #333;
-            cursor: pointer;
-        }
+        
 
-        .modal-title {
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
+        
 
-        .modal-save {
-            background: #333;
-            color: white;
-            border: none;
-            border-radius: 20px;
-            padding: 6px 16px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+        
 
-        .modal-body {
-            padding: 0 0 40px 0;
-        }
+        
 
         /* Banner & Icon in Modal */
         .edit-img-banner {
@@ -199,16 +160,7 @@
             transform: scale(0.9);
         }
 
-        .point-box {
-            background: var(--bg-card);
-            border-radius: var(--border-radius);
-            padding: 24px;
-            margin: 0 20px 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
+        
 
         .fav-artists {
             margin: 0 20px 30px;
@@ -266,7 +218,8 @@
         .edit-btn:active {
             background: rgba(255, 255, 255, 0.2);
         }
-    </style>
+    
+</style>
 </head>
 
 <body>
@@ -275,62 +228,116 @@
             <a href="index.html" class="logo-link">
                 <img src="images/logo-mlss.png" alt="Music Liver" class="header-logo">
             </a>
-            <div class="menu-icon" onclick="toggleMenu()">≡</div>
+            <img src="images/icon_search.svg" class="menu-icon w-6 h-6 cursor-pointer" onclick="toggleSearch()" alt="検索">
         </header>
 
-        <div class="hamburger-menu-content" id="hamburgerMenu">
-            <a href="index.html">トップページ</a>
-            <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-40)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" style="color: #999;">全国のライブスケジュール一覧</a>
-            <a href="live.html">現在演奏中のミュージシャン</a>
-            <a href="artists.html">アーティスト一覧</a>
-            <a href="mypage.html">マイページ</a>
+            <!-- Search Overlay -->
+    <div id="searchOverlay" class="full-modal z-[4000]">
+        <div class="modal-header justify-start gap-3 px-5 py-3">
+            <button class="modal-close text-[1.8rem] leading-none bg-transparent border-none p-0" onclick="document.getElementById('searchOverlay').classList.remove('active')"><img src="images/icon_arrow2.svg" alt="戻る" class="w-6 h-6 pointer-events-none"></button>
+            <div class="flex-1 relative">
+                <input type="text" placeholder="MLSSを検索" class="w-full py-[10px] pr-[40px] pl-[16px] rounded-[20px] border-none bg-[#f0f0f0] text-[1rem] outline-none">
+                <img src="images/icon_search.svg" class="absolute right-[12px] top-1/2 -translate-y-1/2 w-5 h-5 opacity-60">
+            </div>
         </div>
+        <div class="modal-body p-0">
+            <div class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">藤田悠也</div>
+                <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+            </div>
+            <div class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">結芽乃 路上ライブ</div>
+                <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+            </div>
+            <div class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">Synphony</div>
+                <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+            </div>
+            <div class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">天野なつ</div>
+                <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+            </div>
+            <div class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">日本橋イベント</div>
+                <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleSearch() {
+            document.getElementById('searchOverlay').classList.toggle('active');
+        }
+    </script>
 
         <main>
-            <div class="profile-header">
-                <div class="icon-edit-wrapper">
-                    <img src="images/artist_fujitayuya.jpg" class="profile-icon" alt="藤田悠也" style="margin: 0;">
+            <div class="profile-header-new flex items-center px-5 pt-[30px] pb-5">
+                <!-- 左側：アイコン -->
+                <div class="mr-4">
+                    <img src="images/artist_fujitayuya.jpg" class="profile-icon w-20 h-20 m-0 shadow-[0_4px_10px_rgba(0,0,0,0.1)]" alt="藤田悠也">
                 </div>
-                <h2 style="margin-top: 16px; margin-bottom: 4px;">藤田悠也</h2>
+                <!-- 中央：名前、アイコン、スター -->
+                <div class="flex-1">
+                    <div class="flex items-center gap-1.5 mb-1.5">
+                        <h2 class="text-[1.25rem] m-0 leading-none">藤田悠也</h2>
+                        <img src="images/icon_edit.svg" alt="編集" class="w-4 h-4 cursor-pointer grayscale opacity-60" onclick="document.getElementById('profileEditModal').classList.add('active')">
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <div class="bg-[var(--accent-pink)] w-5 h-5 rounded-[4px] flex justify-center items-center">
+                            <svg viewBox="0 0 24 24" class="fill-white w-3.5 h-3.5">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                            </svg>
+                        </div>
+                        <span onclick="document.getElementById('followerModal').classList.add('active')" class="text-[1.1rem] font-bold underline cursor-pointer text-[var(--text-primary)]">14</span>
+                    </div>
+                </div>
+                <!-- 右側：丸いボタン2つ -->
+                <div class="flex gap-2.5">
+                    <button onclick="document.getElementById('qrModal').classList.add('active')" class="w-[65px] h-[65px] rounded-full border border-[#ccc] bg-white flex flex-col items-center justify-center cursor-pointer shadow-[0_4px_10px_rgba(0,0,0,0.1)]">
+                        <img src="images/icon_qr.svg" alt="QR" onerror="this.src='images/icon_camera.svg'" class="w-6 h-6 opacity-60 mb-0.5">
+                        <span class="text-[0.55rem] text-[#666] font-bold">QRコード</span>
+                    </button>
+                    <button class="w-[65px] h-[65px] rounded-full border-none [background:var(--accent-gradient)] flex flex-col items-center justify-center cursor-pointer shadow-[0_4px_10px_rgba(255,102,161,0.3)]" onclick="location.href='stream.html'">
+                        <img src="images/icon_live.svg" alt="LIVE" class="w-5 h-5 brightness-0 invert mb-0.5">
+                        <span class="text-[0.55rem] text-white leading-tight font-bold text-center">ライブを<br>はじめる</span>
+                    </button>
+                </div>
             </div>
 
             <!-- アーティスト用のポイント表示 (2カラム) -->
-            <div style="padding: 0 20px 24px; display: flex; gap: 12px;">
-                <a href="mypage_cp.html" style="text-decoration: none; flex: 1; background: var(--bg-card); border-radius: var(--border-radius); padding: 16px 12px; border: 3px solid var(--accent-pink); display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 10px rgba(255,102,161,0.1);">
+            <div class="px-5 pb-6 flex gap-3">
+                <a href="mypage_cp.html" class="no-underline flex-1 bg-[var(--bg-card)] rounded-[var(--border-radius)] py-4 px-3 border-[3px] border-[var(--accent-pink)] flex justify-between items-center shadow-[0_4px_10px_rgba(255,102,161,0.1)]">
                     <div>
-                        <div style="font-size: 0.8rem; color: var(--text-primary); font-weight: bold; margin-bottom: 4px;">Cheer Point</div>
-                        <div style="font-size: 1.4rem; font-weight: bold; color: var(--text-primary);">10000<span style="font-size:0.9rem; font-weight:normal;">cp</span></div>
+                        <div class="text-[0.8rem] text-[var(--text-primary)] font-bold mb-1">Cheer Point</div>
+                        <div class="text-[1.4rem] font-bold text-[var(--text-primary)]">10000<span class="text-[0.9rem] font-normal">cp</span></div>
                     </div>
-                    <img src="images/icon_arrow.svg" alt="→" style="width: 24px; height: 24px;">
+                    <img src="images/icon_arrow.svg" alt="→" class="w-6 h-6">
                 </a>
-                <a href="mypage_sp.html" style="text-decoration: none; flex: 1; background: var(--bg-card); border-radius: var(--border-radius); padding: 16px 12px; border: 3px solid #ffd700; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 10px rgba(255,215,0,0.1);">
+                <a href="mypage_sp.html" class="no-underline flex-1 bg-[var(--bg-card)] rounded-[var(--border-radius)] py-4 px-3 border-[3px] border-[#ffd700] flex justify-between items-center shadow-[0_4px_10px_rgba(255,215,0,0.1)]">
                     <div>
-                        <div style="font-size: 0.8rem; color: var(--text-primary); font-weight: bold; margin-bottom: 4px;">Star Point</div>
-                        <div style="font-size: 1.4rem; font-weight: bold; color: var(--text-primary);">15000<span style="font-size:0.9rem; font-weight:normal;">sp</span></div>
+                        <div class="text-[0.8rem] text-[var(--text-primary)] font-bold mb-1">Star Point</div>
+                        <div class="text-[1.4rem] font-bold text-[var(--text-primary)]">15000<span class="text-[0.9rem] font-normal">sp</span></div>
                     </div>
-                    <img src="images/icon_arrow.svg" alt="→" style="width: 24px; height: 24px;">
-                </a>
-            </div>
-
-            <div style="padding: 0 20px 24px;">
-                <a href="#" onclick="event.preventDefault();" class="btn btn-support" style="margin-bottom: 0; display: flex; flex-direction: row; gap: 8px;">
-                    <img src="images/icon_live.svg" style="width:18px; height:18px; filter: brightness(0) invert(1);"> ライブをはじめる
+                    <img src="images/icon_arrow.svg" alt="→" class="w-6 h-6">
                 </a>
             </div>
 
             <!-- プロフィールテキストとアイコン -->
-            <div style="padding: 0 20px 24px;">
-                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 16px;">
+            <div class="px-5 pb-6">
+                <div class="flex items-center gap-1 mb-2">
+                    <span class="text-[0.8rem] text-[var(--text-secondary)]">profile</span>
+                    <img src="images/icon_edit.svg" alt="編集" class="w-3.5 h-3.5 cursor-pointer grayscale opacity-60" onclick="document.getElementById('profileEditModal').classList.add('active')">
+                </div>
+                <p class="text-[0.85rem] text-[var(--text-secondary)] leading-relaxed mb-4">
                     作詞、作曲、編曲、演奏、ミックス、マスタリングを自ら手がけるシンガーソングライター。オーガニックでアナログなサウンドを好み、心の痒い所に手が届くリアルで血の通った歌詞、マイク無しでも余裕の声量が特徴。
                 </p>
-                <div style="display: flex; gap: 16px; margin-bottom: 24px; align-items: center; justify-content: center;">
-                    <a href="#" target="_blank"><img src="images/icon_x.png" style="width: 32px; height: 32px;"></a>
-                    <a href="#" target="_blank"><img src="images/icon_instagram.png" style="width: 32px; height: 32px;"></a>
-                    <a href="#" target="_blank"><img src="images/icon_tiktok.png" style="width: 32px; height: 32px;"></a>
-                    <a href="#" target="_blank"><img src="images/icon_youtube.png" style="width: 32px; height: 32px;"></a>
+                <div class="flex gap-4 mb-6 items-center justify-center">
+                    <a href="#" target="_blank"><img src="images/icon_x.png" class="w-8 h-8"></a>
+                    <a href="#" target="_blank"><img src="images/icon_instagram.png" class="w-8 h-8"></a>
+                    <a href="#" target="_blank"><img src="images/icon_tiktok.png" class="w-8 h-8"></a>
+                    <a href="#" target="_blank"><img src="images/icon_youtube.png" class="w-8 h-8"></a>
                 </div>
 
-                <button onclick="document.getElementById('profileEditModal').classList.add('active')" class="btn btn-secondary" style="border-radius: 40px; color: var(--text-primary); border: 1px solid #ccc; font-weight: normal;">プロフィールを編集</button>
+                <a href="artist_fujitayuya.html" class="btn btn-secondary rounded-full text-[var(--text-primary)] border border-[#ccc] font-normal no-underline">アーティストページを確認する</a>
             </div>
 
             <!-- Profile Edit Modal -->
@@ -392,6 +399,38 @@
                     
                 </div>
             </div>
+
+            <!-- Follower Modal -->
+            <div id="followerModal" class="full-modal">
+                <div class="modal-header">
+                    <button class="modal-close" onclick="document.getElementById('followerModal').classList.remove('active')">✕</button>
+                    <div class="modal-title">ファン</div>
+                    <div class="w-6"></div> <!-- dummy spacer for center alignment -->
+                </div>
+                <div class="modal-body p-5">
+                    <div class="flex items-center gap-3 mb-4">
+                        <img src="images/artist_hinomasora.jpg" class="w-11 h-11 rounded-full object-cover" onerror="this.src=''"/>
+                        <div class="font-bold flex-1">ストリートファンA</div>
+                    </div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <img src="images/artist_amanonatsu.jpg" class="w-11 h-11 rounded-full object-cover" onerror="this.src=''"/>
+                        <div class="font-bold flex-1">山田花子</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QR Modal -->
+            <div id="qrModal" class="full-modal">
+                <div class="modal-header">
+                    <button class="modal-close" onclick="document.getElementById('qrModal').classList.remove('active')">✕</button>
+                    <div class="modal-title">QRコード</div>
+                    <div class="w-6"></div> <!-- dummy spacer for center alignment -->
+                </div>
+                <div class="modal-body px-5 py-10 flex flex-col items-center justify-center h-[calc(100vh-100px)]">
+                    <img src="images/dummy_qr.png" alt="QR Code" class="w-[200px] h-[200px] mb-5 border border-[#ccc] p-2.5 bg-white rounded-lg" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%23fff\'/><text x=\'50\' y=\'50\' font-family=\'Arial\' font-size=\'14\' fill=\'%23ccc\' text-anchor=\'middle\' dy=\'.3em\'>QR CODE</text></svg>'">
+                    <p class="text-[1.1rem] font-bold text-[var(--text-primary)] mb-2">藤田悠也</p>
+                </div>
+            </div>
         </main>
 
         <nav class="bottom-nav">
@@ -399,7 +438,7 @@
                 <img src="images/icon_top.svg" alt="TOP" class="nav-icon">
                 <span>TOP</span>
             </a>
-            <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-30)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" class="nav-item" style="filter: grayscale(100%); opacity: 0.5;">
+            <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-30)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" class="nav-item grayscale opacity-50">
                 <img src="images/icon_schedule.svg" alt="SCHEDULE" class="nav-icon">
                 <span>SCHEDULE</span>
             </a>

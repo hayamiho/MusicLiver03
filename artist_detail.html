@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>藤田悠也 | 日本橋 Music Liver</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dist/output.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
         .artist-hero {
             position: relative;
@@ -132,7 +135,7 @@
             <a href="index.html" class="logo-link">
                 <img src="images/logo-mlss.png" alt="Music Liver" class="header-logo">
             </a>
-            <div class="menu-icon" onclick="toggleMenu()">≡</div>
+            <img src="images/icon_search.svg" class="menu-icon w-6 h-6 cursor-pointer" onclick="toggleSearch()" alt="検索">
         </header>
 
         <main>
@@ -191,7 +194,7 @@
 
         <nav class="bottom-nav">
             <a href="index.html" class="nav-item"><img src="images/icon_top.svg" alt="TOP" class="nav-icon"><span>TOP</span></a>
-            <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-30)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" class="nav-item" style="filter: grayscale(100%); opacity: 0.5;">
+            <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-30)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" class="nav-item grayscale opacity-50">
                 <img src="images/icon_schedule.svg" alt="SCHEDULE" class="nav-icon">
                 <span>SCHEDULE</span>
             </a>

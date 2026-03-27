@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CheerPoint情報 | 日本橋 Music Liver</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dist/output.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
         .point-header-title {
             text-align: center;
@@ -19,7 +22,7 @@
             padding: 24px 20px;
             margin: 16px 20px;
             border: 3px solid var(--accent-pink);
-            box-shadow: 0 4px 15px rgba(255,102,161,0.1);
+            box-shadow: 0 4px 15px rgba(255, 102, 161, 0.1);
         }
 
         .cp-row {
@@ -28,6 +31,7 @@
             align-items: center;
             margin-bottom: 16px;
         }
+
         .cp-row:last-child {
             margin-bottom: 0;
         }
@@ -41,6 +45,7 @@
             font-size: 1.6rem;
             font-weight: bold;
         }
+
         .cp-value span {
             font-size: 1rem;
             font-weight: normal;
@@ -116,6 +121,7 @@
             margin-bottom: 20px;
             font-size: 0.9rem;
         }
+
         .history-item:last-child {
             margin-bottom: 0;
         }
@@ -149,7 +155,6 @@
             margin-top: 8px;
             position: relative;
         }
-
     </style>
 </head>
 
@@ -159,16 +164,53 @@
             <a href="index.html" class="logo-link">
                 <img src="images/logo-mlss.png" alt="Music Liver" class="header-logo">
             </a>
-            <div class="menu-icon" onclick="toggleMenu()">≡</div>
+            <img src="images/icon_search.svg" class="menu-icon w-6 h-6 cursor-pointer" onclick="toggleSearch()" alt="検索">
         </header>
 
-        <div class="hamburger-menu-content" id="hamburgerMenu">
-            <a href="index.html">トップページ</a>
-            <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-40)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" style="color: #999;">全国のライブスケジュール一覧</a>
-            <a href="live.html">現在演奏中のミュージシャン</a>
-            <a href="artists.html">アーティスト一覧</a>
-            <a href="mypage.html">マイページ</a>
+        <!-- Search Overlay -->
+        <div id="searchOverlay" class="full-modal z-[4000]">
+            <div class="modal-header justify-start gap-3 px-5 py-3">
+                <button class="modal-close text-[1.8rem] leading-none bg-transparent border-none p-0" onclick="document.getElementById('searchOverlay').classList.remove('active')"><img src="images/icon_arrow2.svg" alt="戻る" class="w-6 h-6 pointer-events-none"></button>
+                <div class="flex-1 relative">
+                    <input type="text" placeholder="MLSSを検索"
+                        class="w-full py-[10px] pr-[40px] pl-[16px] rounded-[20px] border-none bg-[#f0f0f0] text-[1rem] outline-none">
+                    <img src="images/icon_search.svg"
+                        class="absolute right-[12px] top-1/2 -translate-y-1/2 w-5 h-5 opacity-60">
+                </div>
+            </div>
+            <div class="modal-body p-0">
+                <div
+                    class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                    <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">藤田悠也</div>
+                    <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+                </div>
+                <div
+                    class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                    <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">結芽乃 路上ライブ</div>
+                    <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+                </div>
+                <div
+                    class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                    <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">Synphony</div>
+                    <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+                </div>
+                <div
+                    class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                    <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">天野なつ</div>
+                    <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+                </div>
+                <div
+                    class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                    <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">日本橋イベント</div>
+                    <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+                </div>
+            </div>
         </div>
+        <script>
+            function toggleSearch() {
+                document.getElementById('searchOverlay').classList.toggle('active');
+            }
+        </script>
 
         <main>
             <div class="point-header-title">CheerPoint 情報</div>
@@ -178,29 +220,23 @@
                     <div class="cp-label">利用可能ポイント</div>
                     <div class="cp-value">1000<span>cp</span></div>
                 </div>
-                <div class="cp-row" style="margin-top: 24px;">
+                <div class="cp-row mt-6">
                     <div>
                         <div class="cp-label">期間限定ポイント</div>
                         <div class="cp-sub-pink">※ 10日以内に消滅します</div>
                     </div>
-                    <div style="text-align: right;">
+                    <div class="text-right">
                         <div class="cp-sub">2026/10/10 消滅</div>
-                        <div class="cp-value" style="color: var(--accent-pink);">100<span>cp</span></div>
+                        <div class="cp-value text-[var(--accent-pink)]">100<span>cp</span></div>
                     </div>
                 </div>
             </div>
 
-            <div class="fav-artists">
-                <div style="font-size: 0.95rem; color: var(--text-primary);">お気に入りアーティスト</div>
-                <div class="fav-icons">
-                    <a href="artist_fujitayuya.html"><img src="images/artist_fujitayuya.jpg" class="fav-icon" alt="藤田悠也"></a>
-                    <a href="artist_hinomasora.html"><img src="images/artist_hinomasora.jpg" class="fav-icon" alt="日乃まそら"></a>
-                </div>
-            </div>
+            
 
             <div class="history-section">
                 <div class="history-title">応援履歴</div>
-                
+
                 <select class="custom-select">
                     <option value="all">すべてのアーティスト</option>
                     <option value="fujita">藤田悠也</option>
@@ -214,7 +250,7 @@
                         </div>
                         <div class="history-artist">藤田悠也</div>
                         <div class="history-action">
-                            <span style="font-size: 1.2rem;">😊</span> (100cp)
+                            <span class="text-[1.2rem]">😊</span> (100cp)
                         </div>
                     </div>
 
@@ -224,7 +260,7 @@
                         </div>
                         <div class="history-artist">藤田悠也</div>
                         <div class="history-action">
-                            <span style="font-size: 1.2rem;">❤</span> (10cp)
+                            <span class="text-[1.2rem]">❤</span> (10cp)
                         </div>
                     </div>
 
@@ -234,14 +270,14 @@
                         </div>
                         <div class="history-artist">日乃まそら</div>
                         <div class="history-action">
-                            <span style="font-size: 1.2rem;">⭐</span> (100cp)
+                            <span class="text-[1.2rem]">⭐</span> (100cp)
                         </div>
                     </div>
 
                     <div class="history-item">
                         <div class="history-meta">
                             <span>26/02/08 17:40</span>
-                            <span style="color: #333;">メッセージ送信 (1000cp)</span>
+                            <span class="text-[#333]">メッセージ送信 (1000cp)</span>
                         </div>
                         <div class="history-artist">藤田悠也</div>
                         <div class="message-bubble">
@@ -255,7 +291,7 @@
                         </div>
                         <div class="history-artist">日乃まそら</div>
                         <div class="history-action">
-                            <span style="font-size: 1.2rem;">⭐</span> (100cp)
+                            <span class="text-[1.2rem]">⭐</span> (100cp)
                         </div>
                     </div>
                 </div>
@@ -268,7 +304,9 @@
                 <img src="images/icon_top.svg" alt="TOP" class="nav-icon">
                 <span>TOP</span>
             </a>
-            <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-30)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" class="nav-item" style="filter: grayscale(100%); opacity: 0.5;">
+            <a href="#"
+                onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-30)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);"
+                class="nav-item grayscale opacity-50">
                 <img src="images/icon_schedule.svg" alt="SCHEDULE" class="nav-icon">
                 <span>SCHEDULE</span>
             </a>
@@ -295,4 +333,5 @@
         }
     </script>
 </body>
+
 </html>

@@ -5,72 +5,105 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ポイント振込情報の変更 | 日本橋 Music Liver</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dist/output.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
 </head>
 <body>
     <div class="app-container">
         <header>
             <a href="index.html" class="logo-link"><img src="images/logo-mlss.png" alt="Music Liver" class="header-logo"></a>
-            <div class="menu-icon" onclick="toggleMenu()">≡</div>
+            <img src="images/icon_search.svg" class="menu-icon w-6 h-6 cursor-pointer" onclick="toggleSearch()" alt="検索">
         </header>
 
-        <div class="hamburger-menu-content" id="hamburgerMenu">
-            <a href="index.html">トップページ</a>
-            <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-40)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" style="color: #999;">全国のライブスケジュール一覧</a>
-            <a href="live.html">現在演奏中のミュージシャン</a>
-            <a href="artists.html">アーティスト一覧</a>
-            <a href="mypage.html">マイページ</a>
+            <!-- Search Overlay -->
+    <div id="searchOverlay" class="full-modal z-[4000]">
+        <div class="modal-header justify-start gap-3 px-5 py-3">
+            <button class="modal-close text-[1.8rem] leading-none bg-transparent border-none p-0" onclick="document.getElementById('searchOverlay').classList.remove('active')"><img src="images/icon_arrow2.svg" alt="戻る" class="w-6 h-6 pointer-events-none"></button>
+            <div class="flex-1 relative">
+                <input type="text" placeholder="MLSSを検索" class="w-full py-[10px] pr-[40px] pl-[16px] rounded-[20px] border-none bg-[#f0f0f0] text-[1rem] outline-none">
+                <img src="images/icon_search.svg" class="absolute right-[12px] top-1/2 -translate-y-1/2 w-5 h-5 opacity-60">
+            </div>
         </div>
+        <div class="modal-body p-0">
+            <div class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">藤田悠也</div>
+                <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+            </div>
+            <div class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">結芽乃 路上ライブ</div>
+                <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+            </div>
+            <div class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">Synphony</div>
+                <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+            </div>
+            <div class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">天野なつ</div>
+                <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+            </div>
+            <div class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">日本橋イベント</div>
+                <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleSearch() {
+            document.getElementById('searchOverlay').classList.toggle('active');
+        }
+    </script>
 
         <main>
-            <div style="padding: 20px;">
+            <div class="p-5">
                 <h2 class="section-title text-center mb-4">ポイント振込情報の変更</h2>
 
-                <table style="width: 100%; border-collapse: collapse; border: 1px solid #ccc; font-size: 0.9rem;">
+                <table class="w-full border-collapse border border-[#ccc] text-[0.9rem]">
                     <tr>
-                        <th style="padding: 12px; border: 1px solid #ccc; font-weight: normal; text-align: left; width: 30%;">本名</th>
-                        <td style="padding: 12px; border: 1px solid #ccc;">山田 太郎</td>
-                        <td style="padding: 12px; border: 1px solid #ccc; text-align: center; width: 50px; white-space: nowrap;">
-                            <a href="#" style="display: inline-block; vertical-align: middle;"><img src="images/icon_edit.svg" alt="編集" style="width: 20px; height: 20px; filter: brightness(0) invert(0.6);"></a>
+                        <th class="p-3 border border-[#ccc] font-normal text-left w-[30%]">本名</th>
+                        <td class="p-3 border border-[#ccc]">山田 太郎</td>
+                        <td class="p-3 border border-[#ccc] text-center w-[50px] whitespace-nowrap">
+                            <a href="#" class="inline-block align-middle w-5 h-5 brightness-0 invert-[0.6]"><img src="images/icon_edit.svg" alt="編集"></a>
                         </td>
                     </tr>
                     <tr>
-                        <th style="padding: 12px; border: 1px solid #ccc; font-weight: normal; text-align: left;">銀行口座</th>
-                        <td style="padding: 12px; border: 1px solid #ccc; font-size: 0.85rem; line-height: 1.5;">三井住友銀行<br>〇〇支店 (123)<br>普通 1234567<br>ヤマダタロウ</td>
-                        <td style="padding: 12px; border: 1px solid #ccc; text-align: center; white-space: nowrap;">
-                            <a href="#" style="display: inline-block; vertical-align: middle;"><img src="images/icon_edit.svg" alt="編集" style="width: 20px; height: 20px; filter: brightness(0) invert(0.6);"></a>
+                        <th class="p-3 border border-[#ccc] font-normal text-left">銀行口座</th>
+                        <td class="p-3 border border-[#ccc] text-[0.85rem] leading-normal">三井住友銀行<br>〇〇支店 (123)<br>普通 1234567<br>ヤマダタロウ</td>
+                        <td class="p-3 border border-[#ccc] text-center whitespace-nowrap">
+                            <a href="#" class="inline-block align-middle w-5 h-5 brightness-0 invert-[0.6]"><img src="images/icon_edit.svg" alt="編集"></a>
                         </td>
                     </tr>
                     <tr>
-                        <th style="padding: 12px; border: 1px solid #ccc; font-weight: normal; text-align: left;">郵便番号</th>
-                        <td style="padding: 12px; border: 1px solid #ccc;">123-4567</td>
-                        <td style="padding: 12px; border: 1px solid #ccc; text-align: center; white-space: nowrap;">
-                            <a href="#" style="display: inline-block; vertical-align: middle;"><img src="images/icon_edit.svg" alt="編集" style="width: 20px; height: 20px; filter: brightness(0) invert(0.6);"></a>
+                        <th class="p-3 border border-[#ccc] font-normal text-left">郵便番号</th>
+                        <td class="p-3 border border-[#ccc]">123-4567</td>
+                        <td class="p-3 border border-[#ccc] text-center whitespace-nowrap">
+                            <a href="#" class="inline-block align-middle w-5 h-5 brightness-0 invert-[0.6]"><img src="images/icon_edit.svg" alt="編集"></a>
                         </td>
                     </tr>
                     <tr>
-                        <th style="padding: 12px; border: 1px solid #ccc; font-weight: normal; text-align: left;">住所</th>
-                        <td style="padding: 12px; border: 1px solid #ccc; word-break: break-all;">東京都中央区日本橋〇-〇-〇</td>
-                        <td style="padding: 12px; border: 1px solid #ccc; text-align: center; white-space: nowrap;">
-                            <a href="#" style="display: inline-block; vertical-align: middle;"><img src="images/icon_edit.svg" alt="編集" style="width: 20px; height: 20px; filter: brightness(0) invert(0.6);"></a>
+                        <th class="p-3 border border-[#ccc] font-normal text-left">住所</th>
+                        <td class="p-3 border border-[#ccc] break-all">東京都中央区日本橋〇-〇-〇</td>
+                        <td class="p-3 border border-[#ccc] text-center whitespace-nowrap">
+                            <a href="#" class="inline-block align-middle w-5 h-5 brightness-0 invert-[0.6]"><img src="images/icon_edit.svg" alt="編集"></a>
                         </td>
                     </tr>
                     <tr>
-                        <th style="padding: 12px; border: 1px solid #ccc; font-weight: normal; text-align: left;">電話番号</th>
-                        <td style="padding: 12px; border: 1px solid #ccc;">090-1234-5678</td>
-                        <td style="padding: 12px; border: 1px solid #ccc; text-align: center; white-space: nowrap;">
-                            <a href="#" style="display: inline-block; vertical-align: middle;"><img src="images/icon_edit.svg" alt="編集" style="width: 20px; height: 20px; filter: brightness(0) invert(0.6);"></a>
+                        <th class="p-3 border border-[#ccc] font-normal text-left">電話番号</th>
+                        <td class="p-3 border border-[#ccc]">090-1234-5678</td>
+                        <td class="p-3 border border-[#ccc] text-center whitespace-nowrap">
+                            <a href="#" class="inline-block align-middle w-5 h-5 brightness-0 invert-[0.6]"><img src="images/icon_edit.svg" alt="編集"></a>
                         </td>
                     </tr>
                     <tr>
-                        <th style="padding: 12px; border: 1px solid #ccc; font-weight: normal; text-align: left;">メールアドレス</th>
-                        <td style="padding: 12px; border: 1px solid #ccc; word-break: break-all;">taro.yamada@example.com</td>
-                        <td style="padding: 12px; border: 1px solid #ccc; text-align: center; white-space: nowrap;">
-                            <a href="#" style="display: inline-block; vertical-align: middle;"><img src="images/icon_edit.svg" alt="編集" style="width: 20px; height: 20px; filter: brightness(0) invert(0.6);"></a>
+                        <th class="p-3 border border-[#ccc] font-normal text-left">メールアドレス</th>
+                        <td class="p-3 border border-[#ccc] break-all">taro.yamada@example.com</td>
+                        <td class="p-3 border border-[#ccc] text-center whitespace-nowrap">
+                            <a href="#" class="inline-block align-middle w-5 h-5 brightness-0 invert-[0.6]"><img src="images/icon_edit.svg" alt="編集"></a>
                         </td>
                     </tr>
                 </table>
 
-                <div style="text-align: center; margin-top: 40px;">
+                <div class="text-center mt-10">
                     <a href="mypage.html" class="btn btn-secondary">マイページへ戻る</a>
                 </div>
             </div>
@@ -81,7 +114,7 @@
                 <img src="images/icon_top.svg" alt="TOP" class="nav-icon">
                 <span>TOP</span>
             </a>
-            <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-30)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" class="nav-item" style="filter: grayscale(100%); opacity: 0.5;">
+            <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-30)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" class="nav-item grayscale opacity-50">
                 <img src="images/icon_schedule.svg" alt="SCHEDULE" class="nav-icon">
                 <span>SCHEDULE</span>
             </a>

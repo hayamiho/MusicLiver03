@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>お問い合わせ | 日本橋 Music Liver</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dist/output.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
         .law-container {
             padding: 30px 20px 60px;
@@ -45,7 +48,7 @@
 <body>
     <div class="app-container">
         <header>
-            <a href="index.html" class="logo-link" style="margin: 0 auto;">
+            <a href="index.html" class="logo-link mx-auto">
                 <img src="images/logo-mlss.png" alt="Music Liver" class="header-logo">
             </a>
         </header>
@@ -55,54 +58,54 @@
                 <h2 class="section-title text-center mb-4">お問い合わせ</h2>
 
                 <div class="law-section">
-                    <p style="text-align: center; color: var(--text-secondary); margin-bottom: 24px;">
+                    <p class="text-center text-[var(--text-secondary)] mb-6">
                         出演者情報・出演希望に関するご質問など、お気軽にお問い合わせください。
                     </p>
 
                     <form action="#" method="POST" class="contact-form">
                         <div class="form-group mb-4">
-                            <label style="display:block; margin-bottom: 8px; font-weight: bold;">お名前（ハンドルネーム可） <span
-                                    style="color: var(--accent-pink);">*</span></label>
+                            <label class="block mb-2 font-bold">お名前（ハンドルネーム可） <span
+                                    class="text-[var(--accent-pink)]">*</span></label>
                             <input type="text" class="form-control" placeholder="例）日本橋 太郎" required
-                                style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ccc;">
+                                class="w-full p-3 rounded-lg border border-[#ccc]">
                         </div>
 
                         <div class="form-group mb-4">
-                            <label style="display:block; margin-bottom: 8px; font-weight: bold;">電話番号（任意）</label>
+                            <label class="block mb-2 font-bold">電話番号（任意）</label>
                             <input type="tel" class="form-control" placeholder="例）03-1234-5678"
-                                style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ccc;">
+                                class="w-full p-3 rounded-lg border border-[#ccc]">
                         </div>
 
                         <div class="form-group mb-4">
-                            <label style="display:block; margin-bottom: 8px; font-weight: bold;">メールアドレス <span
-                                    style="color: var(--accent-pink);">*</span></label>
+                            <label class="block mb-2 font-bold">メールアドレス <span
+                                    class="text-[var(--accent-pink)]">*</span></label>
                             <input type="email" class="form-control" placeholder="例）info@example.com" required
-                                style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ccc;">
+                                class="w-full p-3 rounded-lg border border-[#ccc]">
                         </div>
 
                         <div class="form-group mb-4">
-                            <label style="display:block; margin-bottom: 8px; font-weight: bold;">お問い合わせ内容 <span
-                                    style="color: var(--accent-pink);">*</span></label>
+                            <label class="block mb-2 font-bold">お問い合わせ内容 <span
+                                    class="text-[var(--accent-pink)]">*</span></label>
                             <textarea class="form-control" rows="5" placeholder="お問い合わせ内容をご記入ください" required
-                                style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ccc;"></textarea>
+                                class="w-full p-3 rounded-lg border border-[#ccc]"></textarea>
                         </div>
 
-                        <div class="form-group mb-4" style="text-align: center;">
-                            <label style="display: inline-flex; align-items: center; cursor: pointer;">
-                                <input type="checkbox" required style="margin-right: 8px; transform: scale(1.2);">
+                        <div class="form-group mb-4 text-center">
+                            <label class="inline-flex items-center cursor-pointer">
+                                <input type="checkbox" required class="mr-2 scale-[1.2]">
                                 <span><a href="https://www.spart.co.jp/privacy.html" target="_blank"
-                                        style="color: var(--accent-blue); text-decoration: underline;">プライバシーポリシー</a>に同意する</span>
+                                        class="text-[var(--accent-blue)] underline">プライバシーポリシー</a>に同意する</span>
                             </label>
                         </div>
 
-                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-bottom: 20px;"
+                        <button type="submit" class="btn btn-primary w-full mb-5"
                             onclick="alert('送信しました。（デモ）'); return false;">送信する</button>
                     </form>
                 </div>
 
-                <div style="text-align: center;">
+                <div class="text-center">
                     <a href="javascript:history.back()" class="btn btn-secondary"
-                        style="width: auto; padding: 12px 32px;">戻る</a>
+                        class="w-auto px-8 py-3">戻る</a>
                 </div>
             </div>
         </main>

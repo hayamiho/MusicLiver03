@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>マイページ (リスナー) | 日本橋 Music Liver</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dist/output.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        /* Banner & Icon in Modal */
+        .edit-img-banner {
+            height: 120px;
+            background: #b4aa9e;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .edit-camera-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .edit-camera-btn img {
+            width: 24px;
+            height: 24px;
+            filter: brightness(0) invert(1);
+        }
+
+        .edit-camera-btn.small {
+            width: 36px;
+            height: 36px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .edit-icon-wrapper {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 4px solid white;
+            margin-top: -45px;
+            margin-left: 20px;
+            background: #ccc;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .edit-profile-icon {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* Form groups */
+        .edit-form-group {
+            position: relative;
+            margin: 0 20px 16px 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 8px 12px;
+            background: white;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .edit-form-group label {
+            font-size: 0.7rem;
+            color: #666;
+            margin-bottom: 2px;
+        }
+
+        .edit-form-group input,
+        .edit-form-group textarea {
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            font-family: inherit;
+            color: #333;
+            width: 100%;
+            background: transparent;
+            resize: none;
+        }
+        
+        .edit-form-group input::placeholder,
+        .edit-form-group textarea::placeholder {
+            color: #ccc;
+        }
+    
+</style>
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <a href="index.html" class="logo-link">
+                <img src="images/logo-mlss.png" alt="Music Liver" class="header-logo">
+            </a>
+            <img src="images/icon_search.svg" class="menu-icon w-6 h-6 cursor-pointer" onclick="toggleSearch()" alt="検索">
+        </header>
+
+            <!-- Search Overlay -->
+    <div id="searchOverlay" class="full-modal z-[4000]">
+        <div class="modal-header justify-start gap-3 px-5 py-3">
+            <button class="modal-close text-[1.8rem] leading-none bg-transparent border-none p-0" onclick="document.getElementById('searchOverlay').classList.remove('active')"><img src="images/icon_arrow2.svg" alt="戻る" class="w-6 h-6 pointer-events-none"></button>
+            <div class="flex-1 relative">
+                <input type="text" placeholder="MLSSを検索" class="w-full py-[10px] pr-[40px] pl-[16px] rounded-[20px] border-none bg-[#f0f0f0] text-[1rem] outline-none">
+                <img src="images/icon_search.svg" class="absolute right-[12px] top-1/2 -translate-y-1/2 w-5 h-5 opacity-60">
+            </div>
+        </div>
+        <div class="modal-body p-0">
+            <div class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">藤田悠也</div>
+                <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+            </div>
+            <div class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">結芽乃 路上ライブ</div>
+                <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+            </div>
+            <div class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">Synphony</div>
+                <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+            </div>
+            <div class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">天野なつ</div>
+                <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+            </div>
+            <div class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">日本橋イベント</div>
+                <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleSearch() {
+            document.getElementById('searchOverlay').classList.toggle('active');
+        }
+    </script>
+
+        <main>
+            <div class="profile-header-new flex items-center px-5 pt-[30px] pb-5">
+                <!-- 左側：アイコン -->
+                <div class="mr-4">
+                    <img src="images/icon_user.png" class="profile-icon w-20 h-20 m-0 rounded-full object-cover shadow-[0_4px_10px_rgba(0,0,0,0.1)]" alt="山田花子">
+                </div>
+                <!-- 中央：名前、アイコン -->
+                <div class="flex-1">
+                    <div class="flex items-center gap-1.5">
+                        <h2 class="text-[1.25rem] m-0 leading-none">山田花子</h2>
+                        <img src="images/icon_edit.svg" alt="編集" class="w-4 h-4 cursor-pointer grayscale opacity-60" onclick="document.getElementById('profileEditModal').classList.add('active')">
+                    </div>
+                </div>
+            </div>
+
+            <!-- リスナー用のポイント表示 (1カラム) -->
+            <div class="px-5 pb-6">
+                <a href="mypage_cp.html" class="no-underline block bg-[var(--bg-card)] rounded-[var(--border-radius)] py-4 px-5 border-[3px] border-[var(--accent-pink)] flex justify-between items-center shadow-[0_4px_10px_rgba(255,102,161,0.1)]">
+                    <div>
+                        <div class="text-[0.85rem] text-[var(--text-primary)] font-bold mb-1">Cheer Point</div>
+                        <div class="text-[1.6rem] font-bold text-[var(--text-primary)]">10000<span class="text-[1rem] font-normal">cp</span></div>
+                    </div>
+                    <img src="images/icon_arrow.svg" alt="→" class="w-6 h-6">
+                </a>
+            </div>
+
+            <!-- プロフィールテキストとアイコン -->
+            <div class="px-5 pb-6">
+                <div class="flex items-center gap-1 mb-2">
+                    <span class="text-[0.8rem] text-[var(--text-secondary)]">profile</span>
+                    <img src="images/icon_edit.svg" alt="編集" class="w-3.5 h-3.5 cursor-pointer grayscale opacity-60" onclick="document.getElementById('profileEditModal').classList.add('active')">
+                </div>
+                <p class="text-[0.85rem] text-[var(--text-secondary)] leading-relaxed mb-4">
+                    作詞、作曲、編曲、演奏、ミックス、マスタリングを自ら手がけるシンガーソングライター。オーガニックでアナログなサウンドを好み、心の痒い所に手が届くリアルで血の通った歌詞、マイク無しでも余裕の声量が特徴。
+                </p>
+                <!-- SNSアイコンやアーティストページへのボタンは無し -->
+            </div>
+
+            <!-- Profile Edit Modal -->
+            <div id="profileEditModal" class="full-modal">
+                <div class="modal-header">
+                    <button class="modal-close" onclick="document.getElementById('profileEditModal').classList.remove('active')">✕</button>
+                    <div class="modal-title">プロフィールを編集</div>
+                    <button class="modal-save" onclick="document.getElementById('profileEditModal').classList.remove('active')">更新</button>
+                </div>
+                <div class="modal-body">
+                    <div class="edit-img-banner">
+                        <div class="edit-camera-btn"><img src="images/icon_camera.svg" alt="camera"></div>
+                    </div>
+                    <div class="edit-icon-wrapper">
+                        <div class="w-full h-full bg-[#ccc] rounded-full"></div>
+                        <div class="edit-camera-btn small"><img src="images/icon_camera.svg" alt="camera"></div>
+                    </div>
+
+                    <div class="edit-form-group">
+                        <label>名前</label>
+                        <input type="text" value="山田花子" placeholder="名前を入力">
+                    </div>
+                    
+                    <div class="edit-form-group">
+                        <label>自己紹介</label>
+                        <textarea rows="4" placeholder="自己紹介を入力">作詞、作曲、編曲、演奏、ミックス、マスタリングを自ら手がけるシンガーソングライター。
+オーガニックでアナログなサウンドを好み、心の痒い所に手が届くリアルで血の通った歌詞、マイク無しでも余裕の声量が特徴。</textarea>
+                    </div>
+
+                    <div class="edit-form-group">
+                        <label>名前ふりがな</label>
+                        <input type="text" value="やまだ はなこ" placeholder="ふりがなを入力">
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <img src="images/icon_top.svg" alt="TOP" class="nav-icon">
+                <span>TOP</span>
+            </a>
+            <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-30)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" class="nav-item grayscale opacity-50">
+                <img src="images/icon_schedule.svg" alt="SCHEDULE" class="nav-icon">
+                <span>SCHEDULE</span>
+            </a>
+            <a href="live.html" class="nav-item nav-live-highlight">
+                <div class="nav-icon-wrapper">
+                    <img src="images/icon_live.svg" alt="LIVE" class="nav-icon">
+                    <span>LIVE</span>
+                </div>
+            </a>
+            <a href="artists.html" class="nav-item">
+                <img src="images/icon_artist.svg" alt="ARTIST" class="nav-icon">
+                <span>ARTIST</span>
+            </a>
+            <a href="mypage.html" class="nav-item active">
+                <img src="images/icon_mypage.svg" alt="MY PAGE" class="nav-icon">
+                <span>MY PAGE</span>
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('hamburgerMenu').classList.toggle('open');
+        }
+    </script>
+</body>
+
+</html>

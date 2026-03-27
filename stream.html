@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LIVE STREAM | 日本橋 Music Liver</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dist/output.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
         /* 全画面ライブ配信用スタイル */
         body.live-stream-page {
@@ -462,14 +465,14 @@
                     <span><strong>UserX</strong> 今日の歌も最高です！</span>
                 </div>
                 <div class="chat-msg">
-                    <img src="images/icon_mypage.svg" class="chat-user-icon" alt="" style="background:#eee; padding:2px;">
+                    <img src="images/icon_mypage.svg" class="chat-user-icon bg-[#eee] p-[2px]" alt="">
                     <span><strong>ジョロ</strong> シャオミオタクになりつつあるw</span>
                 </div>
             </div>
 
             <div class="action-row">
                 <input type="text" class="message-input-stream" id="streamCommentInput" placeholder="メッセージを入力...">
-                <button class="action-icon-btn" style="background:#007BFF; color:#fff;" onclick="sendComment()">
+                <button class="action-icon-btn bg-[#007BFF] text-white" onclick="sendComment()">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
                 </button>
                 <button class="action-icon-btn" onclick="toggleGiftMenu()">🎁</button>
@@ -499,25 +502,25 @@
             </div>
             <div class="gift-item inactive">
                 <div class="gift-img-wrapper">
-                    <img src="images/icon_live.svg" class="gift-img" alt="" style="filter:grayscale(1) opacity(0.5);">
+                    <img src="images/icon_live.svg" class="gift-img grayscale opacity-50" alt="">
                 </div>
                 <p class="gift-pts">---pt</p>
             </div>
             <div class="gift-item inactive">
                 <div class="gift-img-wrapper">
-                    <img src="images/icon_live.svg" class="gift-img" alt="" style="filter:grayscale(1) opacity(0.5);">
+                    <img src="images/icon_live.svg" class="gift-img grayscale opacity-50" alt="">
                 </div>
                 <p class="gift-pts">---pt</p>
             </div>
             <div class="gift-item inactive">
                 <div class="gift-img-wrapper">
-                    <img src="images/icon_live.svg" class="gift-img" alt="" style="filter:grayscale(1) opacity(0.5);">
+                    <img src="images/icon_live.svg" class="gift-img grayscale opacity-50" alt="">
                 </div>
                 <p class="gift-pts">---pt</p>
             </div>
             <div class="gift-item inactive">
                 <div class="gift-img-wrapper">
-                    <img src="images/icon_live.svg" class="gift-img" alt="" style="filter:grayscale(1) opacity(0.5);">
+                    <img src="images/icon_live.svg" class="gift-img grayscale opacity-50" alt="">
                 </div>
                 <p class="gift-pts">---pt</p>
             </div>
@@ -593,7 +596,7 @@
             const msgRow = document.createElement('div');
             msgRow.className = 'chat-msg';
             msgRow.innerHTML = `
-                <img src="images/icon_mypage.svg" class="chat-user-icon" alt="" style="background:#eee; padding:2px;">
+                <img src="images/icon_mypage.svg" class="chat-user-icon bg-[#eee] p-[2px]" alt="">
                 <span><strong>You</strong> ${text}</span>
             `;
             chatArea.appendChild(msgRow);

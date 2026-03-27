@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ポイント情報 | 日本橋 Music Liver</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dist/output.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
         .info-container { padding: 30px 20px; }
         .info-box { background: var(--bg-card); border-radius: var(--border-radius); padding: 24px; margin-bottom: 24px; border: 1px solid rgba(255, 255, 255, 0.05); }
@@ -18,59 +21,89 @@
     <div class="app-container">
         <header>
             <a href="index.html" class="logo-link"><img src="images/logo-mlss.png" alt="Music Liver" class="header-logo"></a>
-            <div class="menu-icon" onclick="toggleMenu()">≡</div>
+            <img src="images/icon_search.svg" class="menu-icon w-6 h-6 cursor-pointer" onclick="toggleSearch()" alt="検索">
         </header>
 
-        <div class="hamburger-menu-content" id="hamburgerMenu">
-            <a href="index.html">トップページ</a>
-            <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-40)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" style="color: #999;">全国のライブスケジュール一覧</a>
-            <a href="live.html">現在演奏中のミュージシャン</a>
-            <a href="artists.html">アーティスト一覧</a>
-            <a href="mypage.html">マイページ</a>
+            <!-- Search Overlay -->
+    <div id="searchOverlay" class="full-modal z-[4000]">
+        <div class="modal-header justify-start gap-3 px-5 py-3">
+            <button class="modal-close text-[1.8rem] leading-none bg-transparent border-none p-0" onclick="document.getElementById('searchOverlay').classList.remove('active')"><img src="images/icon_arrow2.svg" alt="戻る" class="w-6 h-6 pointer-events-none"></button>
+            <div class="flex-1 relative">
+                <input type="text" placeholder="MLSSを検索" class="w-full py-[10px] pr-[40px] pl-[16px] rounded-[20px] border-none bg-[#f0f0f0] text-[1rem] outline-none">
+                <img src="images/icon_search.svg" class="absolute right-[12px] top-1/2 -translate-y-1/2 w-5 h-5 opacity-60">
+            </div>
         </div>
+        <div class="modal-body p-0">
+            <div class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">藤田悠也</div>
+                <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+            </div>
+            <div class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">結芽乃 路上ライブ</div>
+                <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+            </div>
+            <div class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">Synphony</div>
+                <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+            </div>
+            <div class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">天野なつ</div>
+                <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+            </div>
+            <div class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">日本橋イベント</div>
+                <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleSearch() {
+            document.getElementById('searchOverlay').classList.toggle('active');
+        }
+    </script>
 
         <main>
             <div class="info-container">
-                <h2 class="section-title text-center mb-4" style="line-height:1.4;">CheerPoint情報<br><span style="font-size: 0.9rem; font-weight: normal; color: #999;">（StarPoint情報）</span></h2>
+                <h2 class="section-title text-center mb-4 leading-snug text-[0.9rem] font-normal text-[#999]">CheerPoint情報<br><span>（StarPoint情報）</span></h2>
 
-                <div style="font-size: 0.85rem; margin-bottom: 8px; color: var(--text-secondary);">【リスナー画面イメージ】</div>
-                <div class="info-box" style="margin-bottom: 32px;">
+                <div class="text-[0.85rem] mb-2 text-[var(--text-secondary)]">【リスナー画面イメージ】</div>
+                <div class="info-box mb-8">
                     <div class="info-row">
                         <div>
                             <strong>利用可能ポイント</strong>
                         </div>
-                        <div class="info-amount" style="color: var(--accent-cyan);">1000<span style="font-size:1rem; font-weight:normal;">cp</span></div>
+                        <div class="info-amount text-[var(--accent-cyan)] text-[1rem] font-normal">1000<span>cp</span></div>
                     </div>
                     <div class="info-row">
                         <div>
                             <strong>期間限定ポイント</strong>
-                            <span class="date-text" style="color:var(--accent-pink);">※ 10日以内に消滅します</span>
+                            <span class="date-text text-[var(--accent-pink)]">※ 10日以内に消滅します</span>
                         </div>
-                        <div style="text-align: right;">
-                            <span class="date-text" style="margin-top:0; margin-bottom:4px;">2026/10/10 消滅</span>
-                            <div class="info-amount" style="color: var(--accent-pink);">100<span style="font-size:1rem; font-weight:normal;">cp</span></div>
+                        <div class="text-right">
+                            <span class="date-text mt-0 mb-1">2026/10/10 消滅</span>
+                            <div class="info-amount text-[var(--accent-pink)] text-[1rem] font-normal">100<span>cp</span></div>
                         </div>
                     </div>
                 </div>
 
-                <div style="font-size: 0.85rem; margin-bottom: 8px; color: var(--text-secondary);">【アーティスト画面イメージ】</div>
-                <div class="info-box" style="border: 3px solid #ffd700; background: white;">
-                    <div class="info-row" style="border: none; padding-bottom: 0;">
+                <div class="text-[0.85rem] mb-2 text-[var(--text-secondary)]">【アーティスト画面イメージ】</div>
+                <div class="info-box border-[3px] border-[#ffd700] bg-white">
+                    <div class="info-row border-none pb-0">
                         <div>
-                            <strong style="color: var(--text-primary);">贈られたスターポイント</strong>
+                            <strong class="text-[var(--text-primary)]">贈られたスターポイント</strong>
                         </div>
-                        <div class="info-amount" style="color: var(--text-primary);">10,000<span style="font-size:1rem; font-weight:normal;">sp</span></div>
+                        <div class="info-amount text-[var(--text-primary)] text-[1rem] font-normal">10,000<span>sp</span></div>
                     </div>
-                    <div style="margin-top: 16px; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.1);">
-                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px;">
-                            <input type="checkbox" id="agreeTerms" style="width: 18px; height: 18px;">
-                            <label for="agreeTerms" style="font-size: 0.85rem;">ポイント交換について<a href="terms.html" style="color: var(--accent-blue); text-decoration: underline;">利用規約</a>に同意します</label>
+                    <div class="mt-4 pt-5 border-t border-black/10">
+                        <div class="flex items-center gap-2 mb-4">
+                            <input type="checkbox" id="agreeTerms" class="w-[18px] h-[18px]">
+                            <label for="agreeTerms">ポイント交換について<a href="terms.html" class="text-[var(--accent-blue)] underline text-[0.85rem]">利用規約</a>に同意します</label>
                         </div>
                         <button class="btn btn-primary" onclick="alert('交換申請を行いました（デモ）');">ポイント交換を申し込む</button>
                     </div>
                 </div>
 
-                <div style="text-align: center; margin-top: 40px;">
+                <div class="text-center mt-10">
                     <a href="mypage.html" class="btn btn-secondary">戻る</a>
                 </div>
             </div>
@@ -81,7 +114,7 @@
                 <img src="images/icon_top.svg" alt="TOP" class="nav-icon">
                 <span>TOP</span>
             </a>
-            <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-30)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" class="nav-item" style="filter: grayscale(100%); opacity: 0.5;">
+            <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-30)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" class="nav-item grayscale opacity-50">
                 <img src="images/icon_schedule.svg" alt="SCHEDULE" class="nav-icon">
                 <span>SCHEDULE</span>
             </a>

@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>特定商取引法に基づく表記 | 日本橋 Music Liver</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dist/output.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
         .law-container {
             padding: 30px 20px 60px;
@@ -45,7 +48,7 @@
 <body>
     <div class="app-container">
         <header>
-            <a href="index.html" class="logo-link" style="margin: 0 auto;">
+            <a href="index.html" class="logo-link mx-auto">
                 <img src="images/logo-mlss.png" alt="Music Liver" class="header-logo">
             </a>
         </header>
@@ -107,25 +110,27 @@
 
                 </div>
 
-                <div style="text-align: center;">
+                <div class="text-center">
                     <a href="javascript:history.back()" class="btn btn-secondary"
-                        style="width: auto; padding: 12px 32px;">戻る</a>
+                        class="w-auto px-8 py-3">戻る</a>
                 </div>
             </div>
         </main>
 
-        <nav class="bottom-nav">
+                <nav class="bottom-nav">
             <a href="index.html" class="nav-item">
                 <img src="images/icon_top.svg" alt="TOP" class="nav-icon">
                 <span>TOP</span>
             </a>
-            <a href="map.html" class="nav-item">
-                <img src="images/icon_map.svg" alt="MAP" class="nav-icon">
-                <span>MAP</span>
+            <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-30)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" class="nav-item grayscale opacity-50">
+                <img src="images/icon_schedule.svg" alt="SCHEDULE" class="nav-icon">
+                <span>SCHEDULE</span>
             </a>
-            <a href="schedule.html" class="nav-item">
-                <img src="images/icon_live.svg" alt="LIVE" class="nav-icon">
-                <span>LIVE</span>
+            <a href="live.html" class="nav-item nav-live-highlight">
+                <div class="nav-icon-wrapper">
+                    <img src="images/icon_live.svg" alt="LIVE" class="nav-icon">
+                    <span>LIVE</span>
+                </div>
             </a>
             <a href="artists.html" class="nav-item">
                 <img src="images/icon_artist.svg" alt="ARTIST" class="nav-icon">

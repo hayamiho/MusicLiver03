@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ダッシュボード | 日本橋 Music Liver</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dist/output.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        .dashboard-container {
+            padding: 20px 0;
+            padding-bottom: 80px; /* footer space */
+        }
+
+        /* 横スクロールお気に入りエリア */
+        .favorite-scroll-wrapper {
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        .favorite-scroll-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 16px;
+            padding: 10px 20px 20px; /* shadow room */
+            scrollbar-width: none; /* Firefox */
+        }
+        .favorite-scroll-container::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+
+        .fav-item {
+            flex-shrink: 0;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            display: block;
+        }
+
+        .fav-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 10;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .scroll-indicator.left { left: 5px; }
+        .scroll-indicator.right { right: 5px; }
+        .scroll-indicator.visible { opacity: 1; pointer-events: auto; }
+
+        /* リストカード共通スタイル */
+        .dashboard-list {
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .dash-card {
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 12px;
+            display: flex;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255,255,255,0.8);
+            overflow: hidden;
+            min-height: 100px;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        /* LIVE NOW カード */
+        .live-card .left-section {
+            width: 85px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 10px 10px 20px;
+        }
+        
+        .live-text {
+            color: var(--accent-pink);
+            font-weight: 900;
+            font-size: 1.1rem;
+            line-height: 1.1;
+            text-align: center;
+        }
+
+        /* SCHEDULE カード */
+        .schedule-card .left-section {
+            width: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 12px 12px 12px 20px;
+        }
+
+        .date-year { font-size: 0.6rem; color: #666; font-weight: bold; line-height: 1; }
+        .date-md { font-size: 1.4rem; font-weight: 900; color: #555; line-height: 1.1; margin-bottom: 4px; }
+        .date-time { font-size: 0.85rem; font-weight: bold; color: #333; }
+
+        /* 共通中央・右側セクション */
+        .dash-card .mid-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 12px 10px;
+        }
+
+        .dash-name {
+            font-size: 1.1rem;
+            font-weight: 900;
+            margin-bottom: 4px;
+        }
+
+        .dash-sub {
+            font-size: 0.75rem;
+            color: #888;
+            font-weight: bold;
+        }
+
+        .dash-card .right-section {
+            width: 100px;
+            height: 100px;
+        }
+
+        .dash-card .right-section img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <a href="index.html" class="logo-link">
+                <img src="images/logo-mlss.png" alt="Music Liver" class="header-logo">
+            </a>
+            <img src="images/icon_search.svg" class="menu-icon w-6 h-6 cursor-pointer" onclick="toggleSearch()" alt="検索">
+        </header>
+
+        <!-- Search Overlay -->
+        <div id="searchOverlay" class="full-modal z-[4000]">
+            <div class="modal-header justify-start gap-3 px-5 py-3">
+                <button class="modal-close bg-none border-none p-0 w-6 h-6" onclick="document.getElementById('searchOverlay').classList.remove('active')"><img src="images/icon_arrow2.svg" alt="戻る"></button>
+                <div class="flex-1 relative">
+                    <input type="text" placeholder="MLSSを検索" class="w-full py-[10px] pr-[40px] pl-[16px] rounded-[20px] border-none bg-[#f0f0f0] text-[1rem] outline-none">
+                    <img src="images/icon_search.svg" class="absolute right-[12px] top-1/2 -translate-y-1/2 w-5 h-5 opacity-60">
+                </div>
+            </div>
+            <div class="modal-body p-0">
+                <div class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                    <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">藤田悠也</div>
+                    <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+                </div>
+                <div class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                    <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">結芽乃 路上ライブ</div>
+                    <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+                </div>
+                <div class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                    <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">Synphony</div>
+                    <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+                </div>
+                <div class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                    <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">天野なつ</div>
+                    <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+                </div>
+            </div>
+        </div>
+
+        <main>
+            <div class="dashboard-container">
+                <!-- お気に入り横スクロール -->
+                <div class="favorite-scroll-wrapper">
+                    <div class="scroll-indicator left w-3.5 h-3.5 mr-0.5" id="scrollLeftBtn" onclick="scrollFav(-100)"><img src="images/icon_mini_arrow2.svg" alt="＜"></div>
+                    <div class="favorite-scroll-container" id="favScrollContainer">
+                        <a href="artist_fujitayuya.html" class="fav-item"><img src="images/artist_fujitayuya.jpg" alt="藤田悠也"></a>
+                        <a href="artist_yumeno.html" class="fav-item"><img src="images/artist_yumeno.jpg" alt="結芽乃" onerror="this.src='images/artist_amanonatsu.jpg'"></a>
+                        <a href="artist_synphony.html" class="fav-item"><img src="images/artist_synphony.jpg" alt="Synphony" onerror="this.src='images/artist_hinomasora.jpg'"></a>
+                        <a href="artist_amanonatsu.html" class="fav-item"><img src="images/artist_amanonatsu.jpg" alt="天野なつ" onerror="this.src='images/artist_yusei.jpg'"></a>
+                        <a href="artist_taon.html" class="fav-item"><img src="images/artist_taon.jpg" alt="TAON" onerror="this.src='images/artist_kuboharuki.jpg'"></a>
+                        <a href="artist_robotatama.html" class="fav-item"><img src="images/artist_robotatama.jpg" alt="ロボット頭" onerror="this.src='images/artist_iyodaayane.jpg'"></a>
+                        <a href="artist_hinomasora.html" class="fav-item"><img src="images/artist_hinomasora.jpg" alt="hinomasora"></a>
+                    </div>
+                    <div class="scroll-indicator right visible w-3.5 h-3.5 ml-0.5" id="scrollRightBtn" onclick="scrollFav(100)"><img src="images/icon_mini_arrow.svg" alt="＞"></div>
+                </div>
+
+                <!-- ライブ中アーティスト -->
+                <div class="dashboard-list">
+                    <!-- 藤田悠也 -->
+                    <a href="live.html" class="dash-card live-card">
+                        <div class="left-section">
+                            <div class="live-text">LIVE<br>NOW!</div>
+                        </div>
+                        <div class="mid-section">
+                            <div class="dash-name">藤田悠也</div>
+                            <div class="dash-sub">● SILVER STAGE</div>
+                        </div>
+                        <div class="right-section">
+                            <img src="images/artist_fujitayuya.jpg" alt="藤田悠也">
+                        </div>
+                    </a>
+
+                    <!-- 結芽乃 -->
+                    <a href="live.html" class="dash-card live-card">
+                        <div class="left-section">
+                            <div class="live-text">LIVE<br>NOW!</div>
+                        </div>
+                        <div class="mid-section">
+                            <div class="dash-name">結芽乃</div>
+                            <div class="dash-sub">● SILVER STAGE</div>
+                        </div>
+                        <div class="right-section">
+                            <img src="images/artist_yumeno.jpg" alt="結芽乃" onerror="this.src='images/artist_amanonatsu.jpg'">
+                        </div>
+                    </a>
+
+                    <!-- ライブ予定 -->
+                    <!-- 結芽乃 予定 -->
+                    <a href="artist_yumeno.html" class="dash-card schedule-card mt-2">
+                        <div class="left-section">
+                            <div class="date-year">2026.</div>
+                            <div class="date-md">03.06</div>
+                            <div class="date-time">18:20〜</div>
+                        </div>
+                        <div class="mid-section">
+                            <div class="dash-name">結芽乃</div>
+                            <div class="dash-sub">リバーサイドステージ</div>
+                        </div>
+                        <div class="right-section">
+                            <img src="images/artist_yumeno.jpg" alt="結芽乃" onerror="this.src='images/artist_amanonatsu.jpg'">
+                        </div>
+                    </a>
+
+                    <!-- Synphony 予定 -->
+                    <a href="artist_synphony.html" class="dash-card schedule-card">
+                        <div class="left-section">
+                            <div class="date-year">2026.</div>
+                            <div class="date-md">03.06</div>
+                            <div class="date-time">19:10〜</div>
+                        </div>
+                        <div class="mid-section">
+                            <div class="dash-name">Synphony</div>
+                            <div class="dash-sub">ライブハウス N-Sonic</div>
+                        </div>
+                        <div class="right-section">
+                            <img src="images/artist_synphony.jpg" alt="Synphony" onerror="this.src='images/artist_hinomasora.jpg'">
+                        </div>
+                    </a>
+
+                    <!-- 結芽乃 予定2 -->
+                    <a href="artist_amanonatsu.html" class="dash-card schedule-card">
+                        <div class="left-section">
+                            <div class="date-year">2026.</div>
+                            <div class="date-md">03.07</div>
+                            <div class="date-time">13:00〜</div>
+                        </div>
+                        <div class="mid-section">
+                            <div class="dash-name">天野なつ</div>
+                            <div class="dash-sub">リバーサイドステージ</div>
+                        </div>
+                        <div class="right-section">
+                            <img src="images/artist_amanonatsu.jpg" alt="天野なつ" onerror="this.src='images/artist_yusei.jpg'">
+                        </div>
+                    </a>
+
+                    <!-- 日乃まそら 予定 -->
+                    <a href="artist_hinomasora.html" class="dash-card schedule-card">
+                        <div class="left-section">
+                            <div class="date-year">2026.</div>
+                            <div class="date-md">03.08</div>
+                            <div class="date-time">14:00〜</div>
+                        </div>
+                        <div class="mid-section">
+                            <div class="dash-name">日乃まそら</div>
+                            <div class="dash-sub">リバーサイドステージ</div>
+                        </div>
+                        <div class="right-section">
+                            <img src="images/artist_hinomasora.jpg" alt="日乃まそら">
+                        </div>
+                    </a>
+
+                    <!-- ロボット頭 予定 -->
+                    <a href="artist_robotatama.html" class="dash-card schedule-card">
+                        <div class="left-section">
+                            <div class="date-year">2026.</div>
+                            <div class="date-md">03.09</div>
+                            <div class="date-time">19:30〜</div>
+                        </div>
+                        <div class="mid-section">
+                            <div class="dash-name">ロボット頭</div>
+                            <div class="dash-sub">ライブハウス N-Sonic</div>
+                        </div>
+                        <div class="right-section">
+                            <img src="images/artist_robotatama.jpg" alt="ロボット頭" onerror="this.src='images/artist_iyodaayane.jpg'">
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <img src="images/icon_top.svg" alt="TOP" class="nav-icon">
+                <span>TOP</span>
+            </a>
+            <a href="#" class="nav-item grayscale opacity-50">
+                <img src="images/icon_schedule.svg" alt="SCHEDULE" class="nav-icon">
+                <span>SCHEDULE</span>
+            </a>
+            <a href="live.html" class="nav-item nav-live-highlight">
+                <div class="nav-icon-wrapper">
+                    <img src="images/icon_live.svg" alt="LIVE" class="nav-icon">
+                    <span>LIVE</span>
+                </div>
+            </a>
+            <a href="artists.html" class="nav-item">
+                <img src="images/icon_artist.svg" alt="ARTIST" class="nav-icon">
+                <span>ARTIST</span>
+            </a>
+            <a href="mypage.html" class="nav-item">
+                <img src="images/icon_mypage.svg" alt="MY PAGE" class="nav-icon">
+                <span>MY PAGE</span>
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        function toggleSearch() {
+            document.getElementById('searchOverlay').classList.toggle('active');
+        }
+
+        // お気に入りスクロール制御
+        const favContainer = document.getElementById('favScrollContainer');
+        const leftBtn = document.getElementById('scrollLeftBtn');
+        const rightBtn = document.getElementById('scrollRightBtn');
+
+        favContainer.addEventListener('scroll', () => {
+            const maxScrollLeft = favContainer.scrollWidth - favContainer.clientWidth;
+            
+            // 左ボタンの表示/非表示設定
+            if (favContainer.scrollLeft > 5) {
+                leftBtn.classList.add('visible');
+            } else {
+                leftBtn.classList.remove('visible');
+            }
+
+            // 右ボタンの表示/非表示設定
+            if (favContainer.scrollLeft >= maxScrollLeft - 5) {
+                rightBtn.classList.remove('visible');
+            } else {
+                rightBtn.classList.add('visible');
+            }
+        });
+
+        function scrollFav(amount) {
+            favContainer.scrollBy({ left: amount, behavior: 'smooth' });
+        }
+        
+        // 初期状態での右ボタンの確認 (要素が溢れていれば表示)
+        setTimeout(() => {
+            if (favContainer.scrollWidth > favContainer.clientWidth) {
+                rightBtn.classList.add('visible');
+            } else {
+                rightBtn.classList.remove('visible');
+            }
+        }, 100);
+    </script>
+</body>
+</html>

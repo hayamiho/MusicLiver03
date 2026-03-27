@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source "../*.html";
 
 @theme {
   /* プロジェクト専用カラーの定義 */

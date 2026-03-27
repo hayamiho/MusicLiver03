@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>いつでもサポート！ | Music Liver</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dist/output.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        .onboarding-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #ffffff;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .onboarding-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        .onboarding-title {
+            display: flex;
+            align-items: center;
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: var(--text-primary);
+        }
+        .onboarding-title img {
+            width: 28px;
+            height: 28px;
+            margin-right: 10px;
+        }
+        .btn-skip {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: bold;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: #f0f0f0;
+        }
+        .onboarding-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+            margin-bottom: 25px;
+        }
+        .onboarding-image img {
+            max-width: 100%;
+            max-height: 40vh;
+            object-fit: contain;
+            user-select: none;
+        }
+        .onboarding-text {
+            text-align: center;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 25px;
+            min-height: 70px;
+        }
+        .onboarding-dots {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #e0e0e0;
+        }
+        .dot.active {
+            background-color: #004fba;
+        }
+        .onboarding-footer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+        .onboarding-footer .btn {
+            width: 100%;
+            max-width: 320px;
+            margin-bottom: 20px;
+        }
+        .login-link {
+            font-size: 0.95rem;
+            color: #004fba;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="onboarding-container" id="swipe-area">
+        <div class="onboarding-header">
+            <div class="onboarding-title">
+                <img src="images/icon_mlss.svg" alt="★">
+                いつでもサポート！
+            </div>
+            <a href="register_mail.html" class="btn-skip">SKIP</a>
+        </div>
+
+        <div class="onboarding-image">
+            <img src="images/slide_3.png" alt="Anytime Support">
+        </div>
+
+        <div class="onboarding-text">
+            応援メッセージやアイコンを好きなタイミングで贈れます。<br>推しの生活に彩りを添えて楽しもう。
+        </div>
+
+        <div class="onboarding-dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot active"></div>
+            <div class="dot"></div>
+        </div>
+
+        <div class="onboarding-footer">
+            <a href="register_start4.html" class="btn btn-support">次へ</a>
+            <a href="login.html" class="login-link">ログイン</a>
+        </div>
+    </div>
+    
+    <script>
+        let startX = 0;
+        const swipeArea = document.getElementById('swipe-area');
+        swipeArea.addEventListener('touchstart', e => {
+            startX = e.touches[0].clientX;
+        });
+        swipeArea.addEventListener('touchend', e => {
+            const endX = e.changedTouches[0].clientX;
+            const diffX = startX - endX;
+            if (diffX > 50) {
+                window.location.href = 'register_start4.html';
+            } else if (diffX < -50) {
+                window.location.href = 'register_start2.html';
+            }
+        });
+    </script>
+</body>
+</html>

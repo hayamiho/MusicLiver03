@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>登録完了 | 日本橋 Music Liver</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dist/output.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
         .step-indicator {
             display: flex;
@@ -52,7 +55,7 @@
         }
 
         .complete-container {
-            padding: 40px 20px;
+            padding: 20px;
             text-align: center;
         }
 
@@ -78,16 +81,55 @@
             <a href="index.html" class="logo-link">
                 <img src="images/logo-mlss.png" alt="Music Liver" class="header-logo">
             </a>
-            <div class="menu-icon" onclick="toggleMenu()">≡</div>
+            <img src="images/icon_search.svg" class="menu-icon w-6 h-6 cursor-pointer" onclick="toggleSearch()" alt="検索">
         </header>
 
-            <div class="hamburger-menu-content" id="hamburgerMenu">
-      <a href="index.html">トップページ</a>
-      <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-40)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" style="color: #999;">全国のライブスケジュール一覧</a>
-      <a href="live.html">現在演奏中のミュージシャン</a>
-      <a href="artists.html">アーティスト一覧</a>
-      <a href="mypage.html">マイページ</a>
-    </div>
+        <!-- Search Overlay -->
+        <div id="searchOverlay" class="full-modal z-[4000]">
+            <div class="modal-header justify-start gap-3 px-5 py-3">
+                <button class="modal-close text-[1.8rem] leading-none bg-transparent border-none p-0" onclick="document.getElementById('searchOverlay').classList.remove('active')"><img
+                        src="images/icon_arrow2.svg" alt="戻る"
+                        class="w-6 h-6 pointer-events-none"></button>
+                <div class="flex-1 relative">
+                    <input type="text" placeholder="MLSSを検索"
+                        class="w-full py-[10px] pr-[40px] pl-[16px] rounded-[20px] border-none bg-[#f0f0f0] text-[1rem] outline-none">
+                    <img src="images/icon_search.svg"
+                        class="absolute right-[12px] top-1/2 -translate-y-1/2 w-5 h-5 opacity-60">
+                </div>
+            </div>
+            <div class="modal-body p-0">
+                <div
+                    class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                    <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">藤田悠也</div>
+                    <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+                </div>
+                <div
+                    class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                    <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">結芽乃 路上ライブ</div>
+                    <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+                </div>
+                <div
+                    class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                    <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">Synphony</div>
+                    <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+                </div>
+                <div
+                    class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                    <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">天野なつ</div>
+                    <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+                </div>
+                <div
+                    class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                    <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">日本橋イベント</div>
+                    <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+                </div>
+            </div>
+        </div>
+        <script>
+            function toggleSearch() {
+                document.getElementById('searchOverlay').classList.toggle('active');
+            }
+        </script>
 
         <main>
             <div class="step-indicator">
@@ -99,17 +141,17 @@
             </div>
 
             <div class="complete-container">
-                <div class="success-icon">🎉</div>
-                <h2 class="section-title text-center">ユーザー登録が完了しました！</h2>
+                <div class="h-[290px]">
+                    <div class="success-icon">🎉</div>
+                    <h2 class="section-title text-center">ユーザー登録が完了しました！</h2>
 
-                <p class="mb-4 text-center">
-                    続いて、ポイントの購入には<br>クレジットカードの登録が必要です。
-                </p>
+                    <p class="mb-4 text-center">
+                        MusicLiverサポートシステムをお楽しみください。
+                    </p>
+                </div>
 
-                <a href="credit_card.html" class="btn btn-primary mb-4">カード登録する</a>
-                <a href="register_terms.html" class="btn btn-secondary mb-2">戻る</a>
-                <br>
-                <a href="artist_detail.html" class="btn-link">TOPに戻る</a>
+                <a href="live.html" class="btn btn-primary mb-4">配信中のライブを見る</a>
+                <a href="artists.html" class="btn btn-primary mb-2">アーティストを探す</a>
             </div>
         </main>
 
@@ -118,13 +160,17 @@
                 <img src="images/icon_top.svg" alt="TOP" class="nav-icon">
                 <span>TOP</span>
             </a>
-            <a href="map.html" class="nav-item">
-                <img src="images/icon_map.svg" alt="MAP" class="nav-icon">
-                <span>MAP</span>
+            <a href="#"
+                onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-30)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);"
+                class="nav-item grayscale opacity-50">
+                <img src="images/icon_schedule.svg" alt="SCHEDULE" class="nav-icon">
+                <span>SCHEDULE</span>
             </a>
-            <a href="schedule.html" class="nav-item">
-                <img src="images/icon_live.svg" alt="LIVE" class="nav-icon">
-                <span>LIVE</span>
+            <a href="live.html" class="nav-item nav-live-highlight">
+                <div class="nav-icon-wrapper">
+                    <img src="images/icon_live.svg" alt="LIVE" class="nav-icon">
+                    <span>LIVE</span>
+                </div>
             </a>
             <a href="artists.html" class="nav-item">
                 <img src="images/icon_artist.svg" alt="ARTIST" class="nav-icon">

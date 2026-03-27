@@ -7,18 +7,20 @@
   <title>Music Liver | NEW NIGHT ENTERTAINMENT</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="dist/output.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
     /* トップページ専用スタイル */
     .hero-section {
       position: relative;
-      height: 65vh;
+      height: 60vh;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
       /* コンテンツを下端に揃え、上の写真を広くする */
       align-items: center;
       overflow: hidden;
-      padding-bottom: 24px;
+      padding-bottom: 15px;
       /* NEXT LIVEと下のコンテンツとの隙間 */
     }
 
@@ -36,7 +38,8 @@
       flex-direction: column !important;
       align-items: center !important;
       justify-content: center !important;
-      padding-bottom: 6px !important; /* 中身をさらに3px下げて、中心から3px上の位置に調整 */
+      padding-bottom: 6px !important;
+      /* 中身をさらに3px下げて、中心から3px上の位置に調整 */
     }
 
     .nav-item.nav-live-highlight .nav-icon {
@@ -112,7 +115,8 @@
       letter-spacing: 2px;
       text-transform: uppercase;
       margin-bottom: 16px;
-      display: none; /* User要望でタグライン非表示 */
+      display: none;
+      /* User要望でタグライン非表示 */
     }
 
     .next-live-inline {
@@ -182,6 +186,19 @@
       opacity: 0.7;
     }
 
+    .login-link {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: bold;
+      align-self: center;
+      margin-bottom: 20px;
+    }
+
+    .login-link:hover {
+      text-decoration: underline;
+    }
+
     .sponsors {
       padding: 5px 20px 20px;
       text-align: center;
@@ -196,7 +213,8 @@
     }
 
     .sns-container {
-      display: none; /* User要望でSNS削除 */
+      display: none;
+      /* User要望でSNS削除 */
     }
 
     .sns-icon {
@@ -241,18 +259,48 @@
   <div class="app-container">
     <!-- topページ用にカスタマイズした透明ヘッダ -->
     <header class="top-header-transparent">
-      <div class="hamburger-menu-btn" onclick="toggleMenu()">≡</div>
+      <img src="images/icon_search.svg" class="hamburger-menu-btn w-7 h-7 cursor-pointer drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" onclick="toggleSearch()" alt="検索">
     </header>
 
-        <div class="hamburger-menu-content" id="hamburgerMenu">
-      <a href="index.html">トップページ</a>
-      <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-40)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" style="color: #999;">全国のライブスケジュール一覧</a>
-      <a href="live.html">現在演奏中のミュージシャン</a>
-      <a href="artists.html">アーティスト一覧</a>
-      <a href="mypage.html">マイページ</a>
+        <!-- Search Overlay -->
+    <div id="searchOverlay" class="full-modal z-[4000]">
+        <div class="modal-header justify-start gap-3 px-5 py-3">
+            <button class="modal-close text-[1.8rem] leading-none bg-transparent border-none p-0" onclick="document.getElementById('searchOverlay').classList.remove('active')"><img src="images/icon_arrow2.svg" alt="戻る" class="w-6 h-6 pointer-events-none"></button>
+            <div class="flex-1 relative">
+                <input type="text" placeholder="MLSSを検索" class="w-full py-[10px] pr-[40px] pl-[16px] rounded-[20px] border-none bg-[#f0f0f0] text-[1rem] outline-none">
+                <img src="images/icon_search.svg" class="absolute right-[12px] top-1/2 -translate-y-1/2 w-5 h-5 opacity-60">
+            </div>
+        </div>
+        <div class="modal-body p-0">
+            <div class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">藤田悠也</div>
+                <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+            </div>
+            <div class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">結芽乃 路上ライブ</div>
+                <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+            </div>
+            <div class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">Synphony</div>
+                <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+            </div>
+            <div class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">天野なつ</div>
+                <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+            </div>
+            <div class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">日本橋イベント</div>
+                <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+            </div>
+        </div>
     </div>
+    <script>
+        function toggleSearch() {
+            document.getElementById('searchOverlay').classList.toggle('active');
+        }
+    </script>
 
-    <main style="padding-top: 0;">
+    <main class="pt-0">
       <section class="hero-section">
         <div class="hero-bg-container" id="hero-container">
           <!-- JSで背景画像を生成 -->
@@ -261,7 +309,7 @@
         <div class="hero-content">
           <img src="images/logo-mlss.png" alt="Music Liver" class="logo-main">
           <div class="logo-tagline">NEW NIGHT ENTERTAINMENT</div>
-          
+
         </div>
       </section>
 
@@ -274,10 +322,11 @@
 
         <div class="action-section">
           <!-- アーティストを支援する！ボタン -->
-          <a href="register_start.html" class="btn btn-support">
+          <a href="register_start1.html" class="btn btn-support mb-3">
             アーティストを支援する！
             <span class="sub-label">（会員登録をはじめる）</span>
           </a>
+          <a href="login.html" class="login-link">ログイン</a>
 
           <a href="contact.html" class="btn btn-secondary btn-contact">CONTACT</a>
         </div>
@@ -294,10 +343,12 @@
         <img src="images/icon_top.svg" alt="TOP" class="nav-icon">
         <span>TOP</span>
       </a>
-      <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-30)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" class="nav-item" style="filter: grayscale(100%); opacity: 0.5;">
-                <img src="images/icon_schedule.svg" alt="SCHEDULE" class="nav-icon">
-                <span>SCHEDULE</span>
-            </a>
+      <a href="#"
+        onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-30)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);"
+        class="nav-item grayscale opacity-50">
+        <img src="images/icon_schedule.svg" alt="SCHEDULE" class="nav-icon">
+        <span>SCHEDULE</span>
+      </a>
       <a href="live.html" class="nav-item nav-live-highlight">
         <div class="nav-icon-wrapper">
           <img src="images/icon_live.svg" alt="LIVE" class="nav-icon">

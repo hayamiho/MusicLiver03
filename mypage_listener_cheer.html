@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>応援履歴 | 日本橋 Music Liver</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dist/output.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
         .history-log { margin: 40px 20px 30px; }
         .log-window { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: var(--border-radius); padding: 16px; height: 60vh; overflow-y: scroll; }
@@ -22,16 +25,46 @@
     <div class="app-container">
         <header>
             <a href="index.html" class="logo-link"><img src="images/logo-mlss.png" alt="Music Liver" class="header-logo"></a>
-            <div class="menu-icon" onclick="toggleMenu()">≡</div>
+            <img src="images/icon_search.svg" class="menu-icon w-6 h-6 cursor-pointer" onclick="toggleSearch()" alt="検索">
         </header>
 
-        <div class="hamburger-menu-content" id="hamburgerMenu">
-            <a href="index.html">トップページ</a>
-            <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-40)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" style="color: #999;">全国のライブスケジュール一覧</a>
-            <a href="live.html">現在演奏中のミュージシャン</a>
-            <a href="artists.html">アーティスト一覧</a>
-            <a href="mypage.html">マイページ</a>
+            <!-- Search Overlay -->
+    <div id="searchOverlay" class="full-modal z-[4000]">
+        <div class="modal-header justify-start gap-3 px-5 py-3">
+            <button class="modal-close text-[1.8rem] leading-none bg-transparent border-none p-0" onclick="document.getElementById('searchOverlay').classList.remove('active')"><img src="images/icon_arrow2.svg" alt="戻る" class="w-6 h-6 pointer-events-none"></button>
+            <div class="flex-1 relative">
+                <input type="text" placeholder="MLSSを検索" class="w-full py-[10px] pr-[40px] pl-[16px] rounded-[20px] border-none bg-[#f0f0f0] text-[1rem] outline-none">
+                <img src="images/icon_search.svg" class="absolute right-[12px] top-1/2 -translate-y-1/2 w-5 h-5 opacity-60">
+            </div>
         </div>
+        <div class="modal-body p-0">
+            <div class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">藤田悠也</div>
+                <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+            </div>
+            <div class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">結芽乃 路上ライブ</div>
+                <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+            </div>
+            <div class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">Synphony</div>
+                <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+            </div>
+            <div class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">天野なつ</div>
+                <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+            </div>
+            <div class="flex justify-between items-center px-5 py-4 border-b border-[#f0f0f0]">
+                <div class="text-[var(--accent-blue)] font-bold text-[1.1rem]">日本橋イベント</div>
+                <div class="text-[var(--accent-blue)] cursor-pointer">削除</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleSearch() {
+            document.getElementById('searchOverlay').classList.toggle('active');
+        }
+    </script>
 
         <main>
             <div class="history-log">
@@ -48,9 +81,9 @@
 
                 <div class="log-window" id="logWindow">
                     <div class="log-item" data-artist="藤田悠也">
-                        <div style="min-width: 80px;">
+                        <div class="min-w-[80px]">
                             <span class="log-date">26/02/11 17:33</span><br>
-                            <span style="font-size: 0.8rem; color: var(--accent-blue); font-weight: bold;">藤田悠也</span>
+                            <span class="text-[0.8rem] text-[var(--accent-blue)] font-bold">藤田悠也</span>
                         </div>
                         <span class="log-content">
                             <span><span class="log-icon">😊</span> (100cp)</span>
@@ -58,9 +91,9 @@
                     </div>
 
                     <div class="log-item" data-artist="藤田悠也">
-                        <div style="min-width: 80px;">
+                        <div class="min-w-[80px]">
                             <span class="log-date">26/02/10 17:35</span><br>
-                            <span style="font-size: 0.8rem; color: var(--accent-blue); font-weight: bold;">藤田悠也</span>
+                            <span class="text-[0.8rem] text-[var(--accent-blue)] font-bold">藤田悠也</span>
                         </div>
                         <span class="log-content">
                             <span><span class="log-icon">❤</span> (10cp)</span>
@@ -68,9 +101,9 @@
                     </div>
 
                     <div class="log-item" data-artist="日乃まそら">
-                        <div style="min-width: 80px;">
+                        <div class="min-w-[80px]">
                             <span class="log-date">26/02/10 17:37</span><br>
-                            <span style="font-size: 0.8rem; color: var(--accent-blue); font-weight: bold;">日乃まそら</span>
+                            <span class="text-[0.8rem] text-[var(--accent-blue)] font-bold">日乃まそら</span>
                         </div>
                         <span class="log-content">
                             <span><span class="log-icon">⭐️</span> (100cp)</span>
@@ -78,9 +111,9 @@
                     </div>
 
                     <div class="log-item" data-artist="藤田悠也">
-                        <div style="min-width: 80px;">
+                        <div class="min-w-[80px]">
                             <span class="log-date">26/02/08 17:40</span><br>
-                            <span style="font-size: 0.8rem; color: var(--accent-blue); font-weight: bold;">藤田悠也</span>
+                            <span class="text-[0.8rem] text-[var(--accent-blue)] font-bold">藤田悠也</span>
                         </div>
                         <span class="log-content">
                             <span>メッセージ送信 (1000cp)</span>
@@ -89,9 +122,9 @@
                     </div>
 
                     <div class="log-item" data-artist="結芽乃">
-                        <div style="min-width: 80px;">
+                        <div class="min-w-[80px]">
                             <span class="log-date">26/02/07 12:01</span><br>
-                            <span style="font-size: 0.8rem; color: var(--accent-blue); font-weight: bold;">結芽乃</span>
+                            <span class="text-[0.8rem] text-[var(--accent-blue)] font-bold">結芽乃</span>
                         </div>
                         <span class="log-content">
                             <span><span class="log-icon">⭐️</span> (100cp)</span>
@@ -99,8 +132,8 @@
                     </div>
                 </div>
 
-                <div style="text-align: center; margin-top: 32px;">
-                    <a href="mypage.html" class="btn btn-secondary" style="width: auto; padding: 12px 40px;">マイページへ戻る</a>
+                <div class="text-center mt-8">
+                    <a href="mypage.html" class="btn btn-secondary w-auto py-3 px-10">マイページへ戻る</a>
                 </div>
             </div>
         </main>
@@ -110,7 +143,7 @@
                 <img src="images/icon_top.svg" alt="TOP" class="nav-icon">
                 <span>TOP</span>
             </a>
-            <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-30)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" class="nav-item" style="filter: grayscale(100%); opacity: 0.5;">
+            <a href="#" onclick="event.preventDefault();const b=document.createElement('div');b.className='coming-soon-bubble';b.textContent='近日公開予定';b.style.left=(event.pageX-30)+'px';b.style.top=(event.pageY-40)+'px';document.body.appendChild(b);setTimeout(()=>b.remove(),1500);" class="nav-item grayscale opacity-50">
                 <img src="images/icon_schedule.svg" alt="SCHEDULE" class="nav-icon">
                 <span>SCHEDULE</span>
             </a>
