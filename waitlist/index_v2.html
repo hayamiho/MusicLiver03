@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Liver Support System | 事前登録 (Dynamic V2)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'ml-pink': '#FF66A1',
+            'ml-blue': '#007BFF',
+            'ml-dark-blue': '#01255a'
+          },
+          fontFamily: {
+            sans: ['Inter', 'Helvetica Neue', 'Arial', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #01255a;
+      overflow-x: hidden;
+    }
+    .btn-gradient {
+      background: linear-gradient(135deg, #FF66A1, #007BFF);
+      transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-gradient:hover {
+      opacity: 0.95;
+      transform: translateY(-2px);
+      box-shadow: 0 15px 30px rgba(255, 102, 161, 0.3);
+    }
+    .bg-ml-gradient {
+      background: linear-gradient(135deg, #FF66A1, #007BFF);
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+    }
+    .section-spacing {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-ml-pink selection:text-white">
+
+  <!-- Header / Nav -->
+  <nav class="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div class="font-bold text-ml-dark-blue tracking-tight text-lg">Music Liver Support System</div>
+      <a href="#" class="btn-gradient px-6 py-2 rounded-full text-white font-bold text-sm shadow-md hidden md:block">アーティスト登録へ</a>
+    </div>
+  </nav>
+
+  <div class="w-full">
+    
+    <!-- ヒーローセクション (Split Screen on PC) -->
+    <section class="section-spacing relative mt-16 md:mt-0 pt-0">
+      <div class="absolute inset-0 z-0 hidden md:block">
+        <div class="absolute right-0 top-0 w-1/2 h-full bg-[url('images/15.jpg')] bg-cover bg-center"></div>
+        <div class="absolute right-0 top-0 w-1/2 h-full bg-gradient-to-r from-white via-white/80 to-transparent"></div>
+      </div>
+      <!-- Mobile ambient -->
+      <div class="absolute inset-0 z-0 md:hidden bg-[url('images/15.jpg')] bg-cover bg-center opacity-10"></div>
+      
+      <div class="max-w-7xl mx-auto px-6 relative z-10 w-full flex flex-col md:flex-row items-center">
+        <!-- Left: Text -->
+        <div class="w-full md:w-1/2 md:pr-16 text-center md:text-left mt-10 md:mt-0">
+          <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-[1.2]">
+            ファンの「応援したい」を、<br>アーティストの力に。
+          </h1>
+          <p class="text-base md:text-lg font-bold text-gray-600 mb-10 leading-relaxed max-w-xl mx-auto md:mx-0">
+            Music Liver Support Systemは、<br class="hidden md:block">ストリートライブで活動するアーティストとファンをつなぐプラットフォーム。<br>
+            メッセージやギフトを通して、ライブの前後を問わず応援を届けられます。
+          </p>
+          <a href="#" class="btn-gradient inline-flex items-center justify-center px-10 py-4 rounded-full text-white font-bold text-lg shadow-xl w-full md:w-auto">
+            アーティスト登録へ
+          </a>
+        </div>
+        <!-- Right: Mockup -->
+        <div class="w-full md:w-1/2 mt-16 md:mt-0 flex justify-center md:justify-end relative">
+          <div class="absolute inset-0 bg-gradient-to-tr from-ml-pink/20 to-ml-blue/20 blur-3xl rounded-full transform scale-110 md:scale-90 z-0"></div>
+          <img src="images/phone.png" alt="App Screen" class="relative z-10 w-[240px] md:w-[320px] drop-shadow-2xl">
+        </div>
+      </div>
+    </section>
+
+    <!-- 課題セクション (Full width background banner) -->
+    <section class="section-spacing relative bg-[#f8fafc] overflow-hidden">
+      <div class="absolute inset-0 z-0 bg-[url('images/08.jpg')] bg-cover bg-center opacity-[0.03] mix-blend-multiply"></div>
+      <div class="max-w-7xl mx-auto px-6 relative z-10 w-full">
+        <div class="max-w-4xl mx-auto text-center md:text-left md:flex gap-12 items-center">
+          <div class="mb-10 md:mb-0 md:w-2/5">
+            <h2 class="text-2xl md:text-3xl font-bold flex items-center justify-center md:justify-start gap-2 mb-4">
+              <span class="text-ml-pink text-4xl font-black">Q.</span> こんな課題はありませんか？
+            </h2>
+            <h3 class="text-xl md:text-2xl font-bold text-ml-dark-blue/90 border-b-2 border-ml-pink/20 pb-2 inline-block leading-relaxed">
+              ライブの熱量を、<br>もっと次につなげたい。
+            </h3>
+          </div>
+          <div class="md:w-3/5 glass-card p-8 md:p-10 rounded-2xl text-left">
+            <p class="text-base md:text-lg leading-relaxed text-gray-800">
+              ストリートライブで生まれる、偶然の出会い。足を止め、拍手を送った人々の中には「またライブを見たい」「この人をもっと応援したい」と感じた人もいるはず。<br><br>
+              でも、その想いはライブ終了とともに、その場限りで消えてしまうことも…。<br><br>
+              <span class="font-bold text-ml-dark-blue text-lg">Music Liver Support System</span>なら、ライブの熱量をそのまま「あなたへの継続的な応援」につなげられます。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MLSSとは セクション (Grid layout) -->
+    <section class="section-spacing">
+      <div class="max-w-7xl mx-auto px-6 w-full">
+        <div class="text-center mb-16">
+          <p class="text-base font-bold text-gray-400 mb-2">Music Liver Support System とは</p>
+          <h2 class="text-3xl md:text-4xl font-extrabold leading-tight text-ml-dark-blue">
+            ストリートライブに、<br class="md:hidden">新しい応援のかたちを。
+          </h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
+          <div class="bg-gray-50 rounded-2xl p-8 hover:shadow-xl transition-shadow border border-gray-100">
+            <div class="w-14 h-14 rounded-full bg-ml-gradient text-white flex items-center justify-center font-bold text-2xl mb-6 shadow-md">1</div>
+            <h4 class="font-bold text-xl mb-4 text-ml-dark-blue">スマホで気軽につながれる</h4>
+            <p class="text-gray-600 leading-relaxed text-base">ファンはQRコードからアーティストページへ簡単アクセス。ライブ会場やSNSからスムーズに案内できます。</p>
+          </div>
+          <div class="bg-gray-50 rounded-2xl p-8 hover:shadow-xl transition-shadow border border-gray-100">
+            <div class="w-14 h-14 rounded-full bg-ml-gradient text-white flex items-center justify-center font-bold text-2xl mb-6 shadow-md">2</div>
+            <h4 class="font-bold text-xl mb-4 text-ml-dark-blue">ライブの前も後も応援できる</h4>
+            <p class="text-gray-600 leading-relaxed text-base">ライブ前は「バックステージ」から、ライブ中は「ライブ画面」から。ファンはメッセージやギフトで応援できます。</p>
+          </div>
+          <div class="bg-gray-50 rounded-2xl p-8 hover:shadow-xl transition-shadow border border-gray-100">
+            <div class="w-14 h-14 rounded-full bg-ml-gradient text-white flex items-center justify-center font-bold text-2xl mb-6 shadow-md">3</div>
+            <h4 class="font-bold text-xl mb-4 text-ml-dark-blue">参加型の応援で盛り上がる</h4>
+            <p class="text-gray-600 leading-relaxed text-base">ライブ中のギフトは、ライブ画面に演出として表示されます。会場の一体感が高まり、アーティストにも応援が届きます。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- メリットセクション (Image + List) -->
+    <section class="section-spacing relative bg-[#01255a] text-white overflow-hidden">
+      <div class="absolute inset-0 z-0 bg-[url('images/01.jpg')] bg-cover bg-center opacity-20 mix-blend-luminosity"></div>
+      <div class="max-w-7xl mx-auto px-6 relative z-10 w-full flex flex-col md:flex-row items-center gap-16">
+        <div class="w-full md:w-1/3 text-center md:text-left">
+          <h2 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">アーティスト・事務所の方へ</h2>
+          <p class="text-gray-300 mb-8 text-lg">あなたの音楽活動を加速させる、4つの大きなメリットを提供します。</p>
+        </div>
+        <div class="w-full md:w-2/3">
+          <ul class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <li class="bg-white/10 backdrop-blur-md p-6 md:p-8 rounded-2xl border border-white/20 hover:bg-white/15 transition-colors">
+              <h4 class="font-bold text-lg mb-3">ファンの応援をリアルタイムで受け取れる</h4>
+              <p class="text-sm md:text-base text-gray-300 leading-relaxed">ライブ中に届いたメッセージやギフトが演出に即反映され、その場の盛り上がりにつながります。</p>
+            </li>
+            <li class="bg-white/10 backdrop-blur-md p-6 md:p-8 rounded-2xl border border-white/20 hover:bg-white/15 transition-colors">
+              <h4 class="font-bold text-lg mb-3">ライブ前後もファンとのつながりを作れる</h4>
+              <p class="text-sm md:text-base text-gray-300 leading-relaxed">ライブ告知から当日の応援、その後のファンコミュニケーションまで、継続的な接点を作れます。</p>
+            </li>
+            <li class="bg-white/10 backdrop-blur-md p-6 md:p-8 rounded-2xl border border-white/20 hover:bg-white/15 transition-colors">
+              <h4 class="font-bold text-lg mb-3">新人アーティストの活動支援につながる</h4>
+              <p class="text-sm md:text-base text-gray-300 leading-relaxed">ファンの反応や応援が可視化され、活動のモチベーションや成長支援にも活用できます。</p>
+            </li>
+            <li class="bg-white/10 backdrop-blur-md p-6 md:p-8 rounded-2xl border border-white/20 hover:bg-white/15 transition-colors">
+              <h4 class="font-bold text-lg mb-3">現場ルールに配慮した応援手段として</h4>
+              <p class="text-sm md:text-base text-gray-300 leading-relaxed">現金の受け渡しが難しい環境でも、メッセージやギフトを通じて応援を届けられます。</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 利用シーン & 導入の流れ -->
+    <section class="section-spacing bg-gray-50">
+      <div class="max-w-7xl mx-auto px-6 w-full">
+        
+        <div class="flex flex-col md:flex-row gap-16 md:gap-24">
+          <!-- 利用シーン -->
+          <div class="w-full md:w-1/3">
+            <h2 class="text-2xl md:text-3xl font-bold mb-10 text-ml-dark-blue">利用シーン</h2>
+            <div class="space-y-6">
+              <div class="border-l-[4px] border-ml-pink pl-6 py-2">
+                <h4 class="font-bold text-lg mb-2">ストリートライブ・音楽イベントで</h4>
+                <p class="text-sm text-gray-600 leading-relaxed">QRコードからアーティストページへアクセスし、その場でメッセージやギフトを贈れます。</p>
+              </div>
+              <div class="border-l-[4px] border-ml-blue pl-6 py-2">
+                <h4 class="font-bold text-lg mb-2">SNS告知とあわせて</h4>
+                <p class="text-sm text-gray-600 leading-relaxed">ライブ前からファンをアーティストページへ案内し、継続的な応援につなげられます。</p>
+              </div>
+              <div class="border-l-[4px] border-gray-400 pl-6 py-2">
+                <h4 class="font-bold text-lg mb-2">遠方のファンにも</h4>
+                <p class="text-sm text-gray-600 leading-relaxed">現地に来られないファンにも、応援を届ける場を作れます。</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 導入の流れ -->
+          <div class="w-full md:w-2/3">
+            <h2 class="text-2xl md:text-3xl font-bold mb-10 text-ml-dark-blue">導入の流れ</h2>
+            <div class="relative pl-8 space-y-10 before:absolute before:inset-y-3 before:left-[19px] before:w-0.5 before:bg-gray-200">
+              
+              <div class="relative">
+                <div class="absolute -left-[43px] top-1 w-5 h-5 rounded-full bg-ml-pink border-4 border-gray-50 shadow-sm"></div>
+                <h4 class="font-bold text-lg text-ml-dark-blue">1. アーティスト登録</h4>
+                <p class="text-sm text-gray-600 mt-2">登録したい方の基本情報や活動内容を入力します。</p>
+              </div>
+              <div class="relative">
+                <div class="absolute -left-[43px] top-1 w-5 h-5 rounded-full bg-[#e86eb5] border-4 border-gray-50 shadow-sm"></div>
+                <h4 class="font-bold text-lg text-ml-dark-blue">2. アーティストページを開設</h4>
+                <p class="text-sm text-gray-600 mt-2">プロフィールやSNSリンク、ライブ情報を掲載します。</p>
+              </div>
+              <div class="relative">
+                <div class="absolute -left-[43px] top-1 w-5 h-5 rounded-full bg-[#b573d8] border-4 border-gray-50 shadow-sm"></div>
+                <h4 class="font-bold text-lg text-ml-dark-blue">3. ライブ・SNS等で告知</h4>
+                <p class="text-sm text-gray-600 mt-2">QRコードやURLを使ってファンへ案内します。</p>
+              </div>
+              <div class="relative">
+                <div class="absolute -left-[43px] top-1 w-5 h-5 rounded-full bg-[#5978f5] border-4 border-gray-50 shadow-sm"></div>
+                <h4 class="font-bold text-lg text-ml-dark-blue">4. ファンが応援</h4>
+                <p class="text-sm text-gray-600 mt-2">メッセージやギフトでライブを盛り上げます。</p>
+              </div>
+              <div class="relative">
+                <div class="absolute -left-[43px] top-1 w-5 h-5 rounded-full bg-ml-blue border-4 border-gray-50 shadow-sm"></div>
+                <h4 class="font-bold text-lg text-ml-dark-blue">5. 応援を次の活動へ</h4>
+                <p class="text-sm text-gray-600 mt-2">届いた応援を、今後の活動やファンコミュニケーションへ。</p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ボトムCTA (Huge Banner) -->
+    <section class="py-40 relative text-center overflow-hidden">
+      <div class="absolute inset-0 z-0 bg-gradient-to-br from-white to-[#f0f7ff]"></div>
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] md:w-[1000px] md:h-[1000px] bg-ml-pink/5 rounded-full blur-3xl -z-0 pointer-events-none"></div>
+      
+      <div class="max-w-4xl mx-auto px-6 relative z-10">
+        <h2 class="text-3xl md:text-5xl font-extrabold mb-12 text-ml-dark-blue leading-tight">あなたのライブの熱量を、<br class="hidden md:block">次の力へ。</h2>
+        <a href="#" class="btn-gradient inline-flex items-center justify-center px-16 py-5 rounded-full text-white font-bold text-xl shadow-2xl hover:scale-105 transition-transform duration-300">
+          アーティスト登録へ
+        </a>
+      </div>
+    </section>
+    
+    <footer class="bg-white border-t border-gray-100 text-center py-10 relative z-10">
+      <p class="text-sm text-gray-400 font-bold tracking-wider">&copy; Music Liver Support System.</p>
+    </footer>
+
+  </div>
+</body>
+</html>
