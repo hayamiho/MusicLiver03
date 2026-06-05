@@ -1,9 +1,19 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18162239348"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'AW-18162239348');
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Music Liver Support System | 事前登録</title>
+  <title>Music Liver Support System | 先行登録</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
   <script>
@@ -24,51 +34,74 @@
   </script>
   <style>
     body {
-      background-color: #ffffff;
       color: #01255a;
     }
+
     .bg-slide {
       transition: opacity 2s ease-in-out;
       filter: grayscale(10%);
     }
-    /* 共通グラデーション */
+
     .btn-gradient {
       background: linear-gradient(135deg, #FF66A1, #007BFF);
       transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
     }
+
     .btn-gradient:active {
       transform: scale(0.96);
     }
+
     .bg-ml-gradient {
       background: linear-gradient(135deg, #FF66A1, #007BFF);
     }
+
     .glass-card {
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.7);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.8);
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
     }
   </style>
+  <script type="text/javascript">
+      (function (c, l, a, r, i, t, y) {
+        c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+        t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+      })(window, document, "clarity", "script", "wtvkgl9lj0");
+  </script>
 </head>
-<body class="antialiased selection:bg-ml-pink selection:text-white relative">
-  
-  <!-- アンビエント背景（ローテーション：白ベースに画像を敷く） -->
-  <div id="bg-slider" class="fixed top-0 left-0 w-full h-screen z-[-2] pointer-events-none">
-    <div class="bg-slide absolute inset-0 bg-cover bg-center" style="background-image: url('/waitlist/images/001.jpg'); opacity: 0.3;"></div>
-    <div class="bg-slide absolute inset-0 bg-cover bg-center" style="background-image: url('/waitlist/images/002.jpg'); opacity: 0;"></div>
-    <div class="bg-slide absolute inset-0 bg-cover bg-center" style="background-image: url('/waitlist/images/003.jpg'); opacity: 0;"></div>
-    <div class="bg-slide absolute inset-0 bg-cover bg-center" style="background-image: url('/waitlist/images/004.jpg'); opacity: 0;"></div>
-    <div class="bg-slide absolute inset-0 bg-cover bg-center" style="background-image: url('/waitlist/images/005.jpg'); opacity: 0;"></div>
-    <div class="bg-slide absolute inset-0 bg-cover bg-center" style="background-image: url('/waitlist/images/006.jpg'); opacity: 0;"></div>
-    <div class="bg-slide absolute inset-0 bg-cover bg-center" style="background-image: url('/waitlist/images/007.jpg'); opacity: 0;"></div>
-    <div class="bg-slide absolute inset-0 bg-cover bg-center" style="background-image: url('/waitlist/images/008.jpg'); opacity: 0;"></div>
-    <div class="bg-slide absolute inset-0 bg-cover bg-center" style="background-image: url('/waitlist/images/009.jpg'); opacity: 0;"></div>
-    <div class="bg-slide absolute inset-0 bg-cover bg-center" style="background-image: url('/waitlist/images/010.jpg'); opacity: 0;"></div>
+
+<body class="antialiased selection:bg-ml-pink selection:text-white relative"
+  style="background-image:url('/waitlist/imgs/white-bg.png');background-repeat:repeat;background-size:200px auto;">
+
+  <!-- アンビエント背景 -->
+  <div id="bg-slider" class="fixed top-0 left-0 w-full h-screen z-0 pointer-events-none">
+    <div class="bg-slide absolute inset-0 bg-cover bg-center"
+      style="background-image: url('/waitlist/imgs/001.jpg'); opacity: 0.3;"></div>
+    <div class="bg-slide absolute inset-0 bg-cover bg-center"
+      style="background-image: url('/waitlist/imgs/002.jpg'); opacity: 0;"></div>
+    <div class="bg-slide absolute inset-0 bg-cover bg-center"
+      style="background-image: url('/waitlist/imgs/003.jpg'); opacity: 0;"></div>
+    <div class="bg-slide absolute inset-0 bg-cover bg-center"
+      style="background-image: url('/waitlist/imgs/004.jpg'); opacity: 0;"></div>
+    <div class="bg-slide absolute inset-0 bg-cover bg-center"
+      style="background-image: url('/waitlist/imgs/005.jpg'); opacity: 0;"></div>
+    <div class="bg-slide absolute inset-0 bg-cover bg-center"
+      style="background-image: url('/waitlist/imgs/006.jpg'); opacity: 0;"></div>
+    <div class="bg-slide absolute inset-0 bg-cover bg-center"
+      style="background-image: url('/waitlist/imgs/007.jpg'); opacity: 0;"></div>
+    <div class="bg-slide absolute inset-0 bg-cover bg-center"
+      style="background-image: url('/waitlist/imgs/008.jpg'); opacity: 0;"></div>
+    <div class="bg-slide absolute inset-0 bg-cover bg-center"
+      style="background-image: url('/waitlist/imgs/009.jpg'); opacity: 0;"></div>
+    <div class="bg-slide absolute inset-0 bg-cover bg-center"
+      style="background-image: url('/waitlist/imgs/010.jpg'); opacity: 0;"></div>
   </div>
-  
-  <!-- コンテンツ領域（中央にwhite-bg.pngをループ背景として配置） -->
-  <div class="max-w-[480px] mx-auto min-h-screen relative pb-0 overflow-hidden bg-[url('/waitlist/images/white-bg.png')] bg-repeat-y bg-[length:100%_auto]">
-    
+
+  <!-- コンテンツ領域 -->
+  <div class="max-w-[480px] mx-auto min-h-screen relative pb-0 overflow-hidden z-10"
+    style="background-image: url('/waitlist/imgs/white-bg.png'); background-repeat: repeat-y; background-size: 100% auto;">
+
     <!-- ヒーローセクション -->
     <header class="pt-20 px-6 pb-24 text-center relative z-10 flex flex-col justify-center min-h-[85vh]">
       <h1 class="text-[1.6rem] font-extrabold tracking-tight mb-5 leading-tight">
@@ -78,28 +111,29 @@
         Music Liver Support Systemは、<br>ストリートライブで活動する<br>アーティストとファンをつなぐプラットフォーム。<br>
         メッセージやギフトを通して、<br>ライブの前後を問わず応援を届けられます。
       </p>
-      
+
       <!-- モックアップ画像 -->
       <div class="relative mx-auto w-[220px] mb-8">
-        <img src="/waitlist/images/phone.png" alt="App Screen" class="relative z-10 w-full drop-shadow-xl">
+        <img src="/waitlist/imgs/phone.png" alt="App Screen" class="relative z-10 w-full drop-shadow-xl">
       </div>
-      
+
       <!-- CTAボタン -->
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdoNftA0MRH1fYAIASDc_i-z6jUx1NfpfLvHPKMatty9_KdYA/viewform" target="_blank" rel="noopener noreferrer" class="btn-gradient inline-flex items-center justify-center w-[85%] mx-auto py-3.5 rounded-full text-white font-bold text-base shadow-lg relative z-20">
-        アーティスト登録へ
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdoNftA0MRH1fYAIASDc_i-z6jUx1NfpfLvHPKMatty9_KdYA/viewform"
+        target="_blank" rel="noopener noreferrer"
+        class="btn-gradient inline-flex items-center justify-center w-[85%] mx-auto py-3.5 rounded-full text-white font-bold text-base shadow-lg relative z-20">
+        アーティスト先行登録へ
       </a>
     </header>
 
     <!-- メインコンテンツ -->
     <main class="px-5 space-y-32 pb-32 relative z-10">
-      
+
       <!-- 課題セクション -->
       <section class="glass-card rounded-2xl p-8 relative overflow-hidden">
-        <div class="absolute -right-8 -top-8 w-32 h-32 bg-ml-blue/5 rounded-full blur-2xl"></div>
         <h2 class="text-[1.3rem] font-bold mb-6 flex items-center gap-2">
           <span class="text-ml-pink text-[1.8rem] font-black">Q.</span> こんな課題はありませんか？
         </h2>
-        <h3 class="text-[1.1rem] font-bold mb-5 text-ml-dark-blue/90 border-b border-ml-pink/20 pb-2 inline-block leading-relaxed">
+        <h3 class="text-[1.1rem] font-bold mb-5 text-ml-dark-blue/90 inline-block leading-relaxed">
           ライブの熱量を、<br>もっと次につなげたい。
         </h3>
         <p class="text-[0.9rem] leading-relaxed text-gray-800">
@@ -107,13 +141,25 @@
           足を止め、拍手を送った人々の中には「またライブを見たい」「この人をもっと応援したい」と感じた人もいるはず。<br><br>
           でも、その想いはライブ終了とともに、その場限りで消えてしまうことも…。
         </p>
-        <div class="mt-8 pt-6 border-t border-gray-200/80">
+        <div class="mt-8">
           <h2 class="text-[1.3rem] font-bold mb-3 flex items-start gap-2">
-            <span class="text-ml-blue text-[1.8rem] font-black leading-none mt-1">A.</span> 
+            <span class="text-ml-blue text-[1.8rem] font-black leading-none mt-1">A.</span>
             <span class="text-[1.1rem] font-bold text-ml-dark-blue leading-relaxed">
               Music Liver Support Systemなら、ライブの熱量をそのまま「あなたへの継続的な応援」につなげられます。
             </span>
           </h2>
+          <div class="mt-8 pt-8 border-t border-gray-200/80 text-center">
+            <h4 class="font-bold text-[1.3rem] mb-4 text-ml-dark-blue">
+              実際のライブ現場で検証中！
+            </h4>
+            <p class="text-[0.9rem] leading-relaxed text-gray-800 mb-6">
+              Music Liver Support Systemは、日本橋 Music Liverをはじめとした実際のライブ現場で活用検証を進めています。
+            </p>
+            <div class="rounded-xl overflow-hidden shadow-lg border border-gray-100 relative group text-left">
+              <video src="/waitlist/imgs/SNS_movie_0518_mini.mp4" autoplay loop muted playsinline preload="auto"
+                class="w-full object-cover"></video>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -123,30 +169,49 @@
           <h2 class="text-[1.6rem] font-extrabold leading-tight text-ml-dark-blue mb-3">
             ストリートライブに、<br>新しい応援のかたちを。
           </h2>
-          <p class="text-[0.85rem] font-bold text-gray-500">〜 Music Liver Support System とは 〜</p>
+          <p class="text-[0.85rem] font-bold text-gray-500 mb-10">〜 Music Liver Support System とは 〜</p>
+
         </div>
-        
+
         <div class="space-y-10">
           <div class="flex gap-5 items-start">
-            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-ml-gradient text-white flex items-center justify-center font-bold text-lg shadow-md">1</div>
+            <div
+              class="flex-shrink-0 w-10 h-10 rounded-full bg-ml-gradient text-white flex items-center justify-center font-bold text-lg shadow-md">
+              1</div>
             <div class="pt-1">
               <h4 class="font-bold mb-2 text-[0.95rem]">スマホで気軽につながれる</h4>
-              <p class="text-[0.8rem] text-gray-700 leading-relaxed">ファンはQRコードからアーティストページへ簡単アクセス。ライブ会場やSNSからスムーズに案内できます。</p>
+              <p class="text-[0.8rem] text-gray-700 leading-relaxed">ファンはQRコードからアーティストページへ簡単アクセス。ライブ会場やSNSからスムーズに案内できます。
+              </p>
             </div>
           </div>
           <div class="flex gap-5 items-start">
-            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-ml-gradient text-white flex items-center justify-center font-bold text-lg shadow-md">2</div>
+            <div
+              class="flex-shrink-0 w-10 h-10 rounded-full bg-ml-gradient text-white flex items-center justify-center font-bold text-lg shadow-md">
+              2</div>
             <div class="pt-1">
               <h4 class="font-bold mb-2 text-[0.95rem]">ライブの前も後も応援できる</h4>
-              <p class="text-[0.8rem] text-gray-700 leading-relaxed">ライブ前は「バックステージ」から、ライブ中は「ライブ画面」から。ファンはメッセージやギフトで応援できます。</p>
+              <p class="text-[0.8rem] text-gray-700 leading-relaxed">
+                ライブ前は「バックステージ」から、ライブ中は「ライブ画面」から。ファンはメッセージやギフトで応援できます。</p>
             </div>
           </div>
           <div class="flex gap-5 items-start">
-            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-ml-gradient text-white flex items-center justify-center font-bold text-lg shadow-md">3</div>
+            <div
+              class="flex-shrink-0 w-10 h-10 rounded-full bg-ml-gradient text-white flex items-center justify-center font-bold text-lg shadow-md">
+              3</div>
             <div class="pt-1">
               <h4 class="font-bold mb-2 text-[0.95rem]">参加型の応援で盛り上がる</h4>
-              <p class="text-[0.8rem] text-gray-700 leading-relaxed">ライブ中のギフトは、ライブ画面に演出として表示されます。会場の一体感が高まり、アーティストにも応援が届きます。</p>
+              <p class="text-[0.8rem] text-gray-700 leading-relaxed">
+                ライブ中のギフトは、ライブ画面に演出として表示されます。会場の一体感が高まり、アーティストにも応援が届きます。</p>
             </div>
+          </div>
+        </div>
+
+        <!-- mlss_reaction動画（画面全体中央寄せ・スマホ角丸） -->
+        <div class="flex justify-center mt-8">
+          <div
+            style="width:128px; border-radius:calc(128px * 0.1); overflow:hidden; box-shadow:0 4px 20px rgba(0,0,0,0.15);">
+            <video src="/waitlist/imgs/mlss_reaction.mp4" autoplay loop muted playsinline preload="auto"
+              style="width:100%; display:block;"></video>
           </div>
         </div>
       </section>
@@ -166,6 +231,11 @@
           <li class="bg-white p-5 rounded-xl shadow-[0_4px_15px_rgba(0,0,0,0.03)] border border-gray-50">
             <h4 class="font-bold text-ml-dark-blue mb-2 text-[0.9rem]">新人アーティストの活動支援につながる</h4>
             <p class="text-[0.75rem] text-gray-600 leading-relaxed">ファンの反応や応援が可視化され、活動のモチベーションや成長支援にも活用できます。</p>
+          </li>
+          <li class="bg-white p-5 rounded-xl shadow-[0_4px_15px_rgba(0,0,0,0.03)] border border-gray-50">
+            <h4 class="font-bold text-ml-dark-blue mb-2 text-[0.9rem]">既存プラットフォームより高い還元率</h4>
+            <p class="text-[0.75rem] text-gray-600 leading-relaxed">
+              アーティスト・ファーストの考え方を大切に、ファンの応援ができるだけ多くあなたを支える仕組みを目指しています。</p>
           </li>
           <li class="bg-white p-5 rounded-xl shadow-[0_4px_15px_rgba(0,0,0,0.03)] border border-gray-50">
             <h4 class="font-bold text-ml-dark-blue mb-2 text-[0.9rem]">現場ルールに配慮した応援手段として</h4>
@@ -196,34 +266,45 @@
       <!-- 導入の流れセクション -->
       <section class="glass-card rounded-2xl p-8 relative overflow-hidden">
         <h2 class="text-[1.4rem] font-bold mb-8 text-center text-ml-dark-blue">導入の流れ</h2>
-        <div class="relative pl-8 space-y-8 before:absolute before:inset-y-2 before:left-[17px] before:w-0.5 before:bg-gray-200">
-          
+        <div
+          class="relative pl-8 space-y-8 before:absolute before:inset-y-2 before:left-[17px] before:w-0.5 before:bg-gray-200">
+
           <div class="relative">
-            <div class="absolute -left-[40px] top-0.5 w-4 h-4 rounded-full bg-ml-pink border-[3px] border-white shadow-sm"></div>
+            <div
+              class="absolute -left-[40px] top-0.5 w-4 h-4 rounded-full bg-ml-pink border-[3px] border-white shadow-sm">
+            </div>
             <h4 class="font-bold text-[1rem]">1. アーティスト登録</h4>
             <p class="text-[0.8rem] text-gray-600 mt-1">登録したい方の基本情報や活動内容を入力します。</p>
           </div>
-          
+
           <div class="relative">
-            <div class="absolute -left-[40px] top-0.5 w-4 h-4 rounded-full bg-[#e86eb5] border-[3px] border-white shadow-sm"></div>
+            <div
+              class="absolute -left-[40px] top-0.5 w-4 h-4 rounded-full bg-[#e86eb5] border-[3px] border-white shadow-sm">
+            </div>
             <h4 class="font-bold text-[1rem]">2. アーティストページを開設</h4>
             <p class="text-[0.8rem] text-gray-600 mt-1">プロフィールやSNSリンク、ライブ情報を掲載します。</p>
           </div>
-          
+
           <div class="relative">
-            <div class="absolute -left-[40px] top-0.5 w-4 h-4 rounded-full bg-[#b573d8] border-[3px] border-white shadow-sm"></div>
+            <div
+              class="absolute -left-[40px] top-0.5 w-4 h-4 rounded-full bg-[#b573d8] border-[3px] border-white shadow-sm">
+            </div>
             <h4 class="font-bold text-[1rem]">3. ライブ・SNS等で告知</h4>
             <p class="text-[0.8rem] text-gray-600 mt-1">QRコードやURLを使ってファンへ案内します。</p>
           </div>
-          
+
           <div class="relative">
-            <div class="absolute -left-[40px] top-0.5 w-4 h-4 rounded-full bg-[#5978f5] border-[3px] border-white shadow-sm"></div>
+            <div
+              class="absolute -left-[40px] top-0.5 w-4 h-4 rounded-full bg-[#5978f5] border-[3px] border-white shadow-sm">
+            </div>
             <h4 class="font-bold text-[1rem]">4. ファンが応援</h4>
             <p class="text-[0.8rem] text-gray-600 mt-1">メッセージやギフトでライブを盛り上げます。</p>
           </div>
-          
+
           <div class="relative">
-            <div class="absolute -left-[40px] top-0.5 w-4 h-4 rounded-full bg-ml-blue border-[3px] border-white shadow-sm"></div>
+            <div
+              class="absolute -left-[40px] top-0.5 w-4 h-4 rounded-full bg-ml-blue border-[3px] border-white shadow-sm">
+            </div>
             <h4 class="font-bold text-[1rem]">5. 応援を次の活動へ</h4>
             <p class="text-[0.8rem] text-gray-600 mt-1">届いた応援を、今後の活動やファンコミュニケーションへ。</p>
           </div>
@@ -233,14 +314,16 @@
 
     </main>
 
-    <!-- ボトムCTA (コンテナ内に格納し、突然の境界線をなくす) -->
+    <!-- ボトムCTA -->
     <div class="px-6 pb-24 text-center relative z-20 pt-8 border-t border-gray-100">
       <h2 class="text-[1.35rem] font-extrabold mb-8 text-ml-dark-blue drop-shadow-sm">あなたのライブの熱量を、<br>次の力へ。</h2>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdoNftA0MRH1fYAIASDc_i-z6jUx1NfpfLvHPKMatty9_KdYA/viewform" target="_blank" rel="noopener noreferrer" class="btn-gradient inline-flex items-center justify-center w-[85%] mx-auto py-4 rounded-full text-white font-bold text-base shadow-xl">
-        アーティスト登録へ
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdoNftA0MRH1fYAIASDc_i-z6jUx1NfpfLvHPKMatty9_KdYA/viewform"
+        target="_blank" rel="noopener noreferrer"
+        class="btn-gradient inline-flex items-center justify-center w-[85%] mx-auto py-4 rounded-full text-white font-bold text-base shadow-xl">
+        アーティスト先行登録へ
       </a>
     </div>
-    
+
     <footer class="text-center pb-8 pt-6 relative z-10 border-t border-gray-100/50">
       <p class="text-[0.7rem] text-gray-500 font-bold tracking-wider">&copy; Music Liver Support System.</p>
     </footer>
@@ -251,17 +334,17 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const slides = document.querySelectorAll('.bg-slide');
-      if(slides.length === 0) return;
-      
+      if (slides.length === 0) return;
+
       let currentIndex = 0;
       setInterval(() => {
         const nextIndex = (currentIndex + 1) % slides.length;
-        // 不透明度を30%（0.3）に設定
         slides[nextIndex].style.opacity = '0.3';
         slides[currentIndex].style.opacity = '0';
         currentIndex = nextIndex;
-      }, 5000); // 5秒ごとに切り替え
+      }, 5000);
     });
   </script>
 </body>
+
 </html>
